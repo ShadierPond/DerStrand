@@ -232,13 +232,18 @@ public class Player : MonoBehaviour
             Debug.Log("Out Of Area!");
             _objectRigidbody.AddForce((_interactionHoldArea.position - interactableObject.transform.position) * objectHoldForce);
         }
+        if(Vector3.Distance(interactableObject.transform.position, _interactionHoldArea.position) > 10f)
+        {
+            Debug.Log("You broke it!");
+            interactableObject.transform.position = _interactionHoldArea.position;
+        }
+        
   
     }
     public void MouseLock(InputAction.CallbackContext context)
         {
             if (mouseLocking)
             {
-                
                 Cursor.lockState = CursorLockMode.None;
                 mouseLocking = false;
             }
@@ -247,5 +252,5 @@ public class Player : MonoBehaviour
                 Cursor.lockState = CursorLockMode.Locked;
                 mouseLocking = true;
             }
-     }
+        }
 }
