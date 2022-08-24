@@ -229,7 +229,7 @@ public class Player : MonoBehaviour
         if(Vector3.Distance(interactableObject.transform.position, _interactionHoldArea.position) > 0.1f)
         {
             Debug.Log("Out Of Area!");
-            _objectRigidbody.AddRelativeForce((_interactionHoldArea.position - interactableObject.transform.position) * objectHoldForce);
+            _objectRigidbody.AddForce((_interactionHoldArea.position - interactableObject.transform.position) * objectHoldForce);
         }
     }
 }
