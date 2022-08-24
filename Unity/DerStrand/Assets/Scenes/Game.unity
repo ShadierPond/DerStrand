@@ -621,16 +621,6 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 1121839267}
-    - target: {fileID: 5125565863325364084, guid: b77e6ab7348b0aa46a84794e27bbcc00,
-        type: 3}
-      propertyPath: objectHoldArea.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5125565863325364084, guid: b77e6ab7348b0aa46a84794e27bbcc00,
-        type: 3}
-      propertyPath: objectHoldArea.z
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 5125565863325364095, guid: b77e6ab7348b0aa46a84794e27bbcc00,
         type: 3}
       propertyPath: m_Name
