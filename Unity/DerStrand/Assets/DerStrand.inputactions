@@ -53,10 +53,10 @@
                 {
                     "name": "Interact",
                     "type": "Button",
-                    "id": "78ea2ce5-f416-4078-b5e1-4e1cb06d4def",
+                    "id": "597b6a75-282f-4e71-bec2-8f0832039bcf",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
+                    "interactions": "Hold(pressPoint=0.4),Press",
                     "initialStateCheck": false
                 }
             ],
@@ -327,7 +327,18 @@
                 },
                 {
                     "name": "",
-                    "id": "38cd7d47-4400-4235-8a0d-25ddb32ec5fa",
+                    "id": "a2fb59bf-d7d1-4b2c-a21f-5ec2cbbd098d",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2bfdc656-490e-40b1-aaba-147d96bdf2a4",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",

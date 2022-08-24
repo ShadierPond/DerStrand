@@ -41,7 +41,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float objectHoldForce;
     private RaycastHit _hit;
     private Rigidbody _objectRigidbody;
-    
+    private Transform _interactionHoldArea;
+
     [Header("Debug")]
     [SerializeField] private Vector2 cameraRotation; 
     [SerializeField] private bool isGrounded;
@@ -55,6 +56,8 @@ public class Player : MonoBehaviour
     private void Start()
     {
         _controller = GetComponent<CharacterController>();
+        _interactionHoldArea = camera.transform.Find("HoldArea");
+        _interactionHoldArea.position = objectHoldArea;
         currentSpeed = speed;
     }
 
@@ -201,10 +204,11 @@ public class Player : MonoBehaviour
     {
         if (!objectHeld)
         {
-            interactableObject.transform.parent = camera.transform;
+            interactableObject.transform.parent = _interactionHoldArea;
             _objectRigidbody.useGravity = false;
             _objectRigidbody.drag = 10;
             _objectRigidbody.constraints = RigidbodyConstraints.FreezeRotation;
+
         }
         else
         {
@@ -220,8 +224,9 @@ public class Player : MonoBehaviour
     {
         if(!objectHeld)
             return;
-        if(Vector3.Distance(interactableObject.transform.position, camera.transform.position + objectHoldArea) > 0.1f)
+        if(Vector3.Distance(interactableObject.transform.position, _interactionHoldArea.position) > 0.1f)
         {
+            Debug.Log("Out Of Area!");
             _objectRigidbody.AddForce((camera.transform.position + objectHoldArea - interactableObject.transform.position) * objectHoldForce);
         }
     }
