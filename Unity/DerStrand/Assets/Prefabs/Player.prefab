@@ -288,7 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 0}
   cameraPosition: {x: 0, y: 0.5, z: 0}
-  mouseSensitivity: 4
+  mouseSensitivity: 6
   invertMouseX: 0
   invertMouseY: 0
   smoothMovement: 1
@@ -311,3 +311,4 @@ MonoBehaviour:
   interactable: 0
   objectHeld: 0
   interactableObject: {fileID: 0}
+  mouseLocking: 0
