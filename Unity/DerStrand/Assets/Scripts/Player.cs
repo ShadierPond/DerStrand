@@ -58,7 +58,8 @@ public class Player : MonoBehaviour
     {
         _controller = GetComponent<CharacterController>();
         _interactionHoldArea = camera.transform.Find("HoldArea");
-        _interactionHoldArea.position = objectHoldArea;
+        _interactionHoldArea.localPosition = objectHoldArea;
+        //objectHoldArea = _interactionHoldArea.position;
         currentSpeed = speed;
     }
 
@@ -228,7 +229,7 @@ public class Player : MonoBehaviour
         if(Vector3.Distance(interactableObject.transform.position, _interactionHoldArea.position) > 0.1f)
         {
             Debug.Log("Out Of Area!");
-            _objectRigidbody.AddForce((camera.transform.position + objectHoldArea - interactableObject.transform.position) * objectHoldForce);
+            _objectRigidbody.AddRelativeForce((_interactionHoldArea.position - interactableObject.transform.position) * objectHoldForce);
         }
     }
 }
