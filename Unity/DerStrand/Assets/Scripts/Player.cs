@@ -53,6 +53,7 @@ public class Player : MonoBehaviour
     [SerializeField] private bool interactable;
     [SerializeField] private bool objectHeld;
     [SerializeField] private GameObject interactableObject;
+    [SerializeField] bool mouseLocking ;
 
     private void Start()
     {
@@ -231,5 +232,20 @@ public class Player : MonoBehaviour
             Debug.Log("Out Of Area!");
             _objectRigidbody.AddRelativeForce((_interactionHoldArea.position - interactableObject.transform.position) * objectHoldForce);
         }
+  
     }
+    public void MouseLock(InputAction.CallbackContext context)
+        {
+            if (mouseLocking)
+            {
+                
+                Cursor.lockState = CursorLockMode.None;
+                mouseLocking = false;
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                mouseLocking = true;
+            }
+     }
 }
