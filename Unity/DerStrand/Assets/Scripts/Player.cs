@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     
     [Header("Camera and Player Rotation")]
     [SerializeField] private new Camera camera;
+    [SerializeField] private Vector3 cameraPosition;
     [SerializeField] private float mouseSensitivity;
     [SerializeField] private bool invertMouseX;
     [SerializeField] private bool invertMouseY;
@@ -179,7 +180,7 @@ public class Player : MonoBehaviour
     private void CameraFollow()
     {
         // Move the camera to the player position
-        camera.transform.position = transform.position;
+        camera.transform.position = transform.position + cameraPosition;
     }
 
     private void Interact()
