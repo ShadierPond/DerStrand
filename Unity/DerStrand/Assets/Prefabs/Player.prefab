@@ -301,7 +301,7 @@ MonoBehaviour:
   jumpForce: 7
   gravity: 20
   interactDistance: 100
-  objectHoldArea: {x: 1, y: 0, z: 1}
+  objectHoldArea: {x: 0, y: 0, z: 2}
   objectHoldForce: 10
   cameraRotation: {x: 0, y: 0}
   isGrounded: 0
