@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,7 +15,7 @@ public class SaveSystem : MonoBehaviour
     [SerializeField] private string saveLocation;
     [SerializeField] private GameObject saveSlotsContent;
     [SerializeField] private string selectedSaveName;
-    [SerializeField] private SaveData data;
+    public SaveData data;
 
     // Reference the Instance to this script and set Save Location
     private void Awake()
@@ -95,7 +94,7 @@ public class SaveSystem : MonoBehaviour
             // Create a new Save Slot
             var saveSlot = Instantiate(Resources.Load("SaveSlot"), saveSlotsContent.transform) as GameObject;
             // Setup the Save Slot's Button. OnClick, Save the Save Slot's Save Name to the selectedSaveName variable
-            saveSlot.GetComponent<Button>().onClick.AddListener(() => selectedSaveName = data.saveDate + data.saveTime);
+            saveSlot.GetComponent<Button>().onClick.AddListener(() => selectedSaveName = (data.saveDate + data.saveTime).Replace(":", "_"));
             // If the Save Slot exists, set the Save Slot's Info Text to the Save Data's Info Text
             if (saveSlot != null)
             {

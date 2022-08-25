@@ -54,9 +54,11 @@ public class Player : MonoBehaviour
     [SerializeField] private bool objectHeld;
     [SerializeField] private GameObject interactableObject;
     [SerializeField] bool mouseLocking ;
-
+    [SerializeField] SaveData saveData;
+    
     private void Start()
     {
+        saveData = SaveSystem.Instance.data;
         _controller = GetComponent<CharacterController>();
         _interactionHoldArea = camera.transform.Find("HoldArea");
         _interactionHoldArea.localPosition = objectHoldArea;

@@ -1,3 +1,4 @@
+using UnityEngine;
 [System.Serializable]
 public class SaveData
 {
@@ -6,6 +7,8 @@ public class SaveData
     public string saveTime;
     public int daysSurvived;
     public string inGameTime;
+    
+    
 }
 
 
