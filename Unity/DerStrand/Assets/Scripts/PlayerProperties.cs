@@ -9,7 +9,7 @@ public class PlayerProperties : MonoBehaviour
 {
     [Header ("Propertie")]
     [SerializeField] int maxProperty, propertyData = 0,propertyCase = 0, decreaseTime, health , thirst, hunger, wearyTime, stamina ,staminaRegenerationTime, staminaRegenerationAmount;
-    [SerializeField] int thirstDecrese,hungerDecrease,;
+    [SerializeField] int thirstDecrese,hungerDecrease;
 
     // Start is called before the first frame update
     void Start()
