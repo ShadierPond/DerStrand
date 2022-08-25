@@ -4,6 +4,12 @@ using UnityEngine.InputSystem;
 public class SaveManager : MonoBehaviour
 {
     [SerializeField] private GameObject saveSlotContent;
+    public static SaveManager Instance { get; private set; }
+    
+    private void Awake()
+    {
+        Instance = this;
+    }
     
     private void Start()
     {
@@ -17,7 +23,7 @@ public class SaveManager : MonoBehaviour
     }
 
     // Save the Game Data
-    public void SaveGame(InputAction.CallbackContext context)
+    public void SaveGame()
     {
         SaveSystem.Instance.SaveGame();
     }
