@@ -241,17 +241,4 @@ public class Player : MonoBehaviour
         
   
     }
-    public void MouseLock(InputAction.CallbackContext context)
-        {
-            if (mouseLocking)
-            {
-                Cursor.lockState = CursorLockMode.None;
-                mouseLocking = false;
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                mouseLocking = true;
-            }
-        }
 }

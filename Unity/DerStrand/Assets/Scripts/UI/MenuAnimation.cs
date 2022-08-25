@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class MenuAnimation : MonoBehaviour
@@ -10,6 +11,8 @@ public class MenuAnimation : MonoBehaviour
     [SerializeField] private GameObject inGameMenu;
     [SerializeField] private GameObject currentMenu;
     [SerializeField] private GameObject nextMenu;
+    [SerializeField] private bool isMenuOpen;
+    [SerializeField] private bool isMenuLocked;
     public float transitionTime;
     public float waitTimeBetweenTransitions;
     private CanvasGroup _currentCanvasGroup;
@@ -23,10 +26,14 @@ public class MenuAnimation : MonoBehaviour
             if(menu.name == state.currentMenuState.ToString())
             {
                 currentMenu = menu;
+                if(menu.name == "Main")
+                    isMenuLocked = true;
                 _currentCanvasGroup = currentMenu.GetComponent<CanvasGroup>();
             }
             if(menu.name == state.nextMenuState.ToString())
             {
+                if(menu.name == "Main")
+                    isMenuLocked = false;
                 nextMenu = menu;
                 _nextCanvasGroup = nextMenu.GetComponent<CanvasGroup>();
             }
@@ -50,38 +57,65 @@ public class MenuAnimation : MonoBehaviour
         _nextCanvasGroup.DOFade(1, duration / 2);
         yield return new WaitForSeconds(duration / 2);
     }
-    
 
-    public void ExitMenu()
+    public void InGameMenu(bool state)
     {
+        isMenuOpen = state;
         _inGameCanvasGroup = inGameMenu.GetComponent<CanvasGroup>();
-        _inGameCanvasGroup.alpha = 1;
-
-        StartCoroutine(ExitMenuTransition(transitionTime));
-
+        if(state)
+        {
+            _inGameCanvasGroup.alpha = 0;
+            inGameMenu.SetActive(true);
+            StartCoroutine(InGameMenuTransition(true, transitionTime));
+        }
+        else
+        {
+            _inGameCanvasGroup.alpha = 1;
+            StartCoroutine(InGameMenuTransition(false, transitionTime));
+        }
     }
 
-    private IEnumerator ExitMenuTransition(float duration)
+    private IEnumerator InGameMenuTransition(bool state, float duration)
     {
-        _inGameCanvasGroup.DOFade(0, duration);
-        yield return new WaitForSeconds(duration);
-        inGameMenu.SetActive(false);
-        _inGameCanvasGroup.interactable = false;
-    }
-
-    public void ReturnToMenu()
-    {
-        _inGameCanvasGroup = inGameMenu.GetComponent<CanvasGroup>();
-        _inGameCanvasGroup.alpha = 0;
-        inGameMenu.SetActive(true);
-        StartCoroutine(ReturnToMenuTransition(transitionTime));
+        if (!state)
+        {
+            _inGameCanvasGroup.DOFade(0, duration);
+            yield return new WaitForSeconds(duration);
+        }
+        _inGameCanvasGroup.interactable = state;
+        inGameMenu.SetActive(state);
+        if (state)
+        {
+            _inGameCanvasGroup.DOFade(1, duration);
+            yield return new WaitForSeconds(duration);
+        }
     }
     
-    private IEnumerator ReturnToMenuTransition(float duration)
+    public void PlayerMenu(InputAction.CallbackContext context)
     {
-        _inGameCanvasGroup.DOFade(1, duration);
-        yield return new WaitForSeconds(duration);
-        _inGameCanvasGroup.interactable = true;
+        if(!context.performed)
+            return;
+        
+        if (isMenuOpen && !isMenuLocked)
+        {
+            Debug.Log("Closing");
+            InGameMenu(false);
+            LockMouse(true);
+            Debug.Log("Closed");
+        }
+        else if(!isMenuOpen && !isMenuLocked)
+        {
+            Debug.Log("Opening");
+            InGameMenu(true);
+            LockMouse(false);
+            Debug.Log("Opened");
+        }
+    }
+
+    private void LockMouse(bool state)
+    {
+        Cursor.lockState = state ? CursorLockMode.Locked : CursorLockMode.None;
+        Cursor.visible = !state;
     }
 
     public void QuitGame()
