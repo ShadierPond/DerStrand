@@ -8,8 +8,8 @@ using Debug = UnityEngine.Debug;
 public class PlayerProperties : MonoBehaviour
 {
     [Header ("Propertie")]
-    [SerializeField] int maxProperty, propertyData = 0,propertyCase = 0, health , thirst, hunger, wearyTime, stamina ,staminaRegenerationTime, staminaRegenerationAmount;
-  
+    [SerializeField] int maxProperty, propertyData = 0,propertyCase = 0, decreaseTime, health , thirst, hunger, wearyTime, stamina ,staminaRegenerationTime, staminaRegenerationAmount;
+    [SerializeField] int thirstDecrese,hungerDecrease,;
 
     // Start is called before the first frame update
     void Start()
@@ -23,10 +23,10 @@ public class PlayerProperties : MonoBehaviour
         staminaRegenerationTime = 2;
         staminaRegenerationAmount = 1;
         //StartCoroutine(RegenerateStamina());
-        health = 10;
-        thirst = 10;
-        hunger = 10;
-        wearyTime = 10;
+        //health = 10;
+        //thirst = 10;
+        //hunger = 10;
+        //wearyTime = 10;
 
         RegenerateProperty(5, "health");
         Debug.Log(health);
@@ -43,7 +43,7 @@ public class PlayerProperties : MonoBehaviour
         if (health>0)                     //if the health is more than 0 
         {
             Debug.Log("Damage");   
-            health = health - damage;     //apply the incoming damage to health
+            health -= damage;     //apply the incoming damage to health
             Debug.Log(health);
         }
         else
@@ -61,7 +61,7 @@ public class PlayerProperties : MonoBehaviour
         switch (propertyName)
         {
             case "health":
-                propertyData = health;
+                propertyData = health;              //propertyData is set to the value of health
                 Debug.Log("Health case");
                 propertyCase = 1;
                 break;
@@ -99,7 +99,7 @@ public class PlayerProperties : MonoBehaviour
                     break;
                 case 1:
                     Debug.Log("Regenerate health");
-                    health = propertyData;
+                    health = propertyData;                  //health is set to the value of propertyData
                     break;
                 case 2:
                     Debug.Log("Regenerate thirst");
@@ -136,6 +136,18 @@ public class PlayerProperties : MonoBehaviour
             Debug.Log(stamina);
         }
     }
+
+    //private IEnumerator DecreaseProperty()
+    //{
+    //    yield return new WaitForSeconds(decreaseTime);
+    //    while (X <= maxProperty)                               //While Stamina is < than maxProperty
+    //    {
+    //        X += staminaRegenerationAmount;          //stamina + staminaRegenerationAmount
+    //        yield return new WaitForSeconds(1);
+    //        Debug.Log(x);
+    //    }
+    //}
+    
 
     //Call Methods
     //DealDamage(1);
