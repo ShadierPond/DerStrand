@@ -7,10 +7,11 @@ public class EnumMenuState : MonoBehaviour
     public enum MenuState
     {
         MainMenu,
+        Main,
+        Load,
         Options,
         Game,
         Controls,
-        Graphics,
         Audio,
     }
     public MenuState currentMenuState;
