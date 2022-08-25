@@ -97,23 +97,26 @@ public class PlayerProperties : MonoBehaviour
                 case 0:
                     Debug.Log("Error");
                     break;
-                case 1: 
+                case 1:
+                    Debug.Log("Regenerate health");
                     health = propertyData;
                     break;
-                case 2: 
+                case 2:
+                    Debug.Log("Regenerate thirst");
                     thirst = propertyData;
                     break;
                 case 3:
+                    Debug.Log("Regenerate hunger");
                     hunger = propertyData;
                     break;
                 case 4:
+                    Debug.Log("Regenerate wearyTime");
                     wearyTime = propertyData;
                     break;
                 default :
                     Debug.Log("Nothing");
                     break;
             }
-            Debug.Log("Regenerate Health");
             Debug.Log("new Health " + health);
             Debug.Log("new thirst " + thirst);
             Debug.Log("new hunger " + hunger);
