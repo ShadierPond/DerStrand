@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq.Expressions;
 using UnityEngine;
+using Debug = UnityEngine.Debug;
 
 public class PlayerProperties : MonoBehaviour
 {
     [Header ("Propertie")]
-    [SerializeField] int maxProperty, health ,  thirst, hunger, wearyTime, stamina ,staminaRegenerationTime, staminaRegenerationAmount;
+    [SerializeField] int maxProperty, propertyData = 0,propertyCase = 0, health , thirst, hunger, wearyTime, stamina ,staminaRegenerationTime, staminaRegenerationAmount;
   
 
     // Start is called before the first frame update
@@ -19,12 +22,21 @@ public class PlayerProperties : MonoBehaviour
         stamina = 50;      //says how long you can sprint (endurance/stamina)
         staminaRegenerationTime = 2;
         staminaRegenerationAmount = 1;
-        StartCoroutine(RegenerateStamina());
+        //StartCoroutine(RegenerateStamina());
+        health = 10;
+        thirst = 10;
+        hunger = 10;
+        wearyTime = 10;
+
+        RegenerateProperty(5, "health");
+        Debug.Log(health);
+        
     }
     // Update is called once per frame
     void Update()
     {
-       
+        
+
     }
     public void DealDamage(int damage)
     {
@@ -43,54 +55,71 @@ public class PlayerProperties : MonoBehaviour
             }
         }
     }
-    //TODO:Evt. make one method for multiple properties with a universal variable for regenerate property
-    public void RegenerateHealth(int regeneratedHealth)
+    public void RegenerateProperty(int regenerateValue,string propertyName)
     {
-        if (health <maxProperty)                    //if health is under maxProperty
+        Debug.Log(propertyData);
+        switch (propertyName)
         {
-            health = health + regeneratedHealth;    //apply the healing to the health
-            Debug.Log("Regenerate Health");
-            if (health > maxProperty)               //if the health goes over the value of maxProperty 
+            case "health":
+                propertyData = health;
+                Debug.Log("Health case");
+                propertyCase = 1;
+                break;
+            case "thirst":
+                propertyData = thirst;
+                Debug.Log("thirst case");
+                propertyCase = 2;
+                break;
+            case "hunger":
+                propertyData = hunger;
+                Debug.Log("hunger case");
+                propertyCase = 3;
+                break;
+            case "wearyTime":
+                propertyData = wearyTime;
+                Debug.Log("wearyTime case");
+                propertyCase = 4;
+                break;
+            default:
+                propertyData = 0;
+                propertyCase = 0;
+                break;
+        }
+        if (propertyData < maxProperty)                    //if health is under maxProperty
+        {
+            propertyData = propertyData + regenerateValue;    //apply the healing to the health
+            if (propertyData > maxProperty)               //if the health goes over the value of maxProperty 
             {
-                health = maxProperty;               //health is set to default value
+                propertyData = maxProperty;               //health is set to default value
+            }
+            switch (propertyCase)
+            {
+                case 0:
+                    Debug.Log("Error");
+                    break;
+                case 1: 
+                    health = propertyData;
+                    break;
+                case 2: 
+                    thirst = propertyData;
+                    break;
+                case 3:
+                    hunger = propertyData;
+                    break;
+                case 4:
+                    wearyTime = propertyData;
+                    break;
+                default :
+                    Debug.Log("Nothing");
+                    break;
+                    Debug.Log("Regenerate Health");
+                    Debug.Log("new Health " + health);
+                    Debug.Log("new thirst " + thirst);
+                    Debug.Log("new hunger " + hunger);
+                    Debug.Log("new wearyTime " + wearyTime);
             }
         }
-    }
-    public void RegenerateThirst(int fillThirst)
-    {
-        if (thirst < maxProperty)
-        {
-            thirst = thirst + fillThirst;
-            Debug.Log("Regenerate Thirst");
-            if (thirst > maxProperty)
-            {
-                thirst = maxProperty;
-            }
-        }
-    }
-    public void RegenerateHunger(int fillHunger)
-    {
-        if (hunger < maxProperty)
-        {
-            hunger = hunger + fillHunger;
-            Debug.Log("Regenerate Hunger");
-            if (hunger > maxProperty)
-            {
-                hunger = maxProperty;
-            }
-        }
-    }
-    public void RegenerateWearyTime(int fillWearyTime)
-    {
-        if (wearyTime < maxProperty)
-        {
-            wearyTime = wearyTime + fillWearyTime;
-            Debug.Log("Regenerate WearyTime");  //Sleep 
-            if (wearyTime > maxProperty)
-            {
-                wearyTime = maxProperty;
-            }
-        }
+
     }
     //TODO:Evt. change private to public
     private IEnumerator RegenerateStamina()
@@ -104,13 +133,13 @@ public class PlayerProperties : MonoBehaviour
             Debug.Log(stamina);
         }
     }
-    
+
     //Call Methods
     //DealDamage(1);
-    //RegenerateHealth(20);
-    //RegenerateThirst(20);
-    //RegenerateHunger(20);
-    //RegenerateWearyTime(20);
+    //RegenerateProperty(20,"health");
+    //RegenerateProperty(20,"thirst");
+    //RegenerateProperty(20,"hunger");
+    //RegenerateProperty(20,"wearyTime");
 
     //Call IEnumerator
     //StartCoroutine(RegenerateStamina());
