@@ -14,6 +14,7 @@ public class SaveSystem : MonoBehaviour
     [SerializeField] private bool usePersistentDataPath;
     [SerializeField] private string saveLocation;
     [HideInInspector] public GameObject saveSlotsContent;
+    [SerializeField] private string latestSaveName;
     public SaveData saveData;
     private string selectedSaveName;
 
