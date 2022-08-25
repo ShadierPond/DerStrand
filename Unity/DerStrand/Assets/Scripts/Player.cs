@@ -236,6 +236,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log("You broke it!");
             interactableObject.transform.position = _interactionHoldArea.position;
+            
         }
         
   
