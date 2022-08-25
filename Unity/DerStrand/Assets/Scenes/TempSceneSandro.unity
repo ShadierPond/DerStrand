@@ -944,6 +944,51 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 347959775330948361, guid: 2f8fd32f75038c2438213b51ee6041c1,
+        type: 3}
+      propertyPath: maxProperty
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 347959775330948361, guid: 2f8fd32f75038c2438213b51ee6041c1,
+        type: 3}
+      propertyPath: thirstDecrese
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 347959775330948361, guid: 2f8fd32f75038c2438213b51ee6041c1,
+        type: 3}
+      propertyPath: hungerDecrease
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 347959775330948361, guid: 2f8fd32f75038c2438213b51ee6041c1,
+        type: 3}
+      propertyPath: staminaDecrease
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 347959775330948361, guid: 2f8fd32f75038c2438213b51ee6041c1,
+        type: 3}
+      propertyPath: wearyTimeDecrease
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 347959775330948361, guid: 2f8fd32f75038c2438213b51ee6041c1,
+        type: 3}
+      propertyPath: thirstDecreseInterval
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 347959775330948361, guid: 2f8fd32f75038c2438213b51ee6041c1,
+        type: 3}
+      propertyPath: hungerDecreaseInterval
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 347959775330948361, guid: 2f8fd32f75038c2438213b51ee6041c1,
+        type: 3}
+      propertyPath: staminaDecreaseInterval
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 347959775330948361, guid: 2f8fd32f75038c2438213b51ee6041c1,
+        type: 3}
+      propertyPath: wearyTimeDecreaseInterval
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6452802721571278722, guid: 2f8fd32f75038c2438213b51ee6041c1,
         type: 3}
       propertyPath: m_RootOrder

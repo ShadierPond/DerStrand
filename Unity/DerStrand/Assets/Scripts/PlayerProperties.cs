@@ -9,12 +9,11 @@ public class PlayerProperties : MonoBehaviour
 {
     [Header ("Propertie")]
     [SerializeField] int maxProperty, propertyData = 0,propertyCase = 0, decreaseTime, health , thirst, hunger, wearyTime, stamina ,staminaRegenerationTime, staminaRegenerationAmount;
-    [SerializeField] int thirstDecrese,hungerDecrease;
-
+    [SerializeField] private int thirstDecrese, hungerDecrease, wearyTimeDecrease, staminaDecrease;
+    [SerializeField] private float thirstDecreseInterval, hungerDecreaseInterval, wearyTimeDecreaseInterval, staminaDecreaseInterval;
     // Start is called before the first frame update
     void Start()
     {
-        maxProperty = 100;  //Max value for all Properties
         health = maxProperty;       
         thirst = maxProperty;
         hunger = maxProperty;
@@ -23,12 +22,16 @@ public class PlayerProperties : MonoBehaviour
         staminaRegenerationTime = 2;
         staminaRegenerationAmount = 1;
         //StartCoroutine(RegenerateStamina());
+        StartCoroutine(DecreaseThirst());
+        StartCoroutine(DecreaseHunger());
+        StartCoroutine(DecreaseWearyTime());
+        StartCoroutine(DecreaseStamina());
         //health = 10;
         //thirst = 10;
         //hunger = 10;
         //wearyTime = 10;
 
-        RegenerateProperty(5, "health");
+        RegenerateProperty("health", 5);
         Debug.Log(health);
         
     }
@@ -55,7 +58,7 @@ public class PlayerProperties : MonoBehaviour
             }
         }
     }
-    public void RegenerateProperty(int regenerateValue,string propertyName)
+    public void RegenerateProperty(string propertyName, int regenerateValue)
     {
         Debug.Log(propertyData);
         switch (propertyName)
@@ -124,38 +127,69 @@ public class PlayerProperties : MonoBehaviour
         }
 
     }
-    //TODO:Evt. change private to public
+    //TODO:Evt. change private to public 
+    //TODO:API
     private IEnumerator RegenerateStamina()
     {
         Debug.Log(stamina);
         yield return new WaitForSeconds(staminaRegenerationTime);   //wait for staminaRegenerationTime seconds
         while (stamina < maxProperty)                               //While Stamina is < than maxProperty
         {
-            stamina = stamina + staminaRegenerationAmount;          //stamina + staminaRegenerationAmount
+            stamina  += staminaRegenerationAmount;          //stamina + staminaRegenerationAmount
             yield return new WaitForSeconds(1);
             Debug.Log(stamina);
         }
     }
 
-    //private IEnumerator DecreaseProperty()
-    //{
-    //    yield return new WaitForSeconds(decreaseTime);
-    //    while (X <= maxProperty)                               //While Stamina is < than maxProperty
-    //    {
-    //        X += staminaRegenerationAmount;          //stamina + staminaRegenerationAmount
-    //        yield return new WaitForSeconds(1);
-    //        Debug.Log(x);
-    //    }
-    //}
-    
+    private IEnumerator DecreaseThirst()
+    {
+        while (thirst <= maxProperty)                               //While Stamina is < than maxProperty
+        {
+            thirst += thirstDecrese;          //stamina + staminaRegenerationAmount
+            yield return new WaitForSeconds(thirstDecreseInterval);
+            Debug.Log("thirst :" + thirst);
+        }
+    }
+    private IEnumerator DecreaseHunger()
+    {
+        while (hunger <= maxProperty)                               //While Stamina is < than maxProperty
+        {
+            hunger += hungerDecrease;          //stamina + staminaRegenerationAmount
+            yield return new WaitForSeconds(hungerDecreaseInterval);
+            Debug.Log("hunger :" + hunger);
+        }
+    }
+    private IEnumerator DecreaseWearyTime()
+    {
+        while (wearyTime <= maxProperty)                               //While Stamina is < than maxProperty
+        {
+            wearyTime += wearyTimeDecrease;          //stamina + staminaRegenerationAmount
+            yield return new WaitForSeconds(wearyTimeDecreaseInterval);
+            Debug.Log("wearyTime :" + wearyTime);
+        }
+    }
+    private IEnumerator DecreaseStamina()
+    {
+        while (stamina <= maxProperty)                               //While Stamina is < than maxProperty
+        {
+            stamina += staminaDecrease;          //stamina + staminaRegenerationAmount
+            yield return new WaitForSeconds(staminaDecreaseInterval);
+            Debug.Log("stamina :" + stamina);
+        }
+    }
+
 
     //Call Methods
     //DealDamage(1);
-    //RegenerateProperty(20,"health");
-    //RegenerateProperty(20,"thirst");
-    //RegenerateProperty(20,"hunger");
-    //RegenerateProperty(20,"wearyTime");
+    //RegenerateProperty("health",20);
+    //RegenerateProperty("thirst",20);
+    //RegenerateProperty("hunger",20);
+    //RegenerateProperty("wearyTime",20);
 
     //Call IEnumerator
     //StartCoroutine(RegenerateStamina());
+    //StartCoroutine(DecreaseThirst());
+    //StartCoroutine(DecreaseHunger());
+    //StartCoroutine(DecreaseWearyTime());
+    //StartCoroutine(DecreaseStamina());
 }
