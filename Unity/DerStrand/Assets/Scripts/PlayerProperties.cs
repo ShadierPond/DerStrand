@@ -87,7 +87,7 @@ public class PlayerProperties : MonoBehaviour
         }
         if (propertyData < maxProperty)                    //if health is under maxProperty
         {
-            propertyData =+ regenerateValue;    //apply the healing to the health
+            propertyData += regenerateValue;    //apply the healing to the health
             if (propertyData > maxProperty)               //if the health goes over the value of maxProperty 
             {
                 propertyData = maxProperty;               //health is set to default value
