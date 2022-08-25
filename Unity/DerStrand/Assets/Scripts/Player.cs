@@ -53,12 +53,18 @@ public class Player : MonoBehaviour
     [SerializeField] private bool interactable;
     [SerializeField] private bool objectHeld;
     [SerializeField] private GameObject interactableObject;
-    [SerializeField] bool mouseLocking ;
-    [SerializeField] SaveData saveData;
+    [SerializeField] private SaveData saveData;
     
     private void Start()
     {
-        saveData = SaveSystem.Instance.data;
+        saveData = SaveSystem.Instance.saveData;
+        if(saveData.saveDate != null)
+        {
+            transform.position = saveData.playerPosition;
+            transform.rotation = saveData.playerRotation;
+            camera.transform.eulerAngles = saveData.playerCameraRotation;
+        }
+        
         _controller = GetComponent<CharacterController>();
         _interactionHoldArea = camera.transform.Find("HoldArea");
         _interactionHoldArea.localPosition = objectHoldArea;

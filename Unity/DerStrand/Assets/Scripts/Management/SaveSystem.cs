@@ -13,9 +13,9 @@ public class SaveSystem : MonoBehaviour
     
     [SerializeField] private bool usePersistentDataPath;
     [SerializeField] private string saveLocation;
-    [SerializeField] private GameObject saveSlotsContent;
-    [SerializeField] private string selectedSaveName;
-    public SaveData data;
+    [HideInInspector] public GameObject saveSlotsContent;
+    public SaveData saveData;
+    private string selectedSaveName;
 
     // Reference the Instance to this script and set Save Location
     private void Awake()
@@ -32,7 +32,7 @@ public class SaveSystem : MonoBehaviour
         data.saveDate = DateTime.Now.ToString("dd/MM/yyyy");
         data.saveTime = DateTime.Now.ToString("HH:mm:ss");
         // Set SaveName as the Date and Time and replace any : with _ (to prevent any issues with the file name)
-        var saveName = (data.saveDate + data.saveTime).Replace( ":", "_");
+        var saveName = (data.saveDate +"-"+ data.saveTime).Replace( ":", "_");
         // Convert the GameData Class to a JSON string
         var json = JsonUtility.ToJson(data);
         // if the path doesnt exist, create it then save the data in the path
@@ -53,7 +53,7 @@ public class SaveSystem : MonoBehaviour
     private Texture LoadImage(string saveName)
     {
         // Load the image from the save location
-        var bytes = usePersistentDataPath ? File.ReadAllBytes(Application.persistentDataPath + "/" + saveName + ".png") : File.ReadAllBytes(saveLocation + "/" + saveName + ".png");
+        var bytes = File.ReadAllBytes(saveLocation + "/" + saveName + ".png");
         // Create a new Texture2D
         var texture = new Texture2D(240, 135);
         // Load the image into the Texture2D
@@ -90,16 +90,16 @@ public class SaveSystem : MonoBehaviour
         foreach (var save in saveSlots)
         {
             // Temporarily store the Save Data
-            data = Load(save);
+            var data = Load(save);
             // Create a new Save Slot
             var saveSlot = Instantiate(Resources.Load("SaveSlot"), saveSlotsContent.transform) as GameObject;
             // Setup the Save Slot's Button. OnClick, Save the Save Slot's Save Name to the selectedSaveName variable
-            saveSlot.GetComponent<Button>().onClick.AddListener(() => selectedSaveName = (data.saveDate + data.saveTime).Replace(":", "_"));
+            saveSlot.GetComponent<Button>().onClick.AddListener(() => selectedSaveName = (data.saveDate +"-"+ data.saveTime).Replace(":", "_"));
             // If the Save Slot exists, set the Save Slot's Info Text to the Save Data's Info Text
             if (saveSlot != null)
             {
                 // Load the Save Slot's Image
-                saveSlot.transform.GetChild(0).GetComponent<RawImage>().texture = LoadImage((data.saveDate + data.saveTime).Replace(":", "_"));
+                saveSlot.transform.GetChild(0).GetComponent<RawImage>().texture = LoadImage((data.saveDate +"-"+ data.saveTime).Replace(":", "_"));
                 // Load the Save Slot's Date
                 saveSlot.transform.GetChild(1).GetComponent<TMP_Text>().text = data.saveDate;
                 // Load the Save Slot's Time
@@ -113,8 +113,7 @@ public class SaveSystem : MonoBehaviour
     // Save the Game Data
     public void SaveGame()
     {
-        Save(data);
-        RefreshSaveSlots();
+        Save(saveData);
         Debug.Log("Game Saved");
     }
     
@@ -128,7 +127,7 @@ public class SaveSystem : MonoBehaviour
     // Load the Game Data
     public void LoadGame()
     {
-        data = Load(selectedSaveName);
+        saveData = Load(selectedSaveName);
         Debug.Log("Loaded save data");
     }
 }

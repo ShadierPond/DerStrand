@@ -8771,18 +8771,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 849078726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84097b72cb72bf14ea2934f1e871ba30, type: 3}
+  m_Script: {fileID: 11500000, guid: ae28a30c5ee009e4fb7ef369c151f551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  usePersistentDataPath: 1
-  saveLocation: 
-  saveSlotsContent: {fileID: 1582377523}
-  selectedSaveName: 
-  data:
-    saveDate: 
-    saveTime: 
-    daysSurvived: 0
-    inGameTime: 
+  saveSlotContent: {fileID: 1582377523}
 --- !u!1 &852111413
 GameObject:
   m_ObjectHideFlags: 0
@@ -12156,7 +12148,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 849078732}
-        m_TargetAssemblyTypeName: SaveSystem, Assembly-CSharp
+        m_TargetAssemblyTypeName: SaveManager, Assembly-CSharp
         m_MethodName: RefreshSaveSlots
         m_Mode: 1
         m_Arguments:
@@ -13329,7 +13321,7 @@ GameObject:
   - component: {fileID: 1413876136}
   - component: {fileID: 1413876135}
   m_Layer: 5
-  m_Name: Apply
+  m_Name: Load
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13399,7 +13391,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1413876136}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 849078732}
+        m_TargetAssemblyTypeName: SaveManager, Assembly-CSharp
+        m_MethodName: LoadGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1413876136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14944,7 +14948,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1536677426}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 849078732}
+        m_TargetAssemblyTypeName: SaveManager, Assembly-CSharp
+        m_MethodName: DeleteGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1536677426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21212,6 +21228,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 175406319602292332, guid: 120923d50cf43174d9df9f0937062646,
+        type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 175406319602292334, guid: 120923d50cf43174d9df9f0937062646,
         type: 3}
       propertyPath: m_Name
@@ -25183,7 +25204,7 @@ PrefabInstance:
     - target: {fileID: 5125565863325364085, guid: b77e6ab7348b0aa46a84794e27bbcc00,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5125565863325364085, guid: b77e6ab7348b0aa46a84794e27bbcc00,
         type: 3}
@@ -25199,7 +25220,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 849078732}
     - target: {fileID: 5125565863325364085, guid: b77e6ab7348b0aa46a84794e27bbcc00,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_Target
