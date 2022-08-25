@@ -18,14 +18,14 @@ public class PlayerProperties : MonoBehaviour
         thirst = maxProperty;
         hunger = maxProperty;
         wearyTime = maxProperty;    //time to sleep
-        stamina = 50;      //says how long you can sprint (endurance/stamina)
+        stamina = maxProperty;      //says how long you can sprint (endurance/stamina)
         staminaRegenerationTime = 2;
         staminaRegenerationAmount = 1;
         //StartCoroutine(RegenerateStamina());
-        StartCoroutine(DecreaseThirst());
-        StartCoroutine(DecreaseHunger());
-        StartCoroutine(DecreaseWearyTime());
-        StartCoroutine(DecreaseStamina());
+        //StartCoroutine(DecreaseThirst());
+        //StartCoroutine(DecreaseHunger());
+        //StartCoroutine(DecreaseWearyTime());
+        //StartCoroutine(DecreaseStamina());
         //health = 10;
         //thirst = 10;
         //hunger = 10;
