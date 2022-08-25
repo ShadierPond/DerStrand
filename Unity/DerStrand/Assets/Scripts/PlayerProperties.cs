@@ -87,7 +87,7 @@ public class PlayerProperties : MonoBehaviour
         }
         if (propertyData < maxProperty)                    //if health is under maxProperty
         {
-            propertyData = propertyData + regenerateValue;    //apply the healing to the health
+            propertyData =+ regenerateValue;    //apply the healing to the health
             if (propertyData > maxProperty)               //if the health goes over the value of maxProperty 
             {
                 propertyData = maxProperty;               //health is set to default value
@@ -112,12 +112,12 @@ public class PlayerProperties : MonoBehaviour
                 default :
                     Debug.Log("Nothing");
                     break;
-                    Debug.Log("Regenerate Health");
-                    Debug.Log("new Health " + health);
-                    Debug.Log("new thirst " + thirst);
-                    Debug.Log("new hunger " + hunger);
-                    Debug.Log("new wearyTime " + wearyTime);
             }
+            Debug.Log("Regenerate Health");
+            Debug.Log("new Health " + health);
+            Debug.Log("new thirst " + thirst);
+            Debug.Log("new hunger " + hunger);
+            Debug.Log("new wearyTime " + wearyTime);
         }
 
     }
