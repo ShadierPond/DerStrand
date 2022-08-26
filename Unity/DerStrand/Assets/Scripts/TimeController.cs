@@ -28,7 +28,6 @@ public class TimeController : MonoBehaviour
     void Start()
     {
         saveData = SaveSystem.Instance.saveData;
-        
         currentTime = DateTime.Now.Date + TimeSpan.FromHours(startHour);
 
         sunriseTime = TimeSpan.FromHours(sunriseHour);
