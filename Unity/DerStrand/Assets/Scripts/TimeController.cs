@@ -1,56 +1,34 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
 public class TimeController : MonoBehaviour
 {
-    [SerializeField]
-    private float timeMultiplier;
-
-    [SerializeField]
-    private float startHour;
-
-    [SerializeField]
-    private TextMeshProUGUI timeText;
-
-    [SerializeField]
-    private Light sunLight;
-
-    [SerializeField]
-    private float sunriseHour;
-
-    [SerializeField]
-    private float sunsetHour;
-
-    [SerializeField]
-    private Color dayAmbientLight;
-
-    [SerializeField]
-    private Color nightAmbientLight;
-
-    [SerializeField]
-    private AnimationCurve lightChangeCurve;
-
-    [SerializeField]
-    private float maxSunLightIntensity;
-
-    [SerializeField]
-    private Light moonLight;
-
-    [SerializeField]
-    private float maxMoonLightIntensity;
+    [SerializeField] private float timeMultiplier;
+    [SerializeField] private float startHour;
+    [SerializeField] private TextMeshProUGUI timeText;
+    [SerializeField] private Light sunLight;
+    [SerializeField] private float sunriseHour;
+    [SerializeField] private float sunsetHour;
+    [SerializeField] private Color dayAmbientLight;
+    [SerializeField] private Color nightAmbientLight;
+    [SerializeField] private AnimationCurve lightChangeCurve;
+    [SerializeField] private float maxSunLightIntensity;
+    [SerializeField] private Light moonLight;
+    [SerializeField] private float maxMoonLightIntensity;
+    [SerializeField] private SaveData saveData;
 
     private DateTime currentTime;
-
     private TimeSpan sunriseTime;
-
     private TimeSpan sunsetTime;
+    
+    
 
     // Start is called before the first frame update
     void Start()
     {
+        saveData = SaveSystem.Instance.saveData;
+        
         currentTime = DateTime.Now.Date + TimeSpan.FromHours(startHour);
 
         sunriseTime = TimeSpan.FromHours(sunriseHour);

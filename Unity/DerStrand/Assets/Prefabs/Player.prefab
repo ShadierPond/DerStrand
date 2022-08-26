@@ -270,7 +270,19 @@ MonoBehaviour:
     m_ActionId: 597b6a75-282f-4e71-bec2-8f0832039bcf
     m_ActionName: Player/Interact[/Keyboard/e]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: MenuAnimation, Assembly-CSharp
+        m_MethodName: PlayerMenu
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 557834d4-c071-43c7-a1eb-b72a904ccc04
     m_ActionName: Player/Menu[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
@@ -315,4 +327,11 @@ MonoBehaviour:
   interactable: 0
   objectHeld: 0
   interactableObject: {fileID: 0}
-  mouseLocking: 0
+  saveData:
+    saveDate: 
+    saveTime: 
+    daysSurvived: 0
+    inGameTime: 
+    playerPosition: {x: 0, y: 0, z: 0}
+    playerRotation: {x: 0, y: 0, z: 0, w: 0}
+    playerCameraRotation: {x: 0, y: 0}

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 [System.Serializable]
 public class SaveData
@@ -6,7 +7,6 @@ public class SaveData
     [Header("Save Information")]
     public string saveDate;
     public string saveTime;
-    public int daysSurvived;
     public string inGameTime;
     
     // Player Information
@@ -15,6 +15,11 @@ public class SaveData
     public Quaternion playerRotation;
     public Vector2 playerCameraRotation;
     
+    // DayCycle Information
+    [Header("DayCycle Information")]
+    public DateTime currentTimeOfDay;
+    public int daysSurvived;
+
 }
 
 
