@@ -17,7 +17,9 @@ public class SaveData
     
     // DayCycle Information
     [Header("DayCycle Information")]
-    public DateTime currentTimeOfDay;
+    public float startTimeOfDay;
+    public DateTime currentTimeOfDay = new DateTime();
+    
     public int daysSurvived;
 
 }

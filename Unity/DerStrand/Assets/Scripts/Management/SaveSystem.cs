@@ -131,4 +131,9 @@ public class SaveSystem : MonoBehaviour
         saveData = Load(selectedSaveName);
         Debug.Log("Loaded save data");
     }
+
+    private void Update()
+    {
+        Debug.Log(saveData.currentTimeOfDay);
+    }
 }
