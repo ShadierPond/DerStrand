@@ -35,7 +35,7 @@ public class SaveSystem : MonoBehaviour
         // Set SaveName as the Date and Time and replace any : with _ (to prevent any issues with the file name)
         var saveName = (data.saveDate +"-"+ data.saveTime).Replace( ":", "_");
         // Convert the GameData Class to a JSON string
-        var json = JsonUtility.ToJson(data);
+        var json = JsonUtility.ToJson(data, true);
         // if the path doesnt exist, create it then save the data in the path
         if(!Directory.Exists(saveLocation))
             Directory.CreateDirectory(saveLocation);
@@ -130,10 +130,5 @@ public class SaveSystem : MonoBehaviour
     {
         saveData = Load(selectedSaveName);
         Debug.Log("Loaded save data");
-    }
-
-    private void Update()
-    {
-        Debug.Log(saveData.currentTimeOfDay);
     }
 }

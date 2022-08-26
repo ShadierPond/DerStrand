@@ -26,24 +26,34 @@ public class TimeController : MonoBehaviour
     [SerializeField] private float maxMoonLightIntensity;
     
     [SerializeField] private SaveData saveData;
+    
+    public static TimeController Instance { get; private set; }
 
     private DateTime currentTime;
     private TimeSpan sunriseTime;
     private TimeSpan sunsetTime;
-    
-    
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    public void Save()
+    {
+        saveData.startTime = currentTime.ToString("HH:mm");
+        saveData.daysSurvived = currentTime.Day;
+    }
+
 
     // Start is called before the first frame update
     void Start()
     {
         saveData = SaveSystem.Instance.saveData;
-        currentTime = saveData.currentTimeOfDay;
-        
-        if (saveData.currentTimeOfDay != null)
-            startHour = saveData.startTimeOfDay;
-        
-        currentTime = DateTime.Now.Date + TimeSpan.FromHours(startHour);
 
+        if (saveData.startTime != null)
+            startHour = float.Parse(saveData.startTime.Split(':')[0]);
+        
+        currentTime = new DateTime().Date + TimeSpan.FromHours(startHour) + TimeSpan.FromDays(saveData.daysSurvived);
         sunriseTime = TimeSpan.FromHours(sunriseHour);
         sunsetTime = TimeSpan.FromHours(sunsetHour);
     }
@@ -51,7 +61,6 @@ public class TimeController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(saveData.currentTimeOfDay);
         UpdateTimeOfDay();
         RotateSun();
         UpdateLightSettings();

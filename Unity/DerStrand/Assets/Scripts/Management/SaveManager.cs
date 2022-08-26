@@ -25,6 +25,7 @@ public class SaveManager : MonoBehaviour
     // Save the Game Data
     public void SaveGame()
     {
+        TimeController.Instance.Save();
         SaveSystem.Instance.SaveGame();
     }
     
