@@ -176,8 +176,8 @@ MonoBehaviour:
     saveDate: 
     saveTime: 
     inGameTime: 
-    playerPosition: {x: 0, y: 0, z: 0}
-    playerRotation: {x: 0, y: 0, z: 0, w: 0}
-    playerCameraRotation: {x: 0, y: 0}
+    playerPosition: {x: 11.480055, y: 1.08, z: 13.098536}
+    playerRotation: {x: 0, y: -0.70606285, z: 0, w: 0.70814914}
+    playerCameraRotation: {x: 17.73291, y: 270.1674}
     startTime: 4:30
     daysSurvived: 52
