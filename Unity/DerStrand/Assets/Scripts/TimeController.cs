@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using UnityEngine;
 using TMPro;
 
@@ -7,8 +8,12 @@ public class TimeController : MonoBehaviour
     [Header("Global Settings")]
     [SerializeField] private float timeMultiplier;
     [SerializeField] private float startHour;
+    private DateTime currentTime;
+    [SerializeField] private int startDay;
     [SerializeField] private float sunriseHour;
+    private TimeSpan sunriseTime;
     [SerializeField] private float sunsetHour;
+    private TimeSpan sunsetTime;
     [SerializeField] private AnimationCurve lightChangeCurve;
     
     [Header("UI")]
@@ -25,14 +30,12 @@ public class TimeController : MonoBehaviour
     [SerializeField] private Color nightAmbientLight;
     [SerializeField] private float maxMoonLightIntensity;
     
+    [Header("Debug")]
+    [SerializeField] private float daysSurvived;
     [SerializeField] private SaveData saveData;
     
     public static TimeController Instance { get; private set; }
-
-    private DateTime currentTime;
-    private TimeSpan sunriseTime;
-    private TimeSpan sunsetTime;
-
+    
     private void Awake()
     {
         Instance = this;
@@ -40,8 +43,14 @@ public class TimeController : MonoBehaviour
 
     public void Save()
     {
-        saveData.startTime = currentTime.ToString("HH:mm");
+        saveData.startTime = currentTime.Hour + ":" + currentTime.Minute;
         saveData.daysSurvived = currentTime.Day;
+    }
+
+    private void Load()
+    {
+        startHour = float.Parse(saveData.startTime.Split(':')[0]) + (float.Parse(saveData.startTime.Split(':')[1]) / 60);
+        startDay = saveData.daysSurvived;
     }
 
 
@@ -49,11 +58,10 @@ public class TimeController : MonoBehaviour
     void Start()
     {
         saveData = SaveSystem.Instance.saveData;
-
-        if (saveData.startTime != null)
-            startHour = float.Parse(saveData.startTime.Split(':')[0]);
+        if(!SaveSystem.Instance.newGame)
+            Load();
         
-        currentTime = new DateTime().Date + TimeSpan.FromHours(startHour) + TimeSpan.FromDays(saveData.daysSurvived);
+        currentTime = new DateTime().Date + TimeSpan.FromHours(startHour) + TimeSpan.FromDays(startDay);
         sunriseTime = TimeSpan.FromHours(sunriseHour);
         sunsetTime = TimeSpan.FromHours(sunsetHour);
     }
@@ -73,6 +81,13 @@ public class TimeController : MonoBehaviour
         if (timeText != null)
         {
             timeText.text = currentTime.ToString("HH:mm");
+        }
+        
+        if (dayText != null)
+        {
+            var days = currentTime - new DateTime().Date;
+            daysSurvived = days.Days;
+            dayText.text = "Day " + daysSurvived;
         }
     }
 

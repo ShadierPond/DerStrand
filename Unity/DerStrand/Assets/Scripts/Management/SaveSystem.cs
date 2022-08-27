@@ -14,6 +14,7 @@ public class SaveSystem : MonoBehaviour
     [SerializeField] private bool usePersistentDataPath;
     [SerializeField] private string saveLocation;
     [HideInInspector] public GameObject saveSlotsContent;
+    public bool newGame = true;
     [SerializeField] private string latestSaveName;
     public SaveData saveData;
     private string selectedSaveName;
@@ -129,6 +130,7 @@ public class SaveSystem : MonoBehaviour
     public void LoadGame()
     {
         saveData = Load(selectedSaveName);
+        newGame = false;
         Debug.Log("Loaded save data");
     }
 }

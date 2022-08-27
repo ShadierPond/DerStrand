@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class SaveManager : MonoBehaviour
 {
     [SerializeField] private GameObject saveSlotContent;
+    
     public static SaveManager Instance { get; private set; }
     
     private void Awake()
