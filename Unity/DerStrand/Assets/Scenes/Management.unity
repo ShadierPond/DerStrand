@@ -170,6 +170,7 @@ MonoBehaviour:
   usePersistentDataPath: 1
   saveLocation: 
   saveSlotsContent: {fileID: 0}
+  newGame: 0
   latestSaveName: 
   saveData:
     saveDate: 
@@ -178,5 +179,5 @@ MonoBehaviour:
     playerPosition: {x: 0, y: 0, z: 0}
     playerRotation: {x: 0, y: 0, z: 0, w: 0}
     playerCameraRotation: {x: 0, y: 0}
-    startTime: 
-    daysSurvived: 0
+    startTime: 4:30
+    daysSurvived: 52

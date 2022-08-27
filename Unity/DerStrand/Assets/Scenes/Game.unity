@@ -6831,8 +6831,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac30c158152dffa4a806409d1479eeb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeMultiplier: 5000
-  startHour: 12
+  timeMultiplier: 50
+  startHour: 4
+  startDay: 12
   sunriseHour: 4
   sunsetHour: 21
   lightChangeCurve:
@@ -6876,6 +6877,7 @@ MonoBehaviour:
   moonLight: {fileID: 2051365669}
   nightAmbientLight: {r: 0.24519402, g: 0.2780949, b: 0.5471698, a: 0}
   maxMoonLightIntensity: 0.5
+  daysSurvived: 0
   saveData:
     saveDate: 
     saveTime: 
@@ -25746,7 +25748,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 849078732}
+      objectReference: {fileID: 688498689}
     - target: {fileID: 5125565863325364085, guid: b77e6ab7348b0aa46a84794e27bbcc00,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -25760,12 +25762,12 @@ PrefabInstance:
     - target: {fileID: 5125565863325364085, guid: b77e6ab7348b0aa46a84794e27bbcc00,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SaveGame
+      value: Save
       objectReference: {fileID: 0}
     - target: {fileID: 5125565863325364085, guid: b77e6ab7348b0aa46a84794e27bbcc00,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[2].m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SaveManager, Assembly-CSharp
+      value: TimeController, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5125565863325364085, guid: b77e6ab7348b0aa46a84794e27bbcc00,
         type: 3}

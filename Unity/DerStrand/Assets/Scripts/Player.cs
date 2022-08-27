@@ -9,9 +9,10 @@ using UnityEngine.InputSystem.Interactions;
 public class Player : MonoBehaviour
 {
     
-    [Header("Camera and Player Rotation")]
+    [Header("Camera and Player")]
     [SerializeField] private new Camera camera;
     [SerializeField] private Vector3 cameraPosition;
+    [SerializeField] private Vector3 playerPosition;
     [SerializeField] private float mouseSensitivity;
     [SerializeField] private bool invertMouseX;
     [SerializeField] private bool invertMouseY;
@@ -55,21 +56,39 @@ public class Player : MonoBehaviour
     [SerializeField] private GameObject interactableObject;
     [SerializeField] private SaveData saveData;
     
+    public static Player Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    private void Load()
+    {
+        _controller.enabled = false;
+        transform.position = saveData.playerPosition;
+        transform.rotation = saveData.playerRotation;
+        cameraRotation = saveData.playerCameraRotation;
+        _controller.enabled = true;
+    }
+
+    public void Save()
+    {
+        saveData.playerPosition = transform.position;
+        saveData.playerRotation = transform.rotation;
+        saveData.playerCameraRotation = cameraRotation;
+    }
+
     private void Start()
     {
         saveData = SaveSystem.Instance.saveData;
-        if(saveData.saveDate != null)
-        {
-            transform.position = saveData.playerPosition;
-            transform.rotation = saveData.playerRotation;
-            camera.transform.eulerAngles = saveData.playerCameraRotation;
-        }
-        
         _controller = GetComponent<CharacterController>();
         _interactionHoldArea = camera.transform.Find("HoldArea");
         _interactionHoldArea.localPosition = objectHoldArea;
         //objectHoldArea = _interactionHoldArea.position;
         currentSpeed = speed;
+        if(!SaveSystem.Instance.newGame)
+            Load();
     }
 
     private void FixedUpdate()
