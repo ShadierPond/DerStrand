@@ -11,6 +11,7 @@ public class MenuAnimation : MonoBehaviour
     [SerializeField] private GameObject inGameMenu;
     [SerializeField] private GameObject currentMenu;
     [SerializeField] private GameObject nextMenu;
+    [SerializeField] private GameObject lookAtInterface;
     [SerializeField] private bool isMenuOpen;
     [SerializeField] private bool isMenuLocked;
     public float transitionTime;
@@ -126,5 +127,15 @@ public class MenuAnimation : MonoBehaviour
     public void ReturnToMainMenu()
     {
         // TODO: Add a confirmation dialog and a fade out animation for the current scene before loading the main menu scene
+    }
+
+    //TODO New method for showing the E key if you look at things
+    public void LookAtInteractable()
+    {
+        lookAtInterface.SetActive(true);
+    }
+    public void NotLookAtInteractable()
+    {
+        lookAtInterface.SetActive(false);
     }
 }
