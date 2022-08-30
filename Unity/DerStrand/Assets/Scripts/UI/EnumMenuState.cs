@@ -13,6 +13,7 @@ public class EnumMenuState : MonoBehaviour
         Game,
         Controls,
         Audio,
+        Credits
     }
     public MenuState currentMenuState;
     public MenuState nextMenuState;
