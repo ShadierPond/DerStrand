@@ -1008,7 +1008,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &41485540
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18930,6 +18930,7 @@ MonoBehaviour:
   inGameMenu: {fileID: 1554776055}
   currentMenu: {fileID: 0}
   nextMenu: {fileID: 0}
+  lookAtInterface: {fileID: 0}
   isMenuOpen: 0
   isMenuLocked: 0
   transitionTime: 0.3
