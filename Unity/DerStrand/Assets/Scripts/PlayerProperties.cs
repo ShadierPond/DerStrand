@@ -175,31 +175,38 @@ public class PlayerProperties : MonoBehaviour
     }
     private IEnumerator DecreaseHunger()
     {
-        while (hunger <= maxProperty && hunger >= 0)                               //While Stamina is < than maxProperty
+        while (true)
         {
-            hunger -= hungerDecrease;          //stamina + staminaRegenerationAmount
-            yield return new WaitForSeconds(hungerDecreaseInterval);
-            Debug.Log("hunger :" + hunger);
-        }
-        while (hunger <= 0)
-        {
-            yield return new WaitForSeconds(healthDecreaseInterval);
-            DecreaseHealth();
+            if (hunger <= maxProperty && hunger > 0)                               //While Stamina is < than maxProperty
+            {
+                hunger -= hungerDecrease;          //stamina + staminaRegenerationAmount
+                yield return new WaitForSeconds(hungerDecreaseInterval);
+                Debug.Log("hunger :" + hunger);
+            }
+            if (hunger <= 0)
+            {
+                yield return new WaitForSeconds(healthDecreaseInterval);
+                DecreaseHealth();
+            }  
         }
     }
     private IEnumerator DecreaseWearyTime()
     {
-        while (wearyTime <= maxProperty && wearyTime >= 0)                               //While Stamina is < than maxProperty
+        while (true)
         {
-            wearyTime -= wearyTimeDecrease;          //stamina + staminaRegenerationAmount
-            yield return new WaitForSeconds(wearyTimeDecreaseInterval);
-            Debug.Log("wearyTime :" + wearyTime);
+            if (wearyTime <= maxProperty && wearyTime > 0)                               //While Stamina is < than maxProperty
+            {
+                wearyTime -= wearyTimeDecrease;          //stamina + staminaRegenerationAmount
+                yield return new WaitForSeconds(wearyTimeDecreaseInterval);
+                Debug.Log("wearyTime :" + wearyTime);
+            }
+            if (wearyTime <= 0)
+            {
+                yield return new WaitForSeconds(healthDecreaseInterval);
+                DecreaseHealth();
+            }
         }
-        while (wearyTime <= 0)
-        {
-            yield return new WaitForSeconds(healthDecreaseInterval);
-            DecreaseHealth();
-        }
+
     }
     private IEnumerator DecreaseStamina()
     {
