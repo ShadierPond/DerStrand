@@ -178,7 +178,19 @@ MonoBehaviour:
     m_ActionId: fc17493c-cbf5-4d80-8eed-fab20580b387
     m_ActionName: Player/Look[/Mouse/delta,/Pen/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5125565863325364084}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: Save
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: d75e3dc7-6654-4763-9f9c-bd04166e31a9
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -303,7 +315,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 0}
-  cameraPosition: {x: 0, y: 0.5, z: 0}
+  cameraPositionOffset: {x: 0, y: 0.5, z: 0}
+  playerPosition: {x: 0, y: 0, z: 0}
   mouseSensitivity: 6
   invertMouseX: 0
   invertMouseY: 0
@@ -319,6 +332,7 @@ MonoBehaviour:
   interactDistance: 100
   objectHoldArea: {x: 0, y: 0, z: 2}
   objectHoldForce: 10
+  menuAnim: {fileID: 0}
   cameraRotation: {x: 0, y: 0}
   isGrounded: 0
   isJumping: 0
@@ -327,11 +341,14 @@ MonoBehaviour:
   interactable: 0
   objectHeld: 0
   interactableObject: {fileID: 0}
+  isInteractable: 0
+  isHoldable: 0
   saveData:
     saveDate: 
     saveTime: 
-    daysSurvived: 0
     inGameTime: 
     playerPosition: {x: 0, y: 0, z: 0}
     playerRotation: {x: 0, y: 0, z: 0, w: 0}
     playerCameraRotation: {x: 0, y: 0}
+    startTime: 
+    daysSurvived: 0

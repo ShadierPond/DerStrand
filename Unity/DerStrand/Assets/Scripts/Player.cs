@@ -55,6 +55,8 @@ public class Player : MonoBehaviour
     [SerializeField] private bool interactable;
     [SerializeField] private bool objectHeld;
     [SerializeField] private GameObject interactableObject;
+    [SerializeField] private bool isInteractable;
+    [SerializeField] private bool isHoldable;
     [SerializeField] private SaveData saveData;
     
     public static Player Instance { get; private set; }
@@ -124,6 +126,7 @@ public class Player : MonoBehaviour
     
     public void Interact(InputAction.CallbackContext context)
     {
+        
         switch (context.performed)
         {
             // Action when perssed
@@ -131,7 +134,7 @@ public class Player : MonoBehaviour
                 interactableObject.SendMessage("Interact", SendMessageOptions.DontRequireReceiver);
                 break;
             // Action when held
-            case true when interactable && context.interaction is HoldInteraction && interactableObject.GetComponent<Rigidbody>() != null:
+            case true when interactable && context.interaction is HoldInteraction && isHoldable :
                 _objectRigidbody = interactableObject.GetComponent<Rigidbody>();
                 HoldInteraction();
                 break;
@@ -221,6 +224,7 @@ public class Player : MonoBehaviour
         {
             interactable = true;
             interactableObject = _hit.collider.gameObject;
+            isHoldable = interactableObject.GetComponent<Rigidbody>() != null;
             //TODO: filter the if that it only activates on objects but not on the terrain
             if (_hit.collider != null)
             { 
@@ -231,6 +235,7 @@ public class Player : MonoBehaviour
         {
             interactable = false;
             interactableObject = null;
+            isHoldable = false;
             menuAnim.NotLookAtInteractable();
         }
     }
