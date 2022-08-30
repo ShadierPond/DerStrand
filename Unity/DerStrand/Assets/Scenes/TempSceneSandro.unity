@@ -16969,6 +16969,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6780358486037680126, guid: 2f8fd32f75038c2438213b51ee6041c1,
         type: 3}
+      propertyPath: menuAnim
+      value: 
+      objectReference: {fileID: 907533306}
+    - target: {fileID: 6780358486037680126, guid: 2f8fd32f75038c2438213b51ee6041c1,
+        type: 3}
       propertyPath: playerCameraTransform
       value: 
       objectReference: {fileID: 2139994071}
