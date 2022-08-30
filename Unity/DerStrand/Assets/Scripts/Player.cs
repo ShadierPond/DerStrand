@@ -44,7 +44,6 @@ public class Player : MonoBehaviour
     private RaycastHit _hit;
     private Rigidbody _objectRigidbody;
     private Transform _interactionHoldArea;
-    [SerializeField] private MenuAnimation menuAnim;
 
     [Header("Debug")]
     [SerializeField] private Vector2 cameraRotation; 
@@ -225,18 +224,12 @@ public class Player : MonoBehaviour
             interactable = true;
             interactableObject = _hit.collider.gameObject;
             isHoldable = interactableObject.GetComponent<Rigidbody>() != null;
-            //TODO: filter the if that it only activates on objects but not on the terrain
-            if (_hit.collider != null)
-            { 
-                menuAnim.LookAtInteractable();
-            }
         }
         else
         {
             interactable = false;
             interactableObject = null;
             isHoldable = false;
-            menuAnim.NotLookAtInteractable();
         }
     }
 

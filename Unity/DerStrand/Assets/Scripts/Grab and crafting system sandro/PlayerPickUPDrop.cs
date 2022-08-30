@@ -8,6 +8,8 @@ public class PlayerPickUPDrop : MonoBehaviour
     [SerializeField] private Transform objectGrabPointTransform;
     [SerializeField] private LayerMask pickUpLayerMask;
 
+    [SerializeField] private MenuAnimation menuAnim;
+
     private ObjectGrabbable objectGrabbable;
     private void Update()
     {
@@ -21,6 +23,7 @@ public class PlayerPickUPDrop : MonoBehaviour
                     if (raycastHit.transform.TryGetComponent(out objectGrabbable))
                     {
                         objectGrabbable.Grab(objectGrabPointTransform);
+                        menuAnim.NotLookAtInteractable();
                         Debug.Log(objectGrabbable);
                     }
                 }
@@ -29,9 +32,8 @@ public class PlayerPickUPDrop : MonoBehaviour
             {   //Currently holding something
                 objectGrabbable.Drop();
                 objectGrabbable = null;
+                menuAnim.LookAtInteractable();
             }
-
-
         }
     }
 }
