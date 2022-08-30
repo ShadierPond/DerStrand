@@ -40,5 +40,12 @@ public class SaveManager : MonoBehaviour
     public void LoadGame()
     {
         SaveSystem.Instance.LoadGame();
+        GameManager.Instance.LoadScene("Game");
+    }
+
+    public void NewGame()
+    {
+        SaveSystem.Instance.newGame = true;
+        GameManager.Instance.LoadScene("Game");
     }
 }
