@@ -16977,6 +16977,11 @@ PrefabInstance:
       propertyPath: pickUpLayerMask.m_Bits
       value: 887
       objectReference: {fileID: 0}
+    - target: {fileID: 6780358486037680126, guid: 2f8fd32f75038c2438213b51ee6041c1,
+        type: 3}
+      propertyPath: objectGrabPointTransform
+      value: 
+      objectReference: {fileID: 1291068915}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f8fd32f75038c2438213b51ee6041c1, type: 3}
 --- !u!1 &1265790388
@@ -17356,6 +17361,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 625ce7688aaed8a49bf0f49aa07c8925, type: 3}
+--- !u!4 &1291068915 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 175406318877398379, guid: 120923d50cf43174d9df9f0937062646,
+    type: 3}
+  m_PrefabInstance: {fileID: 159303872}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1296640657
 GameObject:
   m_ObjectHideFlags: 0
