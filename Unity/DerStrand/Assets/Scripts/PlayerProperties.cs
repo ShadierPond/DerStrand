@@ -158,16 +158,19 @@ public class PlayerProperties : MonoBehaviour
     }
     private IEnumerator DecreaseThirst()
     {
-        while (thirst <= maxProperty && thirst >= 0)                               //While Stamina is < than maxProperty
+        while (true)
         {
-            thirst -= thirstDecrese;          //stamina + staminaRegenerationAmount
-            yield return new WaitForSeconds(thirstDecreseInterval);
-            Debug.Log("thirst :" + thirst);
-        }
-        while (thirst <= 0)
-        {
-            yield return new WaitForSeconds(healthDecreaseInterval);
-            DecreaseHealth();
+            if (thirst <= maxProperty && thirst > 0)                               //While Stamina is < than maxProperty
+            {
+                thirst -= thirstDecrese;          //stamina + staminaRegenerationAmount
+                yield return new WaitForSeconds(thirstDecreseInterval);
+                Debug.Log("thirst :" + thirst);
+            }
+            if (thirst <= 0)
+            {
+                yield return new WaitForSeconds(healthDecreaseInterval);
+                DecreaseHealth();
+            }
         }
     }
     private IEnumerator DecreaseHunger()
