@@ -9,9 +9,9 @@ using Debug = UnityEngine.Debug;
 public class PlayerProperties : MonoBehaviour 
 {
     [Header ("Propertie")]
-    [SerializeField] int maxProperty, propertyData = 0,propertyCase = 0, decreaseTime, health , thirst, hunger, wearyTime, stamina ,staminaRegenerationTime, staminaRegenerationAmount;
-    [SerializeField] private int thirstDecrese, hungerDecrease, wearyTimeDecrease, staminaDecrease;
-    [SerializeField] private float thirstDecreseInterval, hungerDecreaseInterval, wearyTimeDecreaseInterval, staminaDecreaseInterval;
+    [SerializeField] int maxProperty, decreaseTime, health , thirst, hunger, wearyTime, stamina ,staminaRegenerationTime, staminaRegenerationAmount;
+    [SerializeField] private int thirstDecrese, hungerDecrease, wearyTimeDecrease, staminaDecrease,healthDecrease;
+    [SerializeField] private float thirstDecreseInterval, hungerDecreaseInterval, wearyTimeDecreaseInterval, staminaDecreaseInterval, healthDecreaseInterval;
     [SerializeField] private SaveData saveData;
     
     public static PlayerProperties Instance { get; private set; }
@@ -82,25 +82,21 @@ public class PlayerProperties : MonoBehaviour
     }
     public void DealDamage(int damage)
     {
-        if (health>0)                     //if the health is more than 0 
+        if (health > 0)                     //if the health is more than 0 
         {
             Debug.Log("Damage");   
             health -= damage;     //apply the incoming damage to health
             Debug.Log(health);
         }
-        else
+        else if(health <= 0)
         {
-            if (health <= 0)
-            { 
-                //TODO:Death Event 
-                Debug.Log("You are Dead");  
-            }
+            //TODO:Death Event 
+            Debug.Log("You are Dead");
         }
     }
-
     public void RegenerateHealth(int regenerateValue)
     {
-        if (health < maxProperty)                    //if health is under maxProperty
+        if (health <= maxProperty)                    //if health is under maxProperty
         {
             health += regenerateValue;    //apply the healing to the health
             if (health > maxProperty)               //if the health goes over the value of maxProperty 
@@ -113,7 +109,7 @@ public class PlayerProperties : MonoBehaviour
     }
     public void RegenerateThirst(int regenerateValue)
     {
-        if (health < maxProperty)                    //if health is under maxProperty
+        if (health <= maxProperty)                    //if health is under maxProperty
         {
             health += regenerateValue;    //apply the healing to the health
             if (health > maxProperty)               //if the health goes over the value of maxProperty 
@@ -126,7 +122,7 @@ public class PlayerProperties : MonoBehaviour
     }
     public void RegenerateHunger(int regenerateValue)
     {
-        if (health < maxProperty)                    //if health is under maxProperty
+        if (health <= maxProperty)                    //if health is under maxProperty
         {
             health += regenerateValue;    //apply the healing to the health
             if (health > maxProperty)               //if the health goes over the value of maxProperty 
@@ -139,7 +135,7 @@ public class PlayerProperties : MonoBehaviour
     }
     public void RegenerateWearyTime(int regenerateValue)
     {
-        if (health < maxProperty)                    //if health is under maxProperty
+        if (health <= maxProperty)                    //if health is under maxProperty
         {
             health += regenerateValue;    //apply the healing to the health
             if (health > maxProperty)               //if the health goes over the value of maxProperty 
@@ -153,49 +149,67 @@ public class PlayerProperties : MonoBehaviour
     {
         Debug.Log(stamina);
         yield return new WaitForSeconds(staminaRegenerationTime);   //wait for staminaRegenerationTime seconds
-        while (stamina < maxProperty)                               //While Stamina is < than maxProperty
+        while (stamina <= maxProperty && stamina >= 0)                               //While Stamina is < than maxProperty
         {
             stamina  += staminaRegenerationAmount;          //stamina + staminaRegenerationAmount
             yield return new WaitForSeconds(1);
             Debug.Log(stamina);
         }
     }
-
     private IEnumerator DecreaseThirst()
     {
-        while (thirst <= maxProperty)                               //While Stamina is < than maxProperty
+        while (thirst <= maxProperty && thirst >= 0)                               //While Stamina is < than maxProperty
         {
-            thirst += thirstDecrese;          //stamina + staminaRegenerationAmount
+            thirst -= thirstDecrese;          //stamina + staminaRegenerationAmount
             yield return new WaitForSeconds(thirstDecreseInterval);
             Debug.Log("thirst :" + thirst);
+        }
+        while (thirst <= 0)
+        {
+            yield return new WaitForSeconds(healthDecreaseInterval);
+            DecreaseHealth();
         }
     }
     private IEnumerator DecreaseHunger()
     {
-        while (hunger <= maxProperty)                               //While Stamina is < than maxProperty
+        while (hunger <= maxProperty && hunger >= 0)                               //While Stamina is < than maxProperty
         {
-            hunger += hungerDecrease;          //stamina + staminaRegenerationAmount
+            hunger -= hungerDecrease;          //stamina + staminaRegenerationAmount
             yield return new WaitForSeconds(hungerDecreaseInterval);
             Debug.Log("hunger :" + hunger);
+        }
+        while (hunger <= 0)
+        {
+            yield return new WaitForSeconds(healthDecreaseInterval);
+            DecreaseHealth();
         }
     }
     private IEnumerator DecreaseWearyTime()
     {
-        while (wearyTime <= maxProperty)                               //While Stamina is < than maxProperty
+        while (wearyTime <= maxProperty && wearyTime >= 0)                               //While Stamina is < than maxProperty
         {
-            wearyTime += wearyTimeDecrease;          //stamina + staminaRegenerationAmount
+            wearyTime -= wearyTimeDecrease;          //stamina + staminaRegenerationAmount
             yield return new WaitForSeconds(wearyTimeDecreaseInterval);
             Debug.Log("wearyTime :" + wearyTime);
+        }
+        while (wearyTime <= 0)
+        {
+            yield return new WaitForSeconds(healthDecreaseInterval);
+            DecreaseHealth();
         }
     }
     private IEnumerator DecreaseStamina()
     {
-        while (stamina <= maxProperty)                               //While Stamina is < than maxProperty
+        while (stamina <= maxProperty && stamina >= 0)                               //While Stamina is < than maxProperty
         {
-            stamina += staminaDecrease;          //stamina + staminaRegenerationAmount
+            stamina -= staminaDecrease;          //stamina + staminaRegenerationAmount
             yield return new WaitForSeconds(staminaDecreaseInterval);
             Debug.Log("stamina :" + stamina);
         }
+    }
+    private void DecreaseHealth()
+    {
+        health -= healthDecrease;
     }
     //Call Methods
     //DealDamage(1);
@@ -210,4 +224,5 @@ public class PlayerProperties : MonoBehaviour
     //StartCoroutine(DecreaseHunger());
     //StartCoroutine(DecreaseWearyTime());
     //StartCoroutine(DecreaseStamina());
+    //StartCoroutine(DecreaseHealth());
 }
