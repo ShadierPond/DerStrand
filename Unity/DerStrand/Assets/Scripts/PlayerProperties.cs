@@ -149,10 +149,6 @@ public class PlayerProperties : MonoBehaviour
         }
         Debug.Log("new wearyTime " + wearyTime);
     }
-
-
-    //TODO:Evt. change private to public 
-    //TODO:API
     private IEnumerator RegenerateStamina()
     {
         Debug.Log(stamina);
