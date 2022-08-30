@@ -7,7 +7,13 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private string[] _persistentScenes = {"Management"};
-    
+    public static GameManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     private void UnloadAllNonPersistentScenes()
     {
         foreach (var scene in SceneManager.GetAllScenes())
@@ -19,14 +25,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void LoadScene(string sceneName)
+    public void LoadScene(string sceneName)
     {
         UnloadAllNonPersistentScenes();
         SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);
         SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
     }
 
-    private void LoadScene(string[] sceneNames)
+    public void LoadScene(string[] sceneNames)
     {
         UnloadAllNonPersistentScenes();
         foreach (var sceneName in sceneNames)
@@ -37,6 +43,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        LoadScene("Game");
+        //LoadScene("Game");
     }
 }
