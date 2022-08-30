@@ -19,6 +19,15 @@ public class SaveData
     [Header("DayCycle Information")]
     public string startTime;
     public int daysSurvived;
+    
+    // Player Properties
+    [Header("Player Properties")]
+    public int health;
+    public int thirst;
+    public int hunger;
+    public int wearyTime;
+
+
 
 }
 

@@ -12,6 +12,7 @@ public class PlayerProperties : MonoBehaviour
     [SerializeField] int maxProperty, propertyData = 0,propertyCase = 0, decreaseTime, health , thirst, hunger, wearyTime, stamina ,staminaRegenerationTime, staminaRegenerationAmount;
     [SerializeField] private int thirstDecrese, hungerDecrease, wearyTimeDecrease, staminaDecrease;
     [SerializeField] private float thirstDecreseInterval, hungerDecreaseInterval, wearyTimeDecreaseInterval, staminaDecreaseInterval;
+    [SerializeField] private SaveData saveData;
     
     public static PlayerProperties Instance { get; private set; }
 
@@ -20,16 +21,37 @@ public class PlayerProperties : MonoBehaviour
         Instance = this;
     }
 
+    public void Save()
+    {
+        saveData.health = health;
+    }
 
-    // Start is called before the first frame update
-    
-    void Start()
+    private void Load()
+    {
+        health = saveData.health;
+    }
+
+    private void New()
     {
         health = maxProperty;       
         thirst = maxProperty;
         hunger = maxProperty;
         wearyTime = maxProperty;    //time to sleep
         stamina = maxProperty;      //says how long you can sprint (endurance/stamina)
+    }
+
+
+    // Start is called before the first frame update
+    
+    void Start()
+    {
+        saveData = SaveSystem.Instance.saveData;
+        if(!SaveSystem.Instance.newGame)
+            Load();
+        else
+            New();
+        
+
         staminaRegenerationTime = 2;
         staminaRegenerationAmount = 1;
         //StartCoroutine(RegenerateStamina());
