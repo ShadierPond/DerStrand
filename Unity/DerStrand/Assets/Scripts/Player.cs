@@ -9,9 +9,10 @@ using UnityEngine.InputSystem.Interactions;
 public class Player : MonoBehaviour
 {
     
-    [Header("Camera and Player Rotation")]
+    [Header("Camera and Player")]
     [SerializeField] private new Camera camera;
-    [SerializeField] private Vector3 cameraPosition;
+    [SerializeField] private Vector3 cameraPositionOffset;
+    [SerializeField] private Vector3 playerPosition;
     [SerializeField] private float mouseSensitivity;
     [SerializeField] private bool invertMouseX;
     [SerializeField] private bool invertMouseY;
@@ -53,15 +54,43 @@ public class Player : MonoBehaviour
     [SerializeField] private bool interactable;
     [SerializeField] private bool objectHeld;
     [SerializeField] private GameObject interactableObject;
-    [SerializeField] bool mouseLocking ;
+    [SerializeField] private bool isInteractable;
+    [SerializeField] private bool isHoldable;
+    [SerializeField] private SaveData saveData;
+    
+    public static Player Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    private void Load()
+    {
+        _controller.enabled = false;
+        transform.position = saveData.playerPosition;
+        transform.rotation = saveData.playerRotation;
+        cameraRotation = saveData.playerCameraRotation;
+        _controller.enabled = true;
+    }
+
+    public void Save()
+    {
+        saveData.playerPosition = transform.position;
+        saveData.playerRotation = transform.rotation;
+        saveData.playerCameraRotation = cameraRotation;
+    }
 
     private void Start()
     {
+        saveData = SaveSystem.Instance.saveData;
         _controller = GetComponent<CharacterController>();
         _interactionHoldArea = camera.transform.Find("HoldArea");
         _interactionHoldArea.localPosition = objectHoldArea;
         //objectHoldArea = _interactionHoldArea.position;
         currentSpeed = speed;
+        if(!SaveSystem.Instance.newGame)
+            Load();
     }
 
     private void FixedUpdate()
@@ -91,24 +120,23 @@ public class Player : MonoBehaviour
     
     public void Sprint(InputAction.CallbackContext context)
     {
-        if(holdToSprint)
-            isSprinting = context.performed;
-        else
-            isSprinting = !isSprinting;
+        isSprinting = holdToSprint ? context.performed : !isSprinting;
     }
     
     public void Interact(InputAction.CallbackContext context)
     {
-        // Action when perssed
-        if (context.performed && interactable && context.interaction is PressInteraction)
+        
+        switch (context.performed)
         {
-            interactableObject.SendMessage("Interact", SendMessageOptions.DontRequireReceiver);
-        }
-        // Action when held
-        else if (context.performed && interactable && context.interaction is HoldInteraction && interactableObject.GetComponent<Rigidbody>() != null)
-        {
-            _objectRigidbody = interactableObject.GetComponent<Rigidbody>();
-            HoldInteraction();
+            // Action when perssed
+            case true when interactable && context.interaction is PressInteraction:
+                interactableObject.SendMessage("Interact", SendMessageOptions.DontRequireReceiver);
+                break;
+            // Action when held
+            case true when interactable && context.interaction is HoldInteraction && isHoldable :
+                _objectRigidbody = interactableObject.GetComponent<Rigidbody>();
+                HoldInteraction();
+                break;
         }
     }
 
@@ -159,11 +187,10 @@ public class Player : MonoBehaviour
         var look = context.ReadValue<Vector2>();
         
         // Player Rotation in the Y axis (X and Z are fixed)
-        if(invertMouseY)
-            transform.Rotate(new Vector3(0, -look.x * Time.deltaTime * mouseSensitivity, 0));
-        else
-            transform.Rotate(new Vector3(0, look.x * Time.deltaTime * mouseSensitivity, 0));
-        
+        transform.Rotate(invertMouseY
+            ? new Vector3(0, -look.x * Time.deltaTime * mouseSensitivity, 0)
+            : new Vector3(0, look.x * Time.deltaTime * mouseSensitivity, 0));
+
         // Camera rotation in the X and Y Axis (with inverted possibility)
         if(invertMouseY)
             cameraRotation.y -= look.x * Time.deltaTime * mouseSensitivity;
@@ -182,24 +209,27 @@ public class Player : MonoBehaviour
     private void CameraFollow()
     {
         // Move the camera to the player position
-        camera.transform.position = transform.position + cameraPosition;
+        camera.transform.position = transform.position + cameraPositionOffset;
     }
 
     private void Interact()
     {
         if (objectHeld) 
             return;
-        Debug.DrawRay(camera.transform.position, camera.transform.forward * interactDistance, Color.red);
-        Physics.Raycast(camera.transform.position, camera.transform.forward, out _hit, interactDistance);
+        var cameraTransform = camera.transform;
+        //Debug.DrawRay(camera.transform.position, camera.transform.forward * interactDistance, Color.red);
+        Physics.Raycast(cameraTransform.position, cameraTransform.forward, out _hit, interactDistance);
         if(_hit.collider != null)
         {
             interactable = true;
             interactableObject = _hit.collider.gameObject;
+            isHoldable = interactableObject.GetComponent<Rigidbody>() != null;
         }
         else
         {
             interactable = false;
             interactableObject = null;
+            isHoldable = false;
         }
     }
 
@@ -229,29 +259,16 @@ public class Player : MonoBehaviour
             return;
         if(Vector3.Distance(interactableObject.transform.position, _interactionHoldArea.position) > 0.1f)
         {
-            Debug.Log("Out Of Area!");
+            //Debug.Log("Out Of Area!");
             _objectRigidbody.AddForce((_interactionHoldArea.position - interactableObject.transform.position) * objectHoldForce);
         }
         if(Vector3.Distance(interactableObject.transform.position, _interactionHoldArea.position) > 10f)
         {
-            Debug.Log("You broke it!");
+            //Debug.Log("You broke it!");
             interactableObject.transform.position = _interactionHoldArea.position;
             
         }
         
   
     }
-    public void MouseLock(InputAction.CallbackContext context)
-        {
-            if (mouseLocking)
-            {
-                Cursor.lockState = CursorLockMode.None;
-                mouseLocking = false;
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                mouseLocking = true;
-            }
-        }
 }

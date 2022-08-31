@@ -1,58 +1,67 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using TMPro;
 
 public class TimeController : MonoBehaviour
 {
-    [SerializeField]
-    private float timeMultiplier;
-
-    [SerializeField]
-    private float startHour;
-
-    [SerializeField]
-    private TextMeshProUGUI timeText;
-
-    [SerializeField]
-    private Light sunLight;
-
-    [SerializeField]
-    private float sunriseHour;
-
-    [SerializeField]
-    private float sunsetHour;
-
-    [SerializeField]
-    private Color dayAmbientLight;
-
-    [SerializeField]
-    private Color nightAmbientLight;
-
-    [SerializeField]
-    private AnimationCurve lightChangeCurve;
-
-    [SerializeField]
-    private float maxSunLightIntensity;
-
-    [SerializeField]
-    private Light moonLight;
-
-    [SerializeField]
-    private float maxMoonLightIntensity;
-
+    [Header("Global Settings")]
+    [SerializeField] private float timeMultiplier;
+    [SerializeField] private float startHour;
     private DateTime currentTime;
-
+    [SerializeField] private int startDay;
+    [SerializeField] private float sunriseHour;
     private TimeSpan sunriseTime;
-
+    [SerializeField] private float sunsetHour;
     private TimeSpan sunsetTime;
+    [SerializeField] private AnimationCurve lightChangeCurve;
+    
+    [Header("UI")]
+    [SerializeField] private TextMeshProUGUI timeText;
+    [SerializeField] private TextMeshProUGUI dayText;
+    
+    [Header("Sun Settings")]
+    [SerializeField] private Light sunLight;
+    [SerializeField] private Color dayAmbientLight;
+    [SerializeField] private float maxSunLightIntensity;
+    
+    [Header("Moon Settings")]
+    [SerializeField] private Light moonLight;
+    [SerializeField] private Color nightAmbientLight;
+    [SerializeField] private float maxMoonLightIntensity;
+    
+    [Header("Debug")]
+    [SerializeField] private float daysSurvived;
+    [SerializeField] private SaveData saveData;
+    
+    public static TimeController Instance { get; private set; }
+    
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+    public void Save()
+    {
+        saveData.startTime = currentTime.Hour + ":" + currentTime.Minute;
+        saveData.daysSurvived = currentTime.Day;
+    }
+
+    private void Load()
+    {
+        startHour = float.Parse(saveData.startTime.Split(':')[0]) + (float.Parse(saveData.startTime.Split(':')[1]) / 60);
+        startDay = saveData.daysSurvived;
+    }
+
 
     // Start is called before the first frame update
     void Start()
     {
-        currentTime = DateTime.Now.Date + TimeSpan.FromHours(startHour);
-
+        saveData = SaveSystem.Instance.saveData;
+        if(!SaveSystem.Instance.newGame)
+            Load();
+        
+        currentTime = new DateTime().Date + TimeSpan.FromHours(startHour) + TimeSpan.FromDays(startDay);
         sunriseTime = TimeSpan.FromHours(sunriseHour);
         sunsetTime = TimeSpan.FromHours(sunsetHour);
     }
@@ -72,6 +81,13 @@ public class TimeController : MonoBehaviour
         if (timeText != null)
         {
             timeText.text = currentTime.ToString("HH:mm");
+        }
+        
+        if (dayText != null)
+        {
+            var days = currentTime - new DateTime().Date;
+            daysSurvived = days.Days;
+            dayText.text = "Day " + daysSurvived;
         }
     }
 
