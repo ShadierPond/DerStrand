@@ -156,7 +156,7 @@ MonoBehaviour:
   startHour: 12
   timeText: {fileID: 1947648128}
   sunLight: {fileID: 748299394}
-  sunriseHour: 7
+  sunriseHour: 6
   sunsetHour: 20.5
   dayAmbientLight: {r: 0.56078434, g: 0.6039216, b: 0.68235296, a: 0}
   nightAmbientLight: {r: 0.15686275, g: 0.3137255, b: 0.39215687, a: 0}
