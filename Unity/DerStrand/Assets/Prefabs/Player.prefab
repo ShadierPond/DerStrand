@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5125565863325364087}
   - component: {fileID: 5125565863325364085}
   - component: {fileID: 5125565863325364084}
+  - component: {fileID: 4259331511926685915}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -332,7 +333,6 @@ MonoBehaviour:
   interactDistance: 100
   objectHoldArea: {x: 0, y: 0, z: 2}
   objectHoldForce: 10
-  menuAnim: {fileID: 0}
   cameraRotation: {x: 0, y: 0}
   isGrounded: 0
   isJumping: 0
@@ -352,3 +352,56 @@ MonoBehaviour:
     playerCameraRotation: {x: 0, y: 0}
     startTime: 
     daysSurvived: 0
+    health: 0
+    thirst: 0
+    hunger: 0
+    wearyTime: 0
+--- !u!114 &4259331511926685915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5125565863325364095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fc30038aaa679748b45dd62c98ed183, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxProperty: 100
+  decreaseTime: 0
+  health: 0
+  thirst: 0
+  hunger: 0
+  wearyTime: 0
+  stamina: 0
+  staminaRegenerationTime: 0
+  staminaRegenerationAmount: 0
+  thirstDecrese: 0
+  hungerDecrease: 0
+  wearyTimeDecrease: 0
+  staminaDecrease: 0
+  healthDecrease: 0
+  thirstDecreseInterval: 0
+  hungerDecreaseInterval: 0
+  wearyTimeDecreaseInterval: 0
+  staminaDecreaseInterval: 0
+  healthDecreaseInterval: 0
+  healthBar: {fileID: 0}
+  staminaBar: {fileID: 0}
+  hungerBar: {fileID: 0}
+  thirstBar: {fileID: 0}
+  wearyTimeBar: {fileID: 0}
+  saveData:
+    saveDate: 
+    saveTime: 
+    inGameTime: 
+    playerPosition: {x: 0, y: 0, z: 0}
+    playerRotation: {x: 0, y: 0, z: 0, w: 0}
+    playerCameraRotation: {x: 0, y: 0}
+    startTime: 
+    daysSurvived: 0
+    health: 0
+    thirst: 0
+    hunger: 0
+    wearyTime: 0

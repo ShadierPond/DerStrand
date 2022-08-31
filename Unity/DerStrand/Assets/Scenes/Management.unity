@@ -171,7 +171,7 @@ MonoBehaviour:
   usePersistentDataPath: 1
   saveLocation: 
   saveSlotsContent: {fileID: 0}
-  newGame: 0
+  newGame: 1
   latestSaveName: 
   saveData:
     saveDate: 

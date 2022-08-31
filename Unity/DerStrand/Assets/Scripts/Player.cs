@@ -49,7 +49,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Vector2 cameraRotation; 
     [SerializeField] private bool isGrounded;
     [SerializeField] private bool isJumping;
-    [SerializeField] private bool isSprinting;
+    [SerializeField] public bool isSprinting;
     [SerializeField] private bool secondJump;
     [SerializeField] private bool interactable;
     [SerializeField] private bool objectHeld;
@@ -106,6 +106,12 @@ public class Player : MonoBehaviour
         Gravity();
         Interact();
         CenterHeldObject();
+        if (!isSprinting && PlayerProperties.Instance.tempTrigger)
+        {
+            PlayerProperties.Instance.tempTrigger = false;
+            StartCoroutine(PlayerProperties.Instance.RegenerateStamina());
+            Debug.Log("Test1111111111111111");
+        }
     }
 
     public void GetAxis(InputAction.CallbackContext context)

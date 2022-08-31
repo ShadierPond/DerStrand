@@ -4,16 +4,34 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq.Expressions;
 using UnityEngine;
+using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
 
-public class PlayerProperties : MonoBehaviour 
+public class PlayerProperties : MonoBehaviour
 {
-    [Header ("Propertie")]
-    [SerializeField] int maxProperty, decreaseTime, health , thirst, hunger, wearyTime, stamina ,staminaRegenerationTime, staminaRegenerationAmount;
-    [SerializeField] private int thirstDecrese, hungerDecrease, wearyTimeDecrease, staminaDecrease,healthDecrease;
-    [SerializeField] private float thirstDecreseInterval, hungerDecreaseInterval, wearyTimeDecreaseInterval, staminaDecreaseInterval, healthDecreaseInterval;
+    [Header("Properties")] [SerializeField] private int maxProperty;
+    [SerializeField] private int
+        decreaseTime, health, thirst, hunger, 
+        wearyTime, stamina, staminaRegenerationTime,
+        staminaRegenerationAmount, thirstDecrese,
+        hungerDecrease, wearyTimeDecrease, 
+        staminaDecrease, healthDecrease;
+    [SerializeField] private float 
+        thirstDecreseInterval, hungerDecreaseInterval, 
+        wearyTimeDecreaseInterval, staminaDecreaseInterval, 
+        healthDecreaseInterval;
+    [SerializeField] GameObject 
+        healthBar, staminaBar, hungerBar, 
+        thirstBar, wearyTimeBar;
+    private Image 
+        healthBarImage, staminaBarImage, hungerBarImage,
+        thirstBarImage, wearyTimeBarImage;
+
+
     [SerializeField] private SaveData saveData;
+    [SerializeField] public bool tempTrigger;
     
+
     public static PlayerProperties Instance { get; private set; }
 
     private void Awake()
@@ -56,30 +74,32 @@ public class PlayerProperties : MonoBehaviour
             Load();
         else
             New();
-        
-
         staminaRegenerationTime = 2;
         staminaRegenerationAmount = 1;
-        //StartCoroutine(RegenerateStamina());
-        //StartCoroutine(DecreaseThirst());
-        //StartCoroutine(DecreaseHunger());
-        //StartCoroutine(DecreaseWearyTime());
-        //StartCoroutine(DecreaseStamina());
-        //health = 10;
-        //thirst = 10;
-        //hunger = 10;
-        //wearyTime = 10;
 
-        //RegenerateProperty("health", 5);
-        Debug.Log(health);
+        //UI Load
+        healthBarImage = healthBar.GetComponent<Image>();
+        staminaBarImage = staminaBar.GetComponent<Image>();
+        hungerBarImage = hungerBar.GetComponent<Image>();
+        thirstBarImage = thirstBar.GetComponent<Image>();
+        wearyTimeBarImage = wearyTimeBar.GetComponent<Image>();
+        //Start Properties
+        StartCoroutine(DecreaseThirst());
+        StartCoroutine(DecreaseHunger());
+        StartCoroutine(DecreaseWearyTime());
         
+
     }
-    // Update is called once per frame
     void Update()
     {
-        
-
+        UpdateUI();
+        if (Player.Instance.isSprinting && !tempTrigger)
+        {
+            tempTrigger = true;
+            StartCoroutine(DecreaseStamina());
+        }
     }
+    //---Deal-Damage---
     public void DealDamage(int damage)
     {
         if (health > 0)                     //if the health is more than 0 
@@ -94,6 +114,7 @@ public class PlayerProperties : MonoBehaviour
             Debug.Log("You are Dead");
         }
     }
+    //---Regenerate---
     public void RegenerateHealth(int regenerateValue)
     {
         if (health <= maxProperty)                    //if health is under maxProperty
@@ -104,7 +125,7 @@ public class PlayerProperties : MonoBehaviour
                 health = maxProperty;               //health is set to default value
             }
         }
-        Debug.Log("new Health " + health);
+        //Debug.Log("new Health " + health);
       
     }
     public void RegenerateThirst(int regenerateValue)
@@ -117,7 +138,7 @@ public class PlayerProperties : MonoBehaviour
                 health = maxProperty;               //health is set to default value
             }
         }
-        Debug.Log("new thirst " + thirst);
+        //Debug.Log("new thirst " + thirst);
 
     }
     public void RegenerateHunger(int regenerateValue)
@@ -130,7 +151,7 @@ public class PlayerProperties : MonoBehaviour
                 health = maxProperty;               //health is set to default value
             }
         }
-        Debug.Log("new hunger " + hunger);
+        //Debug.Log("new hunger " + hunger);
        
     }
     public void RegenerateWearyTime(int regenerateValue)
@@ -145,17 +166,19 @@ public class PlayerProperties : MonoBehaviour
         }
         Debug.Log("new wearyTime " + wearyTime);
     }
-    private IEnumerator RegenerateStamina()
+    public IEnumerator RegenerateStamina()
     {
         Debug.Log(stamina);
         yield return new WaitForSeconds(staminaRegenerationTime);   //wait for staminaRegenerationTime seconds
-        while (stamina <= maxProperty && stamina >= 0)                               //While Stamina is < than maxProperty
+        while (stamina <= maxProperty && stamina >= 0 && !Player.Instance.isSprinting)                               //While Stamina is < than maxProperty
         {
             stamina  += staminaRegenerationAmount;          //stamina + staminaRegenerationAmount
             yield return new WaitForSeconds(1);
-            Debug.Log(stamina);
+            //Debug.Log(stamina);
         }
     }
+    //---Regenerate-END---
+    //---Decrease----
     private IEnumerator DecreaseThirst()
     {
         while (true)
@@ -164,7 +187,7 @@ public class PlayerProperties : MonoBehaviour
             {
                 thirst -= thirstDecrese;          //stamina + staminaRegenerationAmount
                 yield return new WaitForSeconds(thirstDecreseInterval);
-                Debug.Log("thirst :" + thirst);
+                //Debug.Log("thirst :" + thirst);
             }
             if (thirst <= 0)
             {
@@ -181,7 +204,7 @@ public class PlayerProperties : MonoBehaviour
             {
                 hunger -= hungerDecrease;          //stamina + staminaRegenerationAmount
                 yield return new WaitForSeconds(hungerDecreaseInterval);
-                Debug.Log("hunger :" + hunger);
+                //Debug.Log("hunger :" + hunger);
             }
             if (hunger <= 0)
             {
@@ -198,7 +221,7 @@ public class PlayerProperties : MonoBehaviour
             {
                 wearyTime -= wearyTimeDecrease;          //stamina + staminaRegenerationAmount
                 yield return new WaitForSeconds(wearyTimeDecreaseInterval);
-                Debug.Log("wearyTime :" + wearyTime);
+                //Debug.Log("wearyTime :" + wearyTime);
             }
             if (wearyTime <= 0)
             {
@@ -210,17 +233,28 @@ public class PlayerProperties : MonoBehaviour
     }
     private IEnumerator DecreaseStamina()
     {
-        while (stamina <= maxProperty && stamina >= 0)                               //While Stamina is < than maxProperty
+        while (stamina <= maxProperty && stamina >= 0&& Player.Instance.isSprinting)                               //While Stamina is < than maxProperty
         {
             stamina -= staminaDecrease;          //stamina + staminaRegenerationAmount
             yield return new WaitForSeconds(staminaDecreaseInterval);
-            Debug.Log("stamina :" + stamina);
+            //Debug.Log("stamina :" + stamina);
         }
     }
     private void DecreaseHealth()
     {
         health -= healthDecrease;
     }
+    //---Decrease-END---
+    //---UI-Integration---
+    private void UpdateUI()
+    {
+        healthBarImage.fillAmount = (float)Math.Clamp(health, 0, maxProperty) / maxProperty;
+        staminaBarImage.fillAmount = (float)Math.Clamp(stamina, 0, maxProperty) / maxProperty;
+        hungerBarImage.fillAmount = (float)Math.Clamp(hunger, 0, maxProperty) / maxProperty;
+        thirstBarImage.fillAmount = (float)Math.Clamp(thirst, 0, maxProperty) / maxProperty;
+        wearyTimeBarImage.fillAmount = (float)Math.Clamp(wearyTime, 0, maxProperty) / maxProperty;
+    }
+    //---UI-Integration-END---
     //Call Methods
     //DealDamage(1);
     //RegenerateProperty("health",20);
