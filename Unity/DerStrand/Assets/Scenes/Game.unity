@@ -9566,6 +9566,7 @@ MonoBehaviour:
   - {fileID: 798226286}
   - {fileID: 1420170996}
   inGameMenu: {fileID: 649787356}
+  interfaceMenu: {fileID: 0}
   currentMenu: {fileID: 0}
   nextMenu: {fileID: 0}
   lookAtInterface: {fileID: 1049530822}
@@ -9599,6 +9600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1824612281}
+  healthBarImage: {fileID: 0}
   health: 10
   maxHealth: 200
   staminaBar: {fileID: 0}
@@ -26953,7 +26955,7 @@ PrefabInstance:
     - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
         type: 3}
       propertyPath: staminaDecrease
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
         type: 3}
@@ -26978,7 +26980,7 @@ PrefabInstance:
     - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
         type: 3}
       propertyPath: staminaDecreaseInterval
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
         type: 3}
