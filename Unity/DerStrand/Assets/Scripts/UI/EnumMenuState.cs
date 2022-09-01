@@ -21,4 +21,5 @@ public class EnumMenuState : MonoBehaviour
     
     public MenuState currentMenuState;
     public MenuState nextMenuState;
+    public bool isInterface;
 }

@@ -1,12 +1,14 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
 
 public class MenuAnimation : MonoBehaviour
 {
+    [Header("Animation Settings")]
+    public float transitionTime;
+    public float waitTimeBetweenTransitions;
+    
     [Header("Controllable Objects")]
     [SerializeField] private GameObject[] menus;
     
@@ -21,27 +23,35 @@ public class MenuAnimation : MonoBehaviour
     private CanvasGroup _currentCanvasGroup;
     [SerializeField] private GameObject nextMenu;
     private CanvasGroup _nextCanvasGroup;
-    
-    [SerializeField] private GameObject lookAtInterface;
     [SerializeField] private bool isMenuOpen;
     [SerializeField] private bool isMenuLocked;
-    public float transitionTime;
-    public float waitTimeBetweenTransitions;
-    
-    
-    
+    [SerializeField] private bool isInterfaceMenuOpen;
+    [SerializeField] private GameObject lookAtInterface;
 
+    
     public void Transition(EnumMenuState state)
     {
+        if(state.isInterface)
+            foreach (Transform child in interfaceMenu.transform)
+                if (child.gameObject.activeSelf)
+                {
+                    currentMenu = child.gameObject;
+                    _currentCanvasGroup = currentMenu.GetComponent<CanvasGroup>();
+                }
+                    
+        
+        
         foreach (var menu in menus)
         {
-            if(menu.name == state.currentMenuState.ToString())
+            if(menu.name == state.currentMenuState.ToString() && !state.isInterface)
             {
+                Debug.Log("TEST");
                 currentMenu = menu;
                 if(menu.name == "Main")
                     isMenuLocked = true;
                 _currentCanvasGroup = currentMenu.GetComponent<CanvasGroup>();
             }
+            
             if(menu.name == state.nextMenuState.ToString())
             {
                 if(menu.name == "Main")
@@ -55,6 +65,10 @@ public class MenuAnimation : MonoBehaviour
 
     private IEnumerator TransitionWithTime(float duration, float wait)
     {
+        if (currentMenu == nextMenu)
+        {
+            yield break;
+        }
         _nextCanvasGroup.alpha = 0;
         _nextCanvasGroup.interactable = true;
         nextMenu.SetActive(true);
@@ -87,6 +101,23 @@ public class MenuAnimation : MonoBehaviour
         }
     }
 
+    public void InInterfaceMenu(bool state)
+    {
+        isInterfaceMenuOpen = state;
+        _interfaceCanvasGroup = interfaceMenu.GetComponent<CanvasGroup>();
+        if(state)
+        {
+            _interfaceCanvasGroup.alpha = 0;
+            interfaceMenu.SetActive(true);
+            StartCoroutine(InterfaceTransition(true, transitionTime));
+        }
+        else
+        {
+            _interfaceCanvasGroup.alpha = 1;
+            StartCoroutine(InterfaceTransition(false, transitionTime));
+        }
+    }
+
     private IEnumerator InGameMenuTransition(bool state, float duration)
     {
         if (!state)
@@ -102,6 +133,24 @@ public class MenuAnimation : MonoBehaviour
             yield return new WaitForSeconds(duration);
         }
     }
+    
+    private IEnumerator InterfaceTransition(bool state, float duration)
+    {
+        if (!state)
+        {
+            _interfaceCanvasGroup.DOFade(0, duration);
+            yield return new WaitForSeconds(duration);
+        }
+        _interfaceCanvasGroup.interactable = state;
+        interfaceMenu.SetActive(state);
+        if (state)
+        {
+            _interfaceCanvasGroup.DOFade(1, duration);
+            yield return new WaitForSeconds(duration);
+        }
+    }
+    
+    
     
     public void PlayerMenu(InputAction.CallbackContext context)
     {

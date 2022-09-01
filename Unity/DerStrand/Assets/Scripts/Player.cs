@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
@@ -57,6 +53,7 @@ public class Player : MonoBehaviour
     [SerializeField] private bool isInteractable;
     [SerializeField] private bool isHoldable;
     [SerializeField] private SaveData saveData;
+    private PlayerProperties _properties;
     
     public static Player Instance { get; private set; }
 
@@ -84,6 +81,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         saveData = SaveSystem.Instance.saveData;
+        _properties = PlayerProperties.Instance;
         _controller = GetComponent<CharacterController>();
         _interactionHoldArea = camera.transform.Find("HoldArea");
         _interactionHoldArea.localPosition = objectHoldArea;
@@ -106,10 +104,10 @@ public class Player : MonoBehaviour
         Gravity();
         Interact();
         CenterHeldObject();
-        if (!isSprinting && PlayerProperties.Instance.tempTrigger)
+        if (!isSprinting && _properties.tempTrigger)
         {
-            PlayerProperties.Instance.tempTrigger = false;
-            StartCoroutine(PlayerProperties.Instance.RegenerateStamina());
+            _properties.tempTrigger = false;
+            StartCoroutine(_properties.RegenerateStamina());
             Debug.Log("Test1111111111111111");
         }
     }
