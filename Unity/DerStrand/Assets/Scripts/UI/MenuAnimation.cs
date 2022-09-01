@@ -159,21 +159,34 @@ public class MenuAnimation : MonoBehaviour
         
         if (isMenuOpen && !isMenuLocked)
         {
-            Debug.Log("Closing");
             InGameMenu(false);
             LockMouse(true);
-            Debug.Log("Closed");
         }
         else if(!isMenuOpen && !isMenuLocked)
         {
-            Debug.Log("Opening");
             InGameMenu(true);
             LockMouse(false);
-            Debug.Log("Opened");
+        }
+    }
+    
+    public void PlayerInterface(InputAction.CallbackContext context)
+    {
+        if(!context.performed)
+            return;
+        
+        if (isInterfaceMenuOpen)
+        {
+            InInterfaceMenu(false);
+            LockMouse(true);
+        }
+        else
+        {
+            InInterfaceMenu(true);
+            LockMouse(false);
         }
     }
 
-    private void LockMouse(bool state)
+    public void LockMouse(bool state)
     {
         Cursor.lockState = state ? CursorLockMode.Locked : CursorLockMode.None;
         Cursor.visible = !state;
