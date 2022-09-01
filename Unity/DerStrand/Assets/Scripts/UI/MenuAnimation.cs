@@ -9,6 +9,7 @@ public class MenuAnimation : MonoBehaviour
 {
     [SerializeField] private GameObject[] menus;
     [SerializeField] private GameObject inGameMenu;
+    [SerializeField] private GameObject interfaceMenu;
     [SerializeField] private GameObject currentMenu;
     [SerializeField] private GameObject nextMenu;
     [SerializeField] private GameObject lookAtInterface;
