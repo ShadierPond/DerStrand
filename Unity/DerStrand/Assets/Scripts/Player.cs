@@ -55,12 +55,14 @@ public class Player : MonoBehaviour
     [SerializeField] private bool isHoldable;
     [SerializeField] private SaveData saveData;
     private PlayerProperties _properties;
+    public PlayerInput input;
     
     public static Player Instance { get; private set; }
 
     private void Awake()
     {
         Instance = this;
+        input = GetComponent<PlayerInput>();
     }
 
     private void Load()
