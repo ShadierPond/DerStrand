@@ -147,7 +147,7 @@ public class Player : MonoBehaviour
     private void MovePlayer()
     {
         // Sprinting
-        currentSpeed = isSprinting ? currentSpeed = sprintSpeed : currentSpeed = speed;
+        currentSpeed = isSprinting && PlayerProperties.Instance.stamina > 0 ? currentSpeed = sprintSpeed : currentSpeed = speed;
         // Smooth Movement (smoothing input values, movement is the same)
         if (smoothMovement)
             _smoothMove = _move.magnitude > 0 ? Vector2.SmoothDamp(Vector2.zero, _move, ref _smoothSpeed, smoothTime, 1f, Time.deltaTime) : Vector2.SmoothDamp(_move, Vector2.zero, ref _smoothSpeed, smoothTime, 1f, Time.deltaTime);

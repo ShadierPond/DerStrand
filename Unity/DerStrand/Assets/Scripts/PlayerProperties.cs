@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
@@ -12,10 +13,11 @@ public class PlayerProperties : MonoBehaviour
     [Header("Properties")] [SerializeField] private int maxProperty;
     [SerializeField] private int
         decreaseTime, health, thirst, hunger, 
-        wearyTime, stamina, staminaRegenerationTime,
+        wearyTime, staminaRegenerationTime,
         staminaRegenerationAmount, thirstDecrese,
         hungerDecrease, wearyTimeDecrease, 
         staminaDecrease, healthDecrease;
+    [SerializeField] public int stamina;
     [SerializeField] private float 
         thirstDecreseInterval, hungerDecreaseInterval, 
         wearyTimeDecreaseInterval, staminaDecreaseInterval, 
@@ -27,6 +29,7 @@ public class PlayerProperties : MonoBehaviour
         healthBarImage, staminaBarImage, hungerBarImage,
         thirstBarImage, wearyTimeBarImage;
 
+    public bool staminaFull;
 
     [SerializeField] private SaveData saveData;
     [SerializeField] public bool tempTrigger;
@@ -170,7 +173,7 @@ public class PlayerProperties : MonoBehaviour
     {
         Debug.Log(stamina);
         yield return new WaitForSeconds(staminaRegenerationTime);   //wait for staminaRegenerationTime seconds
-        while (stamina <= maxProperty && stamina >= 0 && !Player.Instance.isSprinting)                               //While Stamina is < than maxProperty
+        while (stamina <= maxProperty && !Player.Instance.isSprinting)                               //While Stamina is < than maxProperty
         {
             stamina  += staminaRegenerationAmount;          //stamina + staminaRegenerationAmount
             yield return new WaitForSeconds(1);
@@ -238,6 +241,10 @@ public class PlayerProperties : MonoBehaviour
             stamina -= staminaDecrease;          //stamina + staminaRegenerationAmount
             yield return new WaitForSeconds(staminaDecreaseInterval);
             //Debug.Log("stamina :" + stamina);
+        }
+        if (stamina <= 0)
+        {
+            stamina = 0;
         }
     }
     private void DecreaseHealth()
