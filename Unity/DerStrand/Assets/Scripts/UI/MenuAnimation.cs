@@ -7,19 +7,29 @@ using UnityEngine.SceneManagement;
 
 public class MenuAnimation : MonoBehaviour
 {
+    [Header("Controllable Objects")]
     [SerializeField] private GameObject[] menus;
+    
+    [Header("Menu Parents")]
     [SerializeField] private GameObject inGameMenu;
+    private  CanvasGroup _inGameCanvasGroup;
     [SerializeField] private GameObject interfaceMenu;
+    private  CanvasGroup _interfaceCanvasGroup;
+    
+    [Header("Debug")]
     [SerializeField] private GameObject currentMenu;
+    private CanvasGroup _currentCanvasGroup;
     [SerializeField] private GameObject nextMenu;
+    private CanvasGroup _nextCanvasGroup;
+    
     [SerializeField] private GameObject lookAtInterface;
     [SerializeField] private bool isMenuOpen;
     [SerializeField] private bool isMenuLocked;
     public float transitionTime;
     public float waitTimeBetweenTransitions;
-    private CanvasGroup _currentCanvasGroup;
-    private CanvasGroup _nextCanvasGroup;
-    private  CanvasGroup _inGameCanvasGroup;
+    
+    
+    
 
     public void Transition(EnumMenuState state)
     {
