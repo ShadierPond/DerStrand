@@ -34,6 +34,7 @@ public class Player : MonoBehaviour
     
     [Header("Interaction")]
     [SerializeField] private float interactDistance;
+    [SerializeField] private GameObject objectInFront;
 
     [SerializeField] private Vector3 objectHoldArea;
     [SerializeField] private float objectHoldForce;
@@ -54,12 +55,14 @@ public class Player : MonoBehaviour
     [SerializeField] private bool isHoldable;
     [SerializeField] private SaveData saveData;
     private PlayerProperties _properties;
+    public PlayerInput input;
     
     public static Player Instance { get; private set; }
 
     private void Awake()
     {
         Instance = this;
+        input = GetComponent<PlayerInput>();
     }
 
     private void Load()
@@ -110,6 +113,12 @@ public class Player : MonoBehaviour
             StartCoroutine(_properties.RegenerateStamina());
             Debug.Log("Test1111111111111111");
         }
+        
+        var cameraTransform = camera.transform;
+        //Debug.DrawRay(camera.transform.position, camera.transform.forward * interactDistance, Color.red);
+        Physics.Raycast(cameraTransform.position, cameraTransform.forward, out _hit, interactDistance);
+        objectInFront = _hit.collider.gameObject;
+        
     }
 
     public void GetAxis(InputAction.CallbackContext context)
@@ -220,9 +229,7 @@ public class Player : MonoBehaviour
     {
         if (objectHeld) 
             return;
-        var cameraTransform = camera.transform;
-        //Debug.DrawRay(camera.transform.position, camera.transform.forward * interactDistance, Color.red);
-        Physics.Raycast(cameraTransform.position, cameraTransform.forward, out _hit, interactDistance);
+
         if(_hit.collider != null)
         {
             interactable = true;
@@ -272,7 +279,10 @@ public class Player : MonoBehaviour
             interactableObject.transform.position = _interactionHoldArea.position;
             
         }
-        
-  
+    }
+    
+    public GameObject GetRaycastObject()
+    {
+        return objectInFront;
     }
 }
