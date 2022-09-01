@@ -92,6 +92,8 @@ public class Player : MonoBehaviour
         currentSpeed = speed;
         if(!SaveSystem.Instance.newGame)
             Load();
+
+
     }
 
     private void FixedUpdate()
@@ -119,6 +121,10 @@ public class Player : MonoBehaviour
         Physics.Raycast(cameraTransform.position, cameraTransform.forward, out _hit, interactDistance);
         objectInFront = _hit.collider.gameObject;
         
+        if (input.actions["Fire"].triggered)
+        {
+            Debug.Log("Fire");
+        }
     }
 
     public void GetAxis(InputAction.CallbackContext context)

@@ -14495,6 +14495,8 @@ GameObject:
   m_Component:
   - component: {fileID: 688498690}
   - component: {fileID: 688498689}
+  - component: {fileID: 688498691}
+  - component: {fileID: 688498692}
   m_Layer: 0
   m_Name: Management
   m_TagString: Untagged
@@ -14589,6 +14591,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &688498691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688498688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5d229d49c628fe4ba90a5dc2414c1ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emptySlotColor: {r: 0, g: 0, b: 0, a: 0}
+  fullSlotColor: {r: 0, g: 0, b: 0, a: 0}
+--- !u!114 &688498692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 688498688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb58eb87e04fd094fa6cdc5e02930ac8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &689312446
 GameObject:
   m_ObjectHideFlags: 0
@@ -54982,6 +55010,11 @@ PrefabInstance:
       propertyPath: menuAnim
       value: 
       objectReference: {fileID: 849078731}
+    - target: {fileID: 5125565863325364084, guid: b77e6ab7348b0aa46a84794e27bbcc00,
+        type: 3}
+      propertyPath: input.m_Id
+      value: 36deb60d-5da1-42eb-98dd-d5cfe0d1efef
+      objectReference: {fileID: 0}
     - target: {fileID: 5125565863325364085, guid: b77e6ab7348b0aa46a84794e27bbcc00,
         type: 3}
       propertyPath: m_ActionEvents.Array.size
