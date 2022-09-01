@@ -13,15 +13,15 @@ public class PlayerProperties : MonoBehaviour
     [Header("Properties")] [SerializeField] private int maxProperty;
     [SerializeField] private int
         decreaseTime, health, thirst, hunger, 
-        wearyTime, staminaRegenerationTime,
-        staminaRegenerationAmount, thirstDecrese,
-        hungerDecrease, wearyTimeDecrease, 
-        staminaDecrease, healthDecrease;
+        wearyTime, staminaRegenerationAmount, 
+        thirstDecrese, hungerDecrease, 
+        wearyTimeDecrease, staminaDecrease, 
+        healthDecrease;
     [SerializeField] public int stamina;
     [SerializeField] private float 
         thirstDecreseInterval, hungerDecreaseInterval, 
         wearyTimeDecreaseInterval, staminaDecreaseInterval, 
-        healthDecreaseInterval;
+        staminaRegenerationTime, healthDecreaseInterval;
     [SerializeField] GameObject 
         healthBar, staminaBar, hungerBar, 
         thirstBar, wearyTimeBar;
@@ -77,9 +77,6 @@ public class PlayerProperties : MonoBehaviour
             Load();
         else
             New();
-        staminaRegenerationTime = 2;
-        staminaRegenerationAmount = 1;
-
         //UI Load
         healthBarImage = healthBar.GetComponent<Image>();
         staminaBarImage = staminaBar.GetComponent<Image>();
@@ -176,6 +173,8 @@ public class PlayerProperties : MonoBehaviour
         while (stamina <= maxProperty && !Player.Instance.isSprinting)                               //While Stamina is < than maxProperty
         {
             stamina  += staminaRegenerationAmount;          //stamina + staminaRegenerationAmount
+            hunger -= hungerDecrease;
+            thirst -= thirstDecrese;
             yield return new WaitForSeconds(1);
             //Debug.Log(stamina);
         }
@@ -236,7 +235,7 @@ public class PlayerProperties : MonoBehaviour
     }
     private IEnumerator DecreaseStamina()
     {
-        while (stamina <= maxProperty && stamina >= 0&& Player.Instance.isSprinting)                               //While Stamina is < than maxProperty
+        while (stamina <= maxProperty && stamina >= 0 && Player.Instance.isSprinting)                               //While Stamina is < than maxProperty
         {
             stamina -= staminaDecrease;          //stamina + staminaRegenerationAmount
             yield return new WaitForSeconds(staminaDecreaseInterval);

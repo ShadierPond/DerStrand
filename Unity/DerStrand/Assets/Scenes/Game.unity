@@ -9454,7 +9454,6 @@ GameObject:
   - component: {fileID: 849078727}
   - component: {fileID: 849078732}
   - component: {fileID: 849078731}
-  - component: {fileID: 849078733}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -9587,26 +9586,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   saveSlotContent: {fileID: 1582377523}
---- !u!114 &849078733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 849078726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fdff3efc3f5a9064e9a502db305e86b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  healthBar: {fileID: 1824612281}
-  healthBarImage: {fileID: 0}
-  health: 10
-  maxHealth: 200
-  staminaBar: {fileID: 0}
-  hungerBar: {fileID: 0}
-  thirstBar: {fileID: 0}
-  wearyTimeBar: {fileID: 0}
 --- !u!1 &852111413
 GameObject:
   m_ObjectHideFlags: 0
@@ -26984,6 +26963,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
         type: 3}
+      propertyPath: staminaRegenerationTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
+        type: 3}
+      propertyPath: staminaRegenerationAmount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
+        type: 3}
       propertyPath: wearyTimeDecreaseInterval
       value: 12
       objectReference: {fileID: 0}
@@ -27052,6 +27041,11 @@ PrefabInstance:
       propertyPath: menuAnim
       value: 
       objectReference: {fileID: 849078731}
+    - target: {fileID: 5125565863325364085, guid: b77e6ab7348b0aa46a84794e27bbcc00,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5125565863325364085, guid: b77e6ab7348b0aa46a84794e27bbcc00,
         type: 3}
       propertyPath: m_ActionEvents.Array.data[16].m_PersistentCalls.m_Calls.Array.data[0].m_Target
