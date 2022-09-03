@@ -26,6 +26,10 @@ public class SaveData
     public int thirst;
     public int hunger;
     public int wearyTime;
+    
+    // Player Inventory
+    [Header("Player Inventory")]
+    public Inventory inventory;
 
 
 

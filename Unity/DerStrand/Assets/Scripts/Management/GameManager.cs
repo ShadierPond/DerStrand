@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     private string[] _persistentScenes = {"Management"};
     public static GameManager Instance { get; private set; }
 
+    public string currentSaveName;
+    public string currentSavePath;
+    
     private void Awake()
     {
         Instance = this;

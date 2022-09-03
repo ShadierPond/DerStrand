@@ -173,6 +173,8 @@ MonoBehaviour:
   saveSlotsContent: {fileID: 0}
   newGame: 1
   latestSaveName: 
+  playerInventory: {fileID: 0}
+  saveList: []
   saveData:
     saveDate: 
     saveTime: 
@@ -186,6 +188,7 @@ MonoBehaviour:
     thirst: 0
     hunger: 0
     wearyTime: 0
+    inventory: {fileID: 11400000, guid: 76357a4ef558cd9449f3a1451443d36f, type: 2}
 --- !u!114 &721219083
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -24,9 +24,12 @@ public class SaveManager : MonoBehaviour
     }
 
     // Save the Game Data
+    [ContextMenu("Save")]
     public void SaveGame()
     {
+        Debug.Log("Game Saved");
         TimeController.Instance.Save();
+        Player.Instance.Save();
         SaveSystem.Instance.SaveGame();
     }
     
@@ -40,7 +43,7 @@ public class SaveManager : MonoBehaviour
     public void LoadGame()
     {
         SaveSystem.Instance.LoadGame();
-        GameManager.Instance.LoadScene("Game");
+        GameManager.Instance.LoadScene("Tariq");
     }
 
     public void NewGame()

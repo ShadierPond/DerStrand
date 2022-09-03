@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
@@ -41,6 +42,9 @@ public class Player : MonoBehaviour
     private RaycastHit _hit;
     private Rigidbody _objectRigidbody;
     private Transform _interactionHoldArea;
+    
+    [Header("Inventory")]
+    public Inventory inventory;
 
     [Header("Debug")]
     [SerializeField] private Vector2 cameraRotation; 
@@ -67,6 +71,7 @@ public class Player : MonoBehaviour
 
     private void Load()
     {
+        inventory.Load(GameManager.Instance.currentSaveName, GameManager.Instance.currentSavePath);
         _controller.enabled = false;
         transform.position = saveData.playerPosition;
         transform.rotation = saveData.playerRotation;
@@ -107,7 +112,7 @@ public class Player : MonoBehaviour
         // Character Controller isgrounded is funky, using raycast makes player grounded when in trigger collider. using controller isgrounded in update is a workaround.
         isGrounded = Physics.Raycast(transform.position, -Vector3.up, _controller.bounds.extents.y + 0.1f);
         Gravity();
-        Interact();
+        HoldObject();
         CenterHeldObject();
         if (!isSprinting && _properties.tempTrigger)
         {
@@ -120,11 +125,6 @@ public class Player : MonoBehaviour
         //Debug.DrawRay(camera.transform.position, camera.transform.forward * interactDistance, Color.red);
         Physics.Raycast(cameraTransform.position, cameraTransform.forward, out _hit, interactDistance);
         objectInFront = _hit.collider.gameObject;
-        
-        if (input.actions["Fire"].triggered)
-        {
-            Debug.Log("Fire");
-        }
     }
 
     public void GetAxis(InputAction.CallbackContext context)
@@ -147,9 +147,9 @@ public class Player : MonoBehaviour
         
         switch (context.performed)
         {
-            // Action when perssed
+            // Action when pressed
             case true when interactable && context.interaction is PressInteraction:
-                interactableObject.SendMessage("Interact", SendMessageOptions.DontRequireReceiver);
+                InteractWithObject();
                 break;
             // Action when held
             case true when interactable && context.interaction is HoldInteraction && isHoldable :
@@ -231,7 +231,7 @@ public class Player : MonoBehaviour
         camera.transform.position = transform.position + cameraPositionOffset;
     }
 
-    private void Interact()
+    private void HoldObject()
     {
         if (objectHeld) 
             return;
@@ -290,5 +290,26 @@ public class Player : MonoBehaviour
     public GameObject GetRaycastObject()
     {
         return objectInFront;
+    }
+    
+    private void CollectItems()
+    {
+        var item = objectInFront.GetComponent<ItemObject>();
+        if (item == null)
+            return;
+        inventory.AddItem(item.item, 1);
+        Destroy(objectInFront);
+    }
+    
+    private void InteractWithObject()
+    {
+        if (objectInFront == null)
+            return;
+        CollectItems();
+    }
+
+    private void OnApplicationQuit()
+    {
+        inventory.inventory.Clear();
     }
 }

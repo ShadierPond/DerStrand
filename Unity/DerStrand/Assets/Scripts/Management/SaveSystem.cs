@@ -12,12 +12,15 @@ public class SaveSystem : MonoBehaviour
     public static SaveSystem Instance { get; private set; }
     
     [SerializeField] private bool usePersistentDataPath;
-    [SerializeField] private string saveLocation;
+    [SerializeField] public string saveLocation;
     [HideInInspector] public GameObject saveSlotsContent;
     public bool newGame = true;
     [SerializeField] private string latestSaveName;
+    [SerializeField] private Inventory playerInventory;
+    [SerializeField] private List<string> saveList;
+    
     public SaveData saveData;
-    private string selectedSaveName;
+    public string selectedSaveName;
 
     // Reference the Instance to this script and set Save Location
     private void Awake()
@@ -42,6 +45,9 @@ public class SaveSystem : MonoBehaviour
             Directory.CreateDirectory(saveLocation);
         // Write the JSON string to the save location
         File.WriteAllText(saveLocation + "/" + saveName + ".json", json);
+        // Save the Player Inventory
+        playerInventory = Player.Instance.inventory;
+        playerInventory.Save(saveName, saveLocation);
         // Take a screenshot of the game and save it to the save location
         ScreenCapture.CaptureScreenshot(saveLocation + "/" + saveName + ".png");
     }
@@ -87,9 +93,9 @@ public class SaveSystem : MonoBehaviour
             Destroy(child.gameObject);
         }
         // Get the list of Save Files
-        var saveSlots = GetSaveFiles();
+        saveList = GetSaveFiles();
         // Loop through the list of Save Files and create a Save Slot for each one
-        foreach (var save in saveSlots)
+        foreach (var save in saveList)
         {
             // Temporarily store the Save Data
             var data = Load(save);
@@ -130,6 +136,8 @@ public class SaveSystem : MonoBehaviour
     public void LoadGame()
     {
         saveData = Load(selectedSaveName);
+        GameManager.Instance.currentSaveName = selectedSaveName;
+        GameManager.Instance.currentSavePath = saveLocation;
         newGame = false;
         Debug.Log("Loaded save data");
     }

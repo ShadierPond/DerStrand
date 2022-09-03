@@ -8,10 +8,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Management.unity
     guid: 45e8034872e14e0468160c6691ac3214
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: e1ccd9f802b0e03428cdb932b2f08b2b
+  - enabled: 1
+    path: Assets/Scenes/Tariq.unity
+    guid: 4be48d41f4299e34a874d3d9a8772cb8
   m_configObjects: {}
