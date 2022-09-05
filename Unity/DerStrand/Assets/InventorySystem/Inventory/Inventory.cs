@@ -9,7 +9,7 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory/Inventory")]
 public class Inventory : ScriptableObject, ISerializationCallbackReceiver
 {
-    public List<InventorySlot> inventory = new List<InventorySlot>();
+    public InventorySlot[] items = new InventorySlot[28];
     public ItemDatabase database;
 
     public void Load(string saveName, string saveLocation)
@@ -32,19 +32,51 @@ public class Inventory : ScriptableObject, ISerializationCallbackReceiver
         bf.Serialize(file, JsonUtility.ToJson(this));
         file.Close();
     }
+    
+    public void MoveItem(InventorySlot from, InventorySlot to)
+    {
+        InventorySlot temp = new InventorySlot(to.id, to.item, to.amount);
+        to.UpdateSlot(from.id, from.item, from.amount);
+        from.UpdateSlot(temp.id, temp.item, temp.amount);
+    }
 
     public void AddItem(Item item, int amount)
     {
-        for (int i = 0; i < inventory.Count; i++)
+        for (int i = 0; i < items.Length; i++)
         {
-            if (inventory[i].item == item)
+            if (items[i].item == item)
             {
-                inventory[i].AddAmount(amount);
+                items[i].AddAmount(amount);
                 return;
             }
         }
-        inventory.Add(new InventorySlot(database.getId[item], item, amount));
+        SetEmptySlot(item, amount);
     }
+    
+    public void RemoveItem(Item item)
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i].item == item)
+            {
+                items[i].UpdateSlot(-1, null, 0);
+                return;
+            }
+        }
+    }
+    
+    public InventorySlot SetEmptySlot(Item _item, int amount)
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            if (items[i].id <= -1)
+            {
+                items[i].UpdateSlot(_item.id, _item, amount);
+                return items[i];
+            }
+        }
+        return null;
+    } 
 
     public void OnBeforeSerialize()
     {
@@ -52,10 +84,12 @@ public class Inventory : ScriptableObject, ISerializationCallbackReceiver
 
     public void OnAfterDeserialize()
     {
-        for (int i = 0; i < inventory.Count; i++)
+        /*
+        for (int i = 0; i < items.Count; i++)
         {
-            inventory[i].item = database.getItem[inventory[i].id];
+            items[i].item = database.getItem[items[i].id];
         }
+        */
     }
 }
 
@@ -75,6 +109,13 @@ public class InventorySlot
     }
     
     public InventorySlot(int id, Item item, int amount)
+    {
+        this.id = id;
+        this.item = item;
+        this.amount = amount;
+    }
+    
+    public void UpdateSlot(int id, Item item, int amount)
     {
         this.id = id;
         this.item = item;

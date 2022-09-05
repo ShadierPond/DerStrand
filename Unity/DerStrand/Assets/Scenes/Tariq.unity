@@ -53458,6 +53458,12 @@ PrefabInstance:
       propertyPath: input.m_Id
       value: 36deb60d-5da1-42eb-98dd-d5cfe0d1efef
       objectReference: {fileID: 0}
+    - target: {fileID: 5125565863325364084, guid: b77e6ab7348b0aa46a84794e27bbcc00,
+        type: 3}
+      propertyPath: saveData.inventory
+      value: 
+      objectReference: {fileID: 11400000, guid: 76357a4ef558cd9449f3a1451443d36f,
+        type: 2}
     - target: {fileID: 5125565863325364085, guid: b77e6ab7348b0aa46a84794e27bbcc00,
         type: 3}
       propertyPath: m_ActionEvents.Array.size
