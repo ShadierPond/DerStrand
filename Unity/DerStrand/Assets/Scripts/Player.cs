@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
     private Transform _interactionHoldArea;
     
     [Header("Inventory")]
+    public MouseItem mouseItem = new MouseItem();
     public Inventory inventory;
 
     [Header("Debug")]
@@ -118,7 +119,6 @@ public class Player : MonoBehaviour
         {
             _properties.tempTrigger = false;
             StartCoroutine(_properties.RegenerateStamina());
-            Debug.Log("Test1111111111111111");
         }
         
         var cameraTransform = camera.transform;
@@ -306,10 +306,5 @@ public class Player : MonoBehaviour
         if (objectInFront == null)
             return;
         CollectItems();
-    }
-
-    private void OnApplicationQuit()
-    {
-        inventory.items = new InventorySlot[28];
     }
 }

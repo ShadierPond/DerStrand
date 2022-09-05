@@ -96,6 +96,7 @@ public class Inventory : ScriptableObject, ISerializationCallbackReceiver
 [System.Serializable]
 public class InventorySlot
 {
+    public InventoryUI parent;
     public int id;
     public Item item;
     public int amount;

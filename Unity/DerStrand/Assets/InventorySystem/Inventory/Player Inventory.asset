@@ -12,5 +12,117 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a99979c31737ce4c837084cde431478, type: 3}
   m_Name: Player Inventory
   m_EditorClassIdentifier: 
-  inventory: []
+  items:
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
+  - parent: {fileID: 0}
+    id: -1
+    item: {fileID: 0}
+    amount: 0
   database: {fileID: 11400000, guid: e976cb4ee8b60454eb16455562fe6279, type: 2}
