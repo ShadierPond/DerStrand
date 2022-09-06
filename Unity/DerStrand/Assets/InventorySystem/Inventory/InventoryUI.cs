@@ -6,12 +6,13 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public abstract class InventoryUI : MonoBehaviour
+public class InventoryUI : MonoBehaviour
 {
     public Inventory inventory;
     public GameObject inventoryUI;
     public GameObject inventorySlotPrefab;
     public GameObject objectHolder;
+    public int slotCount;
     public MouseItem mouseItem;
 
 
@@ -35,7 +36,23 @@ public abstract class InventoryUI : MonoBehaviour
         UpdateInventoryUI();
     }
 
-    public abstract void CreateSlots();
+    public void CreateSlots()
+    {
+        items = new Dictionary<GameObject, InventorySlot>();
+
+        foreach (var slot in inventory.items)
+        {
+            var obj = Instantiate(inventorySlotPrefab, inventoryUI.transform);
+            
+            AddEvent(obj, EventTriggerType.PointerEnter, delegate { OnEnter(obj); });
+            AddEvent(obj, EventTriggerType.PointerExit, delegate { OnExit(obj); });
+            AddEvent(obj, EventTriggerType.BeginDrag, delegate { OnDragStart(obj); });
+            AddEvent(obj, EventTriggerType.EndDrag, delegate { OnDragEnd(obj); });
+            AddEvent(obj, EventTriggerType.Drag, delegate { OnDrag(obj); });
+            
+            items.Add(obj, slot);
+        }
+    }
     
     public void UpdateInventoryUI()
     {
@@ -130,6 +147,11 @@ public abstract class InventoryUI : MonoBehaviour
         Debug.Log("Drag");
         if(mouseItem.obj != null)
             mouseItem.obj.GetComponent<RectTransform>().position = Input.mousePosition;
+    }
+    
+    private void OnApplicationQuit()
+    {
+        inventory.items = new InventorySlot[slotCount];
     }
     
 }
