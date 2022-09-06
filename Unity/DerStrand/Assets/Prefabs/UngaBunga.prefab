@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5216322058706333831}
   - component: {fileID: 5216322058706333824}
   m_Layer: 0
-  m_Name: Cube (4)
+  m_Name: UngaBunga
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
