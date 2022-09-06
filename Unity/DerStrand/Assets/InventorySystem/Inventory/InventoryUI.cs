@@ -9,7 +9,7 @@ using UnityEngine.UI;
 public class InventoryUI : MonoBehaviour
 {
     public Inventory inventory;
-    public GameObject inventoryUI;
+    public GameObject inventoryPanel;
     public GameObject inventorySlotPrefab;
     public GameObject objectHolder;
     public int slotCount;
@@ -23,9 +23,8 @@ public class InventoryUI : MonoBehaviour
         mouseItem = Player.Instance.mouseItem;
         inventorySlotPrefab = Resources.Load("InventorySlot") as GameObject;
         foreach (var slot in inventory.items)
-        {
             slot.parent = this;
-        }
+
         CreateSlots();
         AddEvent(gameObject, EventTriggerType.PointerEnter, delegate { OnEnterInterface(gameObject); });
         AddEvent(gameObject, EventTriggerType.PointerExit, delegate { OnExitInterface(gameObject); });
@@ -42,7 +41,7 @@ public class InventoryUI : MonoBehaviour
 
         foreach (var slot in inventory.items)
         {
-            var obj = Instantiate(inventorySlotPrefab, inventoryUI.transform);
+            var obj = Instantiate(inventorySlotPrefab, inventoryPanel.transform);
             
             AddEvent(obj, EventTriggerType.PointerEnter, delegate { OnEnter(obj); });
             AddEvent(obj, EventTriggerType.PointerExit, delegate { OnExit(obj); });
@@ -59,19 +58,22 @@ public class InventoryUI : MonoBehaviour
         foreach (var slot in items)
         {
             var obj = slot.Key.transform;
+            var objImage = obj.GetChild(0).GetComponent<Image>();
+            var objText = obj.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            var objTextImage = obj.GetChild(1).GetComponent<Image>();
             if (slot.Value.id >= 0)
             {
-                obj.GetChild(0).GetComponent<Image>().sprite = inventory.database.getItem[slot.Value.id].icon;
-                obj.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                obj.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = slot.Value.amount == 1 ? "" : slot.Value.amount.ToString("n0");
-                obj.GetChild(1).GetComponent<Image>().color = slot.Value.amount == 1 ? new Color(1, 0, 0, 0) : new Color(1, 0, 0, 1);
+                objImage.sprite = inventory.database.getItem[slot.Value.id].icon;
+                objImage.color = new Color(1, 1, 1, 1);
+                objText.text = slot.Value.amount == 1 ? "" : slot.Value.amount.ToString("n0");
+                objTextImage.color = slot.Value.amount == 1 ? new Color(1, 0, 0, 0) : new Color(1, 0, 0, 1);
             }
             else
             {
-                obj.GetChild(0).GetComponent<Image>().sprite = null;
-                obj.GetChild(0).GetComponent<Image>().color = new Color(1, 1, 1, 0);
-                obj.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "";
-                obj.GetChild(1).GetComponent<Image>().color = new Color(1, 0, 0, 0);
+                objImage.sprite = null;
+                objImage.color = new Color(1, 1, 1, 0);
+                objText.text = "";
+                objTextImage.color = new Color(1, 0, 0, 0);
             }
         }
     }
@@ -108,11 +110,8 @@ public class InventoryUI : MonoBehaviour
         mouseItem.ui = null;
     }
     
-    
-    
     public void OnDragStart(GameObject obj)
     {
-        Debug.Log("Drag Start");
         var mouseObj = new GameObject();
         mouseObj.transform.SetParent(objectHolder.transform);
         mouseObj.AddComponent<RectTransform>().sizeDelta = new Vector2(80, 80);
@@ -127,15 +126,16 @@ public class InventoryUI : MonoBehaviour
     
     public void OnDragEnd(GameObject obj)
     {
-        Debug.Log("Drag End");
-
         if (mouseItem.ui != null)
         {
             if (mouseItem.hoverObj)
-                inventory.MoveItem(items[obj], mouseItem.hoverSlot.parent.items[mouseItem.hoverObj]);
+                inventory.SwapItems(items[obj], mouseItem.hoverSlot.parent.items[mouseItem.hoverObj]);
         }
         else
         {
+            var item = Instantiate( inventory.database.getItem[mouseItem.item.id].prefab, Player.Instance.transform.position + Vector3.forward, Quaternion.identity);
+            item.GetComponent<ItemObject>().amount = items[obj].amount;
+            item.GetComponent<ItemObject>().item = items[obj].item;
             inventory.RemoveItem(items[obj].item);
         }
         Destroy(mouseItem.obj);
@@ -153,7 +153,6 @@ public class InventoryUI : MonoBehaviour
     {
         inventory.items = new InventorySlot[slotCount];
     }
-    
 }
 
 public class MouseItem

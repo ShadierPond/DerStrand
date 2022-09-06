@@ -297,7 +297,7 @@ public class Player : MonoBehaviour
         var item = objectInFront.GetComponent<ItemObject>();
         if (item == null)
             return;
-        inventory.AddItem(item.item, 1);
+        inventory.AddItem(item.item, item.amount);
         Destroy(objectInFront);
     }
     

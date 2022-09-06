@@ -33,7 +33,7 @@ public class Inventory : ScriptableObject, ISerializationCallbackReceiver
         file.Close();
     }
     
-    public void MoveItem(InventorySlot from, InventorySlot to)
+    public void SwapItems(InventorySlot from, InventorySlot to)
     {
         InventorySlot temp = new InventorySlot(to.id, to.item, to.amount);
         to.UpdateSlot(from.id, from.item, from.amount);

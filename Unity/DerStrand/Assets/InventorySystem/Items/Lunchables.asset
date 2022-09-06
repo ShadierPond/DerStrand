@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df49e2fecb5ba54da84f452df2f585d, type: 3}
   m_Name: Lunchables
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  id: 0
+  icon: {fileID: 0}
+  prefab: {fileID: 7271856579642493889, guid: 047288485b5a4c5409eba972579ebdbf, type: 3}
   type: 3
   description: asdadawd
   restoreHealthValue: 10
