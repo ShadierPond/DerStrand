@@ -44,7 +44,6 @@ public class Player : MonoBehaviour
     private Transform _interactionHoldArea;
     
     [Header("Inventory")]
-    public MouseItem mouseItem = new MouseItem();
     public Inventory inventory;
 
     [Header("Debug")]

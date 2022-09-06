@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -13,14 +12,12 @@ public class InventoryUI : MonoBehaviour
     public GameObject inventorySlotPrefab;
     public GameObject objectHolder;
     public int slotCount;
-    public MouseItem mouseItem;
 
 
     public Dictionary<GameObject, InventorySlot> items = new Dictionary<GameObject, InventorySlot>();
 
     public void Start()
     {
-        mouseItem = Player.Instance.mouseItem;
         inventorySlotPrefab = Resources.Load("InventorySlot") as GameObject;
         foreach (var slot in inventory.items)
             slot.parent = this;
@@ -89,25 +86,25 @@ public class InventoryUI : MonoBehaviour
     
     public void OnEnter(GameObject obj)
     {
-        mouseItem.hoverObj = obj;
+        MouseData.slotHoveredOver = obj;
         if (items.ContainsKey(obj))
-            mouseItem.hoverSlot = items[obj];
+            MouseData.hoverSlot = items[obj];
     }
     
     public void OnExit(GameObject obj)
     {
-        mouseItem.hoverObj = null;
-            mouseItem.hoverSlot = null;
+        MouseData.slotHoveredOver = null;
+        MouseData.hoverSlot = null;
     }
     
     public void OnEnterInterface(GameObject obj)
     {
-        mouseItem.ui = obj.GetComponent<InventoryUI>();
+        MouseData.interfaceMouseIsOver = obj.GetComponent<InventoryUI>();
     }
     
     public void OnExitInterface(GameObject obj)
     {
-        mouseItem.ui = null;
+        MouseData.interfaceMouseIsOver = null;
     }
     
     public void OnDragStart(GameObject obj)
@@ -120,33 +117,33 @@ public class InventoryUI : MonoBehaviour
             mouseObj.AddComponent<Image>().sprite = inventory.database.getItem[items[obj].id].icon;
             mouseObj.GetComponent<Image>().raycastTarget = false;
         }
-        mouseItem.obj = mouseObj;
-        mouseItem.item = items[obj];
+        MouseData.tempItemBeingDragged = mouseObj;
+        MouseData.item = items[obj];
     }
     
     public void OnDragEnd(GameObject obj)
     {
-        if (mouseItem.ui != null)
+        if (MouseData.interfaceMouseIsOver != null)
         {
-            if (mouseItem.hoverObj)
-                inventory.SwapItems(items[obj], mouseItem.hoverSlot.parent.items[mouseItem.hoverObj]);
+            if (MouseData.slotHoveredOver)
+                inventory.SwapItems(items[obj], MouseData.hoverSlot.parent.items[MouseData.slotHoveredOver]);
         }
         else
         {
-            var item = Instantiate( inventory.database.getItem[mouseItem.item.id].prefab, Player.Instance.transform.position + Vector3.forward, Quaternion.identity);
+            var item = Instantiate( inventory.database.getItem[MouseData.item.id].prefab, Player.Instance.transform.position + Vector3.forward, Quaternion.identity);
             item.GetComponent<ItemObject>().amount = items[obj].amount;
             item.GetComponent<ItemObject>().item = items[obj].item;
             inventory.RemoveItem(items[obj].item);
         }
-        Destroy(mouseItem.obj);
-        mouseItem.item = null;
+        Destroy(MouseData.tempItemBeingDragged);
+        MouseData.item = null;
     }
     
     public void OnDrag(GameObject obj)
     {
         Debug.Log("Drag");
-        if(mouseItem.obj != null)
-            mouseItem.obj.GetComponent<RectTransform>().position = Input.mousePosition;
+        if(MouseData.tempItemBeingDragged != null)
+            MouseData.tempItemBeingDragged.GetComponent<RectTransform>().position = Input.mousePosition;
     }
     
     private void OnApplicationQuit()
@@ -155,11 +152,11 @@ public class InventoryUI : MonoBehaviour
     }
 }
 
-public class MouseItem
+public static class MouseData
 {
-    public InventoryUI ui;
-    public GameObject obj;
-    public InventorySlot item;
-    public InventorySlot hoverSlot;
-    public GameObject hoverObj;
+    public static InventoryUI interfaceMouseIsOver;
+    public static GameObject tempItemBeingDragged;
+    public static InventorySlot item;
+    public static InventorySlot hoverSlot;
+    public static GameObject slotHoveredOver;
 }
