@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -7,24 +8,32 @@ using UnityEngine.UI;
 
 public class InventoryUI : MonoBehaviour
 {
+    // the inventory we are displaying
     public Inventory inventory;
+    // the panel we are displaying the inventory on
     public GameObject inventoryPanel;
+    // the slot prefab
     public GameObject inventorySlotPrefab;
+    // the place where the held item will be created. this fixes layering issues
     public GameObject objectHolder;
+    // the amount of slots in the inventory UI
     public int slotCount;
 
-
+    // the list of slots in the inventory UI
     public Dictionary<GameObject, InventorySlot> items = new Dictionary<GameObject, InventorySlot>();
 
     public void Start()
     {
+        // Get the slot prefab from the resources folder
         inventorySlotPrefab = Resources.Load("InventorySlot") as GameObject;
+        // Set the parent of the slot to the parent inventory panel
         foreach (var slot in inventory.items)
             slot.parent = this;
-
+        // Create the slots
         CreateSlots();
-        AddEvent(gameObject, EventTriggerType.PointerEnter, delegate { OnEnterInterface(gameObject); });
-        AddEvent(gameObject, EventTriggerType.PointerExit, delegate { OnExitInterface(gameObject); });
+        // Add Events to the Panel.
+        AddEvent(gameObject, EventTriggerType.PointerEnter, delegate { OnEvent(gameObject, "OnEnterInterface"); });
+        AddEvent(gameObject, EventTriggerType.PointerExit, delegate { OnEvent(gameObject, "OnExitInterface"); });
     }
 
     public void Update()
@@ -34,118 +43,174 @@ public class InventoryUI : MonoBehaviour
 
     public void CreateSlots()
     {
+        // Create new Dictionary
         items = new Dictionary<GameObject, InventorySlot>();
-
+        // Loop through the amount of slots
         foreach (var slot in inventory.items)
         {
+            // Create a new slot
             var obj = Instantiate(inventorySlotPrefab, inventoryPanel.transform);
-            
-            AddEvent(obj, EventTriggerType.PointerEnter, delegate { OnEnter(obj); });
-            AddEvent(obj, EventTriggerType.PointerExit, delegate { OnExit(obj); });
-            AddEvent(obj, EventTriggerType.BeginDrag, delegate { OnDragStart(obj); });
-            AddEvent(obj, EventTriggerType.EndDrag, delegate { OnDragEnd(obj); });
-            AddEvent(obj, EventTriggerType.Drag, delegate { OnDrag(obj); });
-            
+            // Add Events to the slot
+            // When the mouse enters the slot
+            AddEvent(obj, EventTriggerType.PointerEnter, delegate { OnEvent(obj, "OnEnter"); });
+            // When the mouse exits the slot
+            AddEvent(obj, EventTriggerType.PointerExit, delegate { OnEvent(obj, "OnExit"); });
+            // When the mouse clicks the slot (begins dragging)
+            AddEvent(obj, EventTriggerType.BeginDrag, delegate { OnEvent(obj, "OnDragStart"); });
+            // When the mouse stops clicking the slot (stops dragging)
+            AddEvent(obj, EventTriggerType.EndDrag, delegate { OnEvent(obj, "OnDragEnd"); });
+            // While the mouse is dragging the slot
+            AddEvent(obj, EventTriggerType.Drag, delegate { OnEvent(obj, "OnDrag"); });
+            // Add the slot to the dictionary with the object as the key
             items.Add(obj, slot);
         }
     }
     
+    // Update the inventory UI
     public void UpdateInventoryUI()
     {
+        // Loop through the slots
         foreach (var slot in items)
         {
+            // Temporary variables. These are used to make the code more readable and saves resources in unity
             var obj = slot.Key.transform;
             var objImage = obj.GetChild(0).GetComponent<Image>();
             var objText = obj.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>();
             var objTextImage = obj.GetChild(1).GetComponent<Image>();
+            // If the slot is not empty
             if (slot.Value.id >= 0)
             {
+                // Set the image of the slot to the image of the item
                 objImage.sprite = inventory.database.getItem[slot.Value.id].icon;
+                // Set the Background color of the slot to white (used for Alpha blending. shows the image)
                 objImage.color = new Color(1, 1, 1, 1);
+                // Set the text of the slot to the amount of the item
                 objText.text = slot.Value.amount == 1 ? "" : slot.Value.amount.ToString("n0");
+                // Set the text image background color of the slot to Red (used for Alpha blending. show the image)
                 objTextImage.color = slot.Value.amount == 1 ? new Color(1, 0, 0, 0) : new Color(1, 0, 0, 1);
             }
+            // If the Slot is empty
             else
             {
+                // Set the image of the slot to null
                 objImage.sprite = null;
+                // Set the Background color of the slot to clear (used for Alpha blending. hides the image)
                 objImage.color = new Color(1, 1, 1, 0);
+                // Set the text of the slot to nothing
                 objText.text = "";
+                // Set the text image background color of the slot to clear (used for Alpha blending. hides the image)
                 objTextImage.color = new Color(1, 0, 0, 0);
             }
         }
     }
-
+    
+    // Add an event to the Slot with Event Trigger Type and an Action (aka a function)
     public void AddEvent(GameObject obj, EventTriggerType type, UnityAction<BaseEventData> action)
     {
+        // Get the Event Trigger component of the slot
         EventTrigger trigger = obj.GetComponent<EventTrigger>();
+        // Create a new entry
         var eventTrigger = new EventTrigger.Entry();
+        // Set the entry type to the type we want
         eventTrigger.eventID = type;
+        // Add the action that should be called to the entry when the event is triggered
         eventTrigger.callback.AddListener(action);
+        // Add the entry to the Event Trigger
         trigger.triggers.Add(eventTrigger);
     }
-    
-    public void OnEnter(GameObject obj)
+
+    // The function that is called when an event is triggered
+    public void OnEvent(GameObject obj, string eventType)
     {
-        MouseData.slotHoveredOver = obj;
-        if (items.ContainsKey(obj))
-            MouseData.hoverSlot = items[obj];
-    }
-    
-    public void OnExit(GameObject obj)
-    {
-        MouseData.slotHoveredOver = null;
-        MouseData.hoverSlot = null;
-    }
-    
-    public void OnEnterInterface(GameObject obj)
-    {
-        MouseData.interfaceMouseIsOver = obj.GetComponent<InventoryUI>();
-    }
-    
-    public void OnExitInterface(GameObject obj)
-    {
-        MouseData.interfaceMouseIsOver = null;
-    }
-    
-    public void OnDragStart(GameObject obj)
-    {
-        var mouseObj = new GameObject();
-        mouseObj.transform.SetParent(objectHolder.transform);
-        mouseObj.AddComponent<RectTransform>().sizeDelta = new Vector2(80, 80);
-        if (items[obj].id >= 0)
+        switch (eventType)
         {
-            mouseObj.AddComponent<Image>().sprite = inventory.database.getItem[items[obj].id].icon;
-            mouseObj.GetComponent<Image>().raycastTarget = false;
+            // When the mouse enters the slot
+            case "OnEnter":
+                // get the slot
+                MouseData.slotHoveredOver = obj;
+                // if the slot is not empty, get the item
+                if (items.ContainsKey(obj))
+                    MouseData.hoverSlot = items[obj];
+                break;
+            // When the mouse exits the slot
+            case "OnExit":
+                // Set Mouse Data Variables to null
+                MouseData.slotHoveredOver = null;
+                MouseData.hoverSlot = null;
+                break;
+            // When the mouse enters the inventory panel
+            case "OnEnterInterface":
+                // Get the Panel hovered over
+                MouseData.interfaceMouseIsOver = obj.GetComponent<InventoryUI>();
+                break;
+            // When the mouse exits the inventory panel
+            case "OnExitInterface":
+                // Set the Panel hovered over to null
+                MouseData.interfaceMouseIsOver = null;
+                break;
+            // When the mouse begins dragging the slot
+            case "OnDragStart":
+                // Create a new slot GameObject
+                var mouseObj = new GameObject();
+                // Set the parent of the slot to the object holder. fixes the layering issue
+                mouseObj.transform.SetParent(objectHolder.transform);
+                // Set the Size of the Slot
+                mouseObj.AddComponent<RectTransform>().sizeDelta = new Vector2(80, 80);
+                // if the slot is not empty
+                if (items[obj].id >= 0)
+                {
+                    // Set the image of the slot to the image of the item
+                    mouseObj.AddComponent<Image>().sprite = inventory.database.getItem[items[obj].id].icon;
+                    // Disable the raycast target so the mouse can interact with the slot and panel.
+                    mouseObj.GetComponent<Image>().raycastTarget = false;
+                }
+                // Set the slot to the mouse object
+                MouseData.tempItemBeingDragged = mouseObj;
+                // Set the slot to the slot being dragged
+                MouseData.item = items[obj];
+                break;
+            // While the mouse is dragging the slot
+            case "OnDrag":
+                // If the Slot being dragged is not empty
+                if(MouseData.tempItemBeingDragged != null)
+                    // Set the position of the slot to the mouse position
+                    MouseData.tempItemBeingDragged.GetComponent<RectTransform>().position = Input.mousePosition;
+                break;
+            // When the mouse stops dragging the slot
+            case "OnDragEnd":
+                // If the Interface the mouse is over is not empty. meaning the mouse is over a panel
+                if (MouseData.interfaceMouseIsOver != null)
+                {
+                    // If the mouse is over a slot
+                    if (MouseData.slotHoveredOver)
+                        // Swap the items in the slots
+                        inventory.SwapItems(items[obj], MouseData.hoverSlot.parent.items[MouseData.slotHoveredOver]);
+                }
+                // If the Interface the mouse is over is empty. meaning the mouse is not over a panel
+                else
+                {
+                    // Instantiate the item in the world
+                    var item = Instantiate( inventory.database.getItem[MouseData.item.id].prefab, Player.Instance.transform.position + Vector3.forward, Quaternion.identity);
+                    // Set the amount of the item
+                    item.GetComponent<ItemObject>().amount = items[obj].amount;
+                    // Set the item in the Database to the item in the world
+                    item.GetComponent<ItemObject>().item = items[obj].item;
+                    // Remove the item from the inventory
+                    inventory.RemoveItem(items[obj].item);
+                }
+                // Destroy the dragged slot
+                Destroy(MouseData.tempItemBeingDragged);
+                // Set the dragged item to null
+                MouseData.item = null;
+                break;
+            // When the Given Event is not found
+            default:
+                Debug.Log("Event not found");
+                break;
         }
-        MouseData.tempItemBeingDragged = mouseObj;
-        MouseData.item = items[obj];
     }
     
-    public void OnDragEnd(GameObject obj)
-    {
-        if (MouseData.interfaceMouseIsOver != null)
-        {
-            if (MouseData.slotHoveredOver)
-                inventory.SwapItems(items[obj], MouseData.hoverSlot.parent.items[MouseData.slotHoveredOver]);
-        }
-        else
-        {
-            var item = Instantiate( inventory.database.getItem[MouseData.item.id].prefab, Player.Instance.transform.position + Vector3.forward, Quaternion.identity);
-            item.GetComponent<ItemObject>().amount = items[obj].amount;
-            item.GetComponent<ItemObject>().item = items[obj].item;
-            inventory.RemoveItem(items[obj].item);
-        }
-        Destroy(MouseData.tempItemBeingDragged);
-        MouseData.item = null;
-    }
-    
-    public void OnDrag(GameObject obj)
-    {
-        Debug.Log("Drag");
-        if(MouseData.tempItemBeingDragged != null)
-            MouseData.tempItemBeingDragged.GetComponent<RectTransform>().position = Input.mousePosition;
-    }
-    
+    // When exiting the game. set the inventory slots to the given amount. Used for different sizes of inventories for player, chests, etc.
     private void OnApplicationQuit()
     {
         inventory.items = new InventorySlot[slotCount];
@@ -154,9 +219,14 @@ public class InventoryUI : MonoBehaviour
 
 public static class MouseData
 {
+    // The panel the mouse is over
     public static InventoryUI interfaceMouseIsOver;
+    // The Temporary item being dragged
     public static GameObject tempItemBeingDragged;
+    // The Item being dragged
     public static InventorySlot item;
+    // The Slot the mouse is over
     public static InventorySlot hoverSlot;
+    // The Slot the mouse is over as a GameObject
     public static GameObject slotHoveredOver;
 }
