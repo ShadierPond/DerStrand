@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Item Database", menuName = "Inventory/Item/Data")]
+[CreateAssetMenu(fileName = "New Item Database", menuName = "Inventory/DataBase")]
 public class ItemDatabase : ScriptableObject, ISerializationCallbackReceiver
 {
     // List of all items in the game
