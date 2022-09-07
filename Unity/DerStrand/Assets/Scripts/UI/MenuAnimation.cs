@@ -45,7 +45,6 @@ public class MenuAnimation : MonoBehaviour
         {
             if(menu.name == state.currentMenuState.ToString() && !state.isInterface)
             {
-                Debug.Log("TEST");
                 currentMenu = menu;
                 if(menu.name == "Main")
                     isMenuLocked = true;
@@ -200,6 +199,7 @@ public class MenuAnimation : MonoBehaviour
     public void ReturnToMainMenu()
     {
         // TODO: Add a confirmation dialog and a fade out animation for the current scene before loading the main menu scene
+        GameManager.Instance.LoadScene("Main Menu");
     }
 
     //TODO New method for showing the E key if you look at things
