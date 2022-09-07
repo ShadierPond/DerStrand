@@ -18,6 +18,9 @@ public class InventoryUI : MonoBehaviour
     public GameObject objectHolder;
     // the amount of slots in the inventory UI
     public int slotCount;
+    // If it is the Equipment UI
+    public bool isEquipmentInventory;
+    public int activeSlot = 0;
 
     // the list of slots in the inventory UI
     public Dictionary<GameObject, InventorySlot> items = new Dictionary<GameObject, InventorySlot>();
@@ -39,6 +42,7 @@ public class InventoryUI : MonoBehaviour
     public void Update()
     {
         UpdateInventoryUI();
+        GetActiveSlot();
     }
 
     public void CreateSlots()
@@ -209,6 +213,33 @@ public class InventoryUI : MonoBehaviour
                 break;
         }
     }
+
+    // Get slot Id from player Equippment Slots (the active one, that were chosen with scroll wheel)
+    public void GetActiveSlot()
+    {
+        // Return if not EquipmentInventoryPanel
+        if(!isEquipmentInventory)
+            return;
+        // Get Scroll Wheel Input
+        var scroll = Input.mouseScrollDelta;
+        // If the scroll wheel is scrolled up, add 1 to the active slot, else subtract 1.
+        activeSlot = scroll.y switch
+        {
+            > 0 => activeSlot == 0 ? slotCount - 1 : activeSlot - 1,
+            < 0 => activeSlot == slotCount - 1 ? 0 : activeSlot + 1,
+            _ => activeSlot
+        };
+        // Set the active slot in the UI to the active slot in the inventory
+        for (var i = 0; i < inventoryPanel.transform.childCount; i++)
+        {
+            // Get the Image component of the slot
+            var image = inventoryPanel.transform.GetChild(i).GetComponent<Image>();
+            // If the slot is the active slot, set the color to white, else set the color to gray-ish
+            image.color = i == activeSlot ? new Color(1, 1, 1, 1) : new Color(1, 1, 1, 0.5f);
+        }
+    }
+    
+    
     
     // When exiting the game. set the inventory slots to the given amount. Used for different sizes of inventories for player, chests, etc.
     private void OnApplicationQuit()

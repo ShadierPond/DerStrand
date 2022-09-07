@@ -154,7 +154,7 @@ public class MenuAnimation : MonoBehaviour
     
     public void PlayerMenu(InputAction.CallbackContext context)
     {
-        if(!context.performed)
+        if(!context.performed || isInterfaceMenuOpen)
             return;
         
         if (isMenuOpen && !isMenuLocked)
@@ -171,7 +171,7 @@ public class MenuAnimation : MonoBehaviour
     
     public void PlayerInterface(InputAction.CallbackContext context)
     {
-        if(!context.performed)
+        if(!context.performed || isMenuOpen)
             return;
         
         if (isInterfaceMenuOpen)
