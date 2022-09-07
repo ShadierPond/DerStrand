@@ -2060,6 +2060,7 @@ GameObject:
   - component: {fileID: 195909983}
   - component: {fileID: 195909984}
   - component: {fileID: 195909986}
+  - component: {fileID: 195909987}
   m_Layer: 0
   m_Name: Management
   m_TagString: Untagged
@@ -2092,6 +2093,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5d0bd54298fe5e43b29b79e6f9e8d4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transitionTime: 0.3
+  waitTimeBetweenTransitions: 0.3
   menus:
   - {fileID: 2144904324}
   - {fileID: 1679974455}
@@ -2100,13 +2103,13 @@ MonoBehaviour:
   - {fileID: 688701888}
   - {fileID: 296383216}
   inGameMenu: {fileID: 513894241}
+  interfaceMenu: {fileID: 0}
   currentMenu: {fileID: 0}
   nextMenu: {fileID: 0}
-  lookAtInterface: {fileID: 0}
   isMenuOpen: 0
   isMenuLocked: 0
-  transitionTime: 0.3
-  waitTimeBetweenTransitions: 0.3
+  isInterfaceMenuOpen: 0
+  lookAtInterface: {fileID: 0}
 --- !u!4 &195909985
 Transform:
   m_ObjectHideFlags: 0
@@ -2139,6 +2142,70 @@ MonoBehaviour:
   cameraSpeed: 10
   cameraAngle: {x: 0, y: 0, z: 0}
   cameraPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &195909987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195909982}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac30c158152dffa4a806409d1479eeb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeMultiplier: 500
+  startHour: 0
+  startDay: 0
+  sunriseHour: 4
+  sunsetHour: 22
+  lightChangeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  timeText: {fileID: 0}
+  dayText: {fileID: 0}
+  sunLight: {fileID: 748299394}
+  dayAmbientLight: {r: 0.7423136, g: 1, b: 0, a: 0}
+  maxSunLightIntensity: 1
+  moonLight: {fileID: 2051365669}
+  nightAmbientLight: {r: 0.06778432, g: 0, b: 0.8773585, a: 0}
+  maxMoonLightIntensity: 0.5
+  daysSurvived: 0
+  saveData:
+    saveDate: 
+    saveTime: 
+    inGameTime: 
+    playerPosition: {x: 0, y: 0, z: 0}
+    playerRotation: {x: 0, y: 0, z: 0, w: 0}
+    playerCameraRotation: {x: 0, y: 0}
+    startTime: 
+    daysSurvived: 0
+    health: 0
+    thirst: 0
+    hunger: 0
+    wearyTime: 0
+    inventory: {fileID: 0}
 --- !u!1 &210745372
 GameObject:
   m_ObjectHideFlags: 0
@@ -3754,7 +3821,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
@@ -4677,7 +4744,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &410087042
 MonoBehaviour:
@@ -4933,7 +5000,7 @@ RectTransform:
   - {fileID: 688701892}
   - {fileID: 296383217}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5032,6 +5099,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMenuState: 2
   nextMenuState: 1
+  isInterface: 0
 --- !u!114 &445593064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5572,6 +5640,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMenuState: 6
   nextMenuState: 3
+  isInterface: 0
 --- !u!114 &484081617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6691,6 +6760,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMenuState: 1
   nextMenuState: 3
+  isInterface: 0
 --- !u!114 &552871183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6840,6 +6910,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMenuState: 4
   nextMenuState: 3
+  isInterface: 0
 --- !u!114 &553255688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7702,6 +7773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMenuState: 3
   nextMenuState: 5
+  isInterface: 0
 --- !u!114 &616574656
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8228,6 +8300,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMenuState: 3
   nextMenuState: 6
+  isInterface: 0
 --- !u!114 &645888946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8855,6 +8928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMenuState: 1
   nextMenuState: 2
+  isInterface: 0
 --- !u!114 &699931306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9374,6 +9448,121 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &748299393
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 748299395}
+  - component: {fileID: 748299394}
+  - component: {fileID: 748299396}
+  m_Layer: 0
+  m_Name: SunLight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!108 &748299394
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748299393}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 1
+  m_Shape: 0
+  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &748299395
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748299393}
+  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &748299396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748299393}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
 --- !u!1 &756798425
 GameObject:
   m_ObjectHideFlags: 0
@@ -9853,6 +10042,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMenuState: 5
   nextMenuState: 3
+  isInterface: 0
 --- !u!114 &778309022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10458,7 +10648,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &833439635
 GameObject:
@@ -11388,7 +11578,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &965092206
 GameObject:
@@ -14700,6 +14890,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMenuState: 3
   nextMenuState: 1
+  isInterface: 0
 --- !u!114 &1279462813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21212,7 +21403,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1802012036
 GameObject:
@@ -23163,6 +23354,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMenuState: 3
   nextMenuState: 4
+  isInterface: 0
 --- !u!114 &1951061227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24080,6 +24272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentMenuState: 1
   nextMenuState: 7
+  isInterface: 0
 --- !u!114 &2043945443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24238,6 +24431,121 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1 &2051365667
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2051365670}
+  - component: {fileID: 2051365669}
+  - component: {fileID: 2051365668}
+  m_Layer: 0
+  m_Name: MoonLight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2051365668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051365667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 1
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+--- !u!108 &2051365669
+Light:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051365667}
+  m_Enabled: 1
+  serializedVersion: 10
+  m_Type: 1
+  m_Shape: 0
+  m_Color: {r: 0.27647814, g: 0.24586153, b: 0.6132076, a: 1}
+  m_Intensity: 1
+  m_Range: 10
+  m_SpotAngle: 30
+  m_InnerSpotAngle: 21.80208
+  m_CookieSize: 10
+  m_Shadows:
+    m_Type: 2
+    m_Resolution: -1
+    m_CustomResolution: -1
+    m_Strength: 1
+    m_Bias: 0.05
+    m_NormalBias: 0.4
+    m_NearPlane: 0.2
+    m_CullingMatrixOverride:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    m_UseCullingMatrixOverride: 0
+  m_Cookie: {fileID: 0}
+  m_DrawHalo: 0
+  m_Flare: {fileID: 0}
+  m_RenderMode: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingLayerMask: 1
+  m_Lightmapping: 4
+  m_LightShadowCasterMode: 0
+  m_AreaSize: {x: 1, y: 1}
+  m_BounceIntensity: 1
+  m_ColorTemperature: 6570
+  m_UseColorTemperature: 0
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_UseBoundingSphereOverride: 0
+  m_UseViewFrustumForShadowCasterCull: 1
+  m_ShadowRadius: 0
+  m_ShadowAngle: 0
+--- !u!4 &2051365670
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051365667}
+  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &2063369258
 GameObject:
   m_ObjectHideFlags: 0

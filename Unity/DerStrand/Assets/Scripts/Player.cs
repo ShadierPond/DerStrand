@@ -304,6 +304,8 @@ public class Player : MonoBehaviour
     {
         if (objectInFront == null)
             return;
-        CollectItems();
+        if(objectInFront.GetComponent<ItemObject>())
+            CollectItems();
+        
     }
 }
