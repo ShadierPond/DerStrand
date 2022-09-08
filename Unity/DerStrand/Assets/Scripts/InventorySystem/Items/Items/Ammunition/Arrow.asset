@@ -18,3 +18,7 @@ MonoBehaviour:
   type: 0
   description: 
   isCraftable: 1
+  ingredients:
+  - {fileID: 11400000, guid: f5247c3ef0c82f743b708e4622e1e0af, type: 2}
+  - {fileID: 11400000, guid: f78dfa23b262d6b40bd11c7b26ac69ed, type: 2}
+  ingredientAmounts: 0100000002000000
