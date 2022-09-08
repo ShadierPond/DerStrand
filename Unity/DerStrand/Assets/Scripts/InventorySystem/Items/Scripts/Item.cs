@@ -6,7 +6,9 @@ public enum ItemType
     None,
     Weapon,
     Tool,
-    Consumable
+    Consumable,
+    Craftable,
+    CraftingMaterial,
 }
 
 // Base class for all items
@@ -23,5 +25,7 @@ public abstract class Item : ScriptableObject
     // Item description for inventory UI on mouse Hover
     [TextArea(15, 20)]
     public string description;
+    // Is it craftable
+    public bool isCraftable;
     
 }
