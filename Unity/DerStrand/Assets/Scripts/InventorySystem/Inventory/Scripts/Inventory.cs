@@ -71,13 +71,15 @@ public class Inventory : ScriptableObject
         SetEmptySlot(item, amount);
     }
     // Removes an item from the inventory, even if it is stacked.
-    public void RemoveItem(Item item)
+    public void RemoveItem(Item item, int amount)
     {
         foreach (var _item in items)
         {
             if (_item.item == item)
             {
-                _item.UpdateSlot(null, 0);
+                _item.amount -= amount;
+                if (_item.amount <= 0)
+                    _item.UpdateSlot(null, 0);
                 return;
             }
         }

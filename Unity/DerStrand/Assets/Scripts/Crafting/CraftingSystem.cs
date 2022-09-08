@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -8,14 +7,22 @@ using UnityEngine.UI;
 public class CraftingSystem : MonoBehaviour
 {
     public Inventory playerInventory;
-    public GameObject craftingSlotPrefab;
-    public GameObject ingredientSlotPrefab;
+    private GameObject craftingSlotPrefab;
+    private GameObject ingredientSlotPrefab;
     public GameObject craftingPanel;
     public GameObject selectedSlot;
     public Color interactableColor;
     public Color nonInteractableColor;
+    [SerializeField] private int craftingMultiplier = 1;
     public List<InventorySlot> craftingSlotsList = new List<InventorySlot>();
     public List<GameObject> craftingSlotObjects = new List<GameObject>();
+
+    public static CraftingSystem Instance { get; private set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -49,37 +56,45 @@ public class CraftingSystem : MonoBehaviour
     
     public void SetIngredients()
     {
-        foreach (var recipe in craftingSlotsList)
+
+        for (int i = 0; i < craftingSlotsList.Count; i++)
         {
-            var recipeObj = craftingSlotObjects[recipe.item.id];
-            for (int i = 0; i < recipe.item.ingredients.Count; i++)
+            var recipeObj = craftingSlotObjects[i];
+            
+            for (int j = 0; j < craftingSlotsList[i].item.ingredients.Count; j++)
             {
                 var ingredientObj = Instantiate(ingredientSlotPrefab, recipeObj.transform.GetChild(2));
-                ingredientObj.GetComponentInChildren<Image>().sprite = playerInventory.database.getItem[recipe.item.ingredients[i].id].icon;
-                ingredientObj.GetComponentInChildren<TextMeshProUGUI>().text = recipe.item.ingredientAmounts[i].ToString();
+                ingredientObj.GetComponentInChildren<Image>().sprite = playerInventory.database.getItem[craftingSlotsList[i].item.ingredients[j].id].icon;
+                ingredientObj.GetComponentInChildren<TextMeshProUGUI>().text = (craftingSlotsList[i].item.ingredientAmounts[j] * craftingMultiplier).ToString();
             }
         }
     }
-    
+
     public void CheckIngredients()
     {
-        foreach (var recipe in craftingSlotsList)
+        for (int i = 0; i < craftingSlotsList.Count; i++)
         {
-            bool[] ingredientCheck = new bool[recipe.item.ingredients.Count];
-            var recipeObj = craftingSlotObjects[recipe.item.id];
-            for (int i = 0; i < recipe.item.ingredients.Count; i++)
+            bool[] ingredientCheck = new bool[craftingSlotsList[i].item.ingredients.Count];
+            var recipeObj = craftingSlotObjects[i];
+            for (int j = 0; j < craftingSlotsList[i].item.ingredients.Count; j++)
             {
+                for (int k = 0; k < craftingSlotsList[i].item.ingredients.Count; k++)
+                {
+                    recipeObj.transform.GetChild(2).GetChild(k).GetComponentInChildren<TextMeshProUGUI>().text = (craftingSlotsList[i].item.ingredientAmounts[k] * craftingMultiplier).ToString();
+                }
+                
                 foreach (var item in playerInventory.items)
                 {
-                    if (item.item == recipe.item.ingredients[i])
+                    if (item.item == craftingSlotsList[i].item.ingredients[j])
                     {
-                        if(item.amount >= recipe.item.ingredientAmounts[i])
-                            ingredientCheck[i] = true;
+                        if(item.amount >= craftingSlotsList[i].item.ingredientAmounts[j] * craftingMultiplier)
+                            ingredientCheck[j] = true;
                         else
-                            ingredientCheck[i] = false;
+                            ingredientCheck[j] = false;
                     }
                 }
             }
+            
             if (ingredientCheck.Length == 0)
                 ActiveCraftingSlot(recipeObj, false);
             else
@@ -120,6 +135,30 @@ public class CraftingSystem : MonoBehaviour
                 ingredient.color = nonInteractableColor;
             foreach (var ingredient in objIngredientsText)
                 ingredient.color = nonInteractableColor;
+        }
+    }
+    
+    public void GetCraftingMultiplier(TMP_InputField multiplier)
+    {
+        if(multiplier.text != "" && multiplier.text != "0" && multiplier.text != "-")
+            craftingMultiplier = int.Parse(multiplier.text);
+        else
+        {
+            craftingMultiplier = 1;
+            multiplier.text = "";
+        }
+    }
+    
+    public void CraftItem()
+    {
+        if (selectedSlot != null)
+        {
+            var recipe = craftingSlotsList[craftingSlotObjects.IndexOf(selectedSlot)];
+            for (int i = 0; i < recipe.item.ingredients.Count; i++)
+            {
+                playerInventory.RemoveItem(recipe.item.ingredients[i], recipe.item.ingredientAmounts[i] * craftingMultiplier);
+            }
+            playerInventory.AddItem(recipe.item, craftingMultiplier);
         }
     }
 }

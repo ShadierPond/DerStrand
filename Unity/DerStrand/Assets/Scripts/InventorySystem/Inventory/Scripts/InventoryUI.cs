@@ -200,7 +200,7 @@ public class InventoryUI : MonoBehaviour
                     // Set the item in the Database to the item in the world
                     item.GetComponent<ItemObject>().item = items[obj].item;
                     // Remove the item from the inventory
-                    inventory.RemoveItem(items[obj].item);
+                    inventory.RemoveItem(items[obj].item, items[obj].amount);
                 }
                 // Destroy the dragged slot
                 Destroy(MouseData.tempItemBeingDragged);
