@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c9b779ab1ef8b84f946dbc5ecca5018, type: 3}
-  m_Name: UngaBunga
+  m_Script: {fileID: 11500000, guid: 0136ec1517f16304c9787d6486cb5732, type: 3}
+  m_Name: Bow
   m_EditorClassIdentifier: 
-  id: 0
+  id: 35
   icon: {fileID: 0}
-  prefab: {fileID: 5216322058706333825, guid: f31d19dda8d76d04f83cd81111af6985, type: 3}
-  type: 2
+  prefab: {fileID: 0}
+  type: 1
   description: 
+  isCraftable: 1
+  damage: 0
