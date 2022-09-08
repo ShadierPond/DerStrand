@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -16,6 +17,8 @@ public class InventoryUI : MonoBehaviour
     public GameObject inventorySlotPrefab;
     // the place where the held item will be created. this fixes layering issues
     public GameObject objectHolder;
+    // Selected Slot
+    public GameObject selectedSlot;
     // the amount of slots in the inventory UI
     public int slotCount;
     // If it is the Equipment UI
@@ -54,6 +57,7 @@ public class InventoryUI : MonoBehaviour
         {
             // Create a new slot
             var obj = Instantiate(inventorySlotPrefab, inventoryPanel.transform);
+            obj.GetComponent<Button>().onClick.AddListener(() => selectedSlot = obj);
             // Add Events to the slot
             // When the mouse enters the slot
             AddEvent(obj, EventTriggerType.PointerEnter, delegate { OnEvent(obj, "OnEnter"); });
@@ -245,6 +249,27 @@ public class InventoryUI : MonoBehaviour
     private void OnApplicationQuit()
     {
         inventory.items = new InventorySlot[slotCount];
+    }
+
+    public void DeleteSlot()
+    {
+        if(items[selectedSlot].item != null)
+            inventory.RemoveItem(items[selectedSlot].item, items[selectedSlot].amount);
+    }
+
+    public void DropItem()
+    {
+        if (items[selectedSlot].item != null)
+        {
+            // Instantiate the item in the world
+            var item = Instantiate( inventory.database.getItem[items[selectedSlot].item.id].prefab, Player.Instance.transform.position + Vector3.forward, Quaternion.identity);
+            // Set the amount of the item
+            item.GetComponent<ItemObject>().amount = items[selectedSlot].amount;
+            // Set the item in the Database to the item in the world
+            item.GetComponent<ItemObject>().item = items[selectedSlot].item;
+            // Remove the item from the inventory
+            inventory.RemoveItem(items[selectedSlot].item, items[selectedSlot].amount);
+        }
     }
 }
 

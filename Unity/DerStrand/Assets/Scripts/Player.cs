@@ -293,19 +293,22 @@ public class Player : MonoBehaviour
     
     private void CollectItems()
     {
-        var item = objectInFront.GetComponent<ItemObject>();
+        var item = interactableObject.GetComponent<ItemObject>();
         if (item == null)
             return;
         inventory.AddItem(item.item, item.amount);
-        Destroy(objectInFront);
+        Destroy(interactableObject);
     }
     
     private void InteractWithObject()
     {
-        if (objectInFront == null)
+        if (interactableObject == null)
             return;
-        if(objectInFront.GetComponent<ItemObject>())
+        if(interactableObject.GetComponent<ItemObject>())
             CollectItems();
-        
+        if (interactableObject.GetComponent<InteractableObject>())
+            interactableObject.GetComponent<InteractableObject>().Interact();
+
+
     }
 }
