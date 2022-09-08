@@ -46,6 +46,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        LoadScene("Main Menu");
+        //LoadScene("Main Menu");
     }
 }
