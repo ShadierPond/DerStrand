@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9875f4983118145a25729b07d128a7, type: 3}
   m_Name: Animal Fat
   m_EditorClassIdentifier: 
-  id: 0
+  id: 19
   icon: {fileID: 0}
-  prefab: {fileID: 0}
+  prefab: {fileID: 7271856579642493889, guid: 047288485b5a4c5409eba972579ebdbf, type: 3}
   type: 0
   description: 
   isCraftable: 0

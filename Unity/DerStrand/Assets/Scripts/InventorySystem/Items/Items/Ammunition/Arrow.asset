@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: 0
   icon: {fileID: 0}
-  prefab: {fileID: 0}
+  prefab: {fileID: 5216322058706333825, guid: f31d19dda8d76d04f83cd81111af6985, type: 3}
   type: 0
   description: 
   isCraftable: 1

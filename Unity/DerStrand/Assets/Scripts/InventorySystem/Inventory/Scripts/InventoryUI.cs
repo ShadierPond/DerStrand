@@ -82,10 +82,10 @@ public class InventoryUI : MonoBehaviour
             var objText = obj.GetChild(1).transform.GetChild(0).GetComponent<TextMeshProUGUI>();
             var objTextImage = obj.GetChild(1).GetComponent<Image>();
             // If the slot is not empty
-            if (slot.Value.id >= 0)
+            if (slot.Value.item != null)
             {
                 // Set the image of the slot to the image of the item
-                objImage.sprite = inventory.database.getItem[slot.Value.id].icon;
+                objImage.sprite = inventory.database.getItem[slot.Value.item.id].icon;
                 // Set the Background color of the slot to white (used for Alpha blending. shows the image)
                 objImage.color = new Color(1, 1, 1, 1);
                 // Set the text of the slot to the amount of the item
@@ -161,10 +161,10 @@ public class InventoryUI : MonoBehaviour
                 // Set the Size of the Slot
                 mouseObj.AddComponent<RectTransform>().sizeDelta = new Vector2(80, 80);
                 // if the slot is not empty
-                if (items[obj].id >= 0)
+                if (items[obj].item != null)
                 {
                     // Set the image of the slot to the image of the item
-                    mouseObj.AddComponent<Image>().sprite = inventory.database.getItem[items[obj].id].icon;
+                    mouseObj.AddComponent<Image>().sprite = inventory.database.getItem[items[obj].item.id].icon;
                     // Disable the raycast target so the mouse can interact with the slot and panel.
                     mouseObj.GetComponent<Image>().raycastTarget = false;
                 }
@@ -194,7 +194,7 @@ public class InventoryUI : MonoBehaviour
                 else
                 {
                     // Instantiate the item in the world
-                    var item = Instantiate( inventory.database.getItem[MouseData.item.id].prefab, Player.Instance.transform.position + Vector3.forward, Quaternion.identity);
+                    var item = Instantiate( inventory.database.getItem[items[obj].item.id].prefab, Player.Instance.transform.position + Vector3.forward, Quaternion.identity);
                     // Set the amount of the item
                     item.GetComponent<ItemObject>().amount = items[obj].amount;
                     // Set the item in the Database to the item in the world

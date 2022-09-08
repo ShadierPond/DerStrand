@@ -1,13 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory/Inventory")]
-public class Inventory : ScriptableObject, ISerializationCallbackReceiver
+public class Inventory : ScriptableObject
 {
     public InventorySlot[] items = new InventorySlot[28];
     public ItemDatabase database;
@@ -46,22 +43,30 @@ public class Inventory : ScriptableObject, ISerializationCallbackReceiver
     // Swaps the items in the two given slots. used for moving items around in the inventory UI.
     public void SwapItems(InventorySlot from, InventorySlot to)
     {
-        InventorySlot temp = new InventorySlot(to.id, to.item, to.amount);
-        to.UpdateSlot(from.id, from.item, from.amount);
-        from.UpdateSlot(temp.id, temp.item, temp.amount);
+        InventorySlot temp = new InventorySlot(to.item, to.amount);
+        to.UpdateSlot(from.item, from.amount);
+        from.UpdateSlot(temp.item, temp.amount);
     }
 
     // Adds an item to the inventory. If the item is stackable, it will try to stack it with other items of the same type.
+    // TODO: choose which method is more efficient and remove the other one.
     public void AddItem(Item item, int amount)
     {
-        foreach (var _item in items)
+        var itemToAdd = Array.Find(items, x => x.item == item);
+        if (itemToAdd != null)
         {
+            itemToAdd.amount += amount;
+            return;
+        }
+            
+        /*
+        foreach (var _item in items)
             if (_item.item == item)
             {
                 _item.AddAmount(amount);
                 return;
             }
-        }
+        */
         // If the item is not stackable, it will add it to the first empty slot.
         SetEmptySlot(item, amount);
     }
@@ -72,7 +77,7 @@ public class Inventory : ScriptableObject, ISerializationCallbackReceiver
         {
             if (_item.item == item)
             {
-                _item.UpdateSlot(-1, null, 0);
+                _item.UpdateSlot(null, 0);
                 return;
             }
         }
@@ -82,27 +87,13 @@ public class Inventory : ScriptableObject, ISerializationCallbackReceiver
     {
         foreach (var item in items)
         {
-            if (item.id <= -1)
+            if (item.item == null)
             {
-                item.UpdateSlot(_item.id, _item, amount);
+                item.UpdateSlot(_item, amount);
                 return item;
             }
         }
         return null;
-    }
-
-    public void OnBeforeSerialize()
-    {
-    }
-
-    public void OnAfterDeserialize()
-    {
-        /*
-        for (int i = 0; i < items.Count; i++)
-        {
-            items[i].item = database.getItem[items[i].id];
-        }
-        */
     }
 }
 
@@ -111,8 +102,6 @@ public class InventorySlot
 {
     // The Panel that holds the item´s image and amount text.
     public InventoryUI parent;
-    // The id of the item in the database.
-    public int id;
     // The item in the slot.
     public Item item;
     // The amount of the item in the slot.
@@ -121,21 +110,18 @@ public class InventorySlot
     // Constructor for the InventorySlot class.
     public InventorySlot()
     {
-        id = -1;
         item = null;
         amount = 0;
     }
     // Sets the id, item and amount of the slot.
-    public InventorySlot(int id, Item item, int amount)
+    public InventorySlot(Item item, int amount)
     {
-        this.id = id;
         this.item = item;
         this.amount = amount;
     }
     // Updates the id, item and amount of the slot.
-    public void UpdateSlot(int id, Item item, int amount)
+    public void UpdateSlot(Item item, int amount)
     {
-        this.id = id;
         this.item = item;
         this.amount = amount;
     }
