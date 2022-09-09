@@ -17,6 +17,7 @@ public class TimeController : MonoBehaviour
     [SerializeField] private AnimationCurve lightChangeCurve;
     
     [Header("UI")]
+    [SerializeField] private bool showTime;
     [SerializeField] private TextMeshProUGUI timeText;
     [SerializeField] private TextMeshProUGUI dayText;
     
@@ -43,13 +44,13 @@ public class TimeController : MonoBehaviour
 
     public void Save()
     {
-        saveData.startTime = currentTime.Hour + ":" + currentTime.Minute;
+        saveData.startTimeString = currentTime.Hour + ":" + currentTime.Minute;
         saveData.daysSurvived = currentTime.Day;
     }
 
     private void Load()
     {
-        startHour = float.Parse(saveData.startTime.Split(':')[0]) + (float.Parse(saveData.startTime.Split(':')[1]) / 60);
+        startHour = float.Parse(saveData.startTimeString.Split(':')[0]) + (float.Parse(saveData.startTimeString.Split(':')[1]) / 60);
         startDay = saveData.daysSurvived;
     }
 
@@ -77,16 +78,11 @@ public class TimeController : MonoBehaviour
     private void UpdateTimeOfDay()
     {
         currentTime = currentTime.AddSeconds(Time.deltaTime * timeMultiplier);
+        daysSurvived = (currentTime - new DateTime().Date).Days;
 
-        if (timeText != null)
+        if (showTime)
         {
             timeText.text = currentTime.ToString("HH:mm");
-        }
-        
-        if (dayText != null)
-        {
-            var days = currentTime - new DateTime().Date;
-            daysSurvived = days.Days;
             dayText.text = "Day " + daysSurvived;
         }
     }

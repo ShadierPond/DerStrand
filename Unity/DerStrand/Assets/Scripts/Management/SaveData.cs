@@ -17,7 +17,8 @@ public class SaveData
     
     // DayCycle Information
     [Header("DayCycle Information")]
-    public string startTime;
+    public float startTime;
+    public string startTimeString;
     public int daysSurvived;
     
     // Player Properties
