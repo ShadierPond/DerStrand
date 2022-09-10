@@ -5,7 +5,6 @@ using UnityEngine.InputSystem.Interactions;
 
 public class Player : MonoBehaviour
 {
-    
     [Header("Camera and Player")]
     [SerializeField] private new Camera camera;
     [SerializeField] private Vector3 cameraPositionOffset;
@@ -24,7 +23,6 @@ public class Player : MonoBehaviour
     private Vector2 _smoothSpeed;
     private Vector2 _move;
     private Vector2 _smoothMove;
-    private Vector3 _moveDirection;
     private CharacterController _controller;
 
     [Header("Gravity and Jump")]
@@ -97,8 +95,6 @@ public class Player : MonoBehaviour
         currentSpeed = speed;
         if(!SaveSystem.Instance.newGame)
             Load();
-
-
     }
 
     private void FixedUpdate()
@@ -123,12 +119,13 @@ public class Player : MonoBehaviour
         var cameraTransform = camera.transform;
         //Debug.DrawRay(camera.transform.position, camera.transform.forward * interactDistance, Color.red);
         Physics.Raycast(cameraTransform.position, cameraTransform.forward, out _hit, interactDistance);
-        objectInFront = _hit.collider.gameObject;
+        if(objectInFront)
+            objectInFront = _hit.collider.gameObject;
     }
 
     public void GetAxis(InputAction.CallbackContext context)
     {
-        _move = context.ReadValue<Vector2>();
+        _move =  context.ReadValue<Vector2>();
     }
     
     public void Jump(InputAction.CallbackContext context)
@@ -143,7 +140,6 @@ public class Player : MonoBehaviour
     
     public void Interact(InputAction.CallbackContext context)
     {
-        
         switch (context.performed)
         {
             // Action when pressed
@@ -165,12 +161,8 @@ public class Player : MonoBehaviour
         // Smooth Movement (smoothing input values, movement is the same)
         if (smoothMovement)
             _smoothMove = _move.magnitude > 0 ? Vector2.SmoothDamp(Vector2.zero, _move, ref _smoothSpeed, smoothTime, 1f, Time.deltaTime) : Vector2.SmoothDamp(_move, Vector2.zero, ref _smoothSpeed, smoothTime, 1f, Time.deltaTime);
-        // get player direction (choose movement type: smooth or not)
-        _moveDirection = smoothMovement ? new Vector3(_smoothMove.x, 0, _smoothMove.y) * 10f : new Vector3(_move.x, 0, _move.y) / 10f;
-        // transform player direction to world space
-        _moveDirection = transform.TransformDirection(_moveDirection);
-        // move player in direction with specified speed
-        _controller.Move(_moveDirection * (currentSpeed * Time.deltaTime));
+        // move player in direction (choose movement type: smooth or not) (transform player direction to world space) with specified speed
+        _controller.Move(transform.TransformDirection(smoothMovement ? new Vector3(_smoothMove.x, 0, _smoothMove.y) * 10f : new Vector3(_move.x, 0, _move.y) / 10f) * (currentSpeed * Time.deltaTime));
     }
     
     private void Gravity()
@@ -235,11 +227,11 @@ public class Player : MonoBehaviour
         if (objectHeld) 
             return;
 
-        if(_hit.collider != null)
+        if(_hit.collider)
         {
             interactable = true;
             interactableObject = _hit.collider.gameObject;
-            isHoldable = interactableObject.GetComponent<Rigidbody>() != null;
+            isHoldable = interactableObject.GetComponent<Rigidbody>();
         }
         else
         {
@@ -274,16 +266,9 @@ public class Player : MonoBehaviour
         if(!objectHeld)
             return;
         if(Vector3.Distance(interactableObject.transform.position, _interactionHoldArea.position) > 0.1f)
-        {
-            //Debug.Log("Out Of Area!");
             _objectRigidbody.AddForce((_interactionHoldArea.position - interactableObject.transform.position) * objectHoldForce);
-        }
         if(Vector3.Distance(interactableObject.transform.position, _interactionHoldArea.position) > 10f)
-        {
-            //Debug.Log("You broke it!");
             interactableObject.transform.position = _interactionHoldArea.position;
-            
-        }
     }
     
     public GameObject GetRaycastObject()
@@ -308,7 +293,5 @@ public class Player : MonoBehaviour
             CollectItems();
         if (interactableObject.GetComponent<InteractableObject>())
             interactableObject.GetComponent<InteractableObject>().Interact();
-
-
     }
 }

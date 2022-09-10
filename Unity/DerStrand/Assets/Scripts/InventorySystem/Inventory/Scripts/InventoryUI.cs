@@ -24,6 +24,7 @@ public class InventoryUI : MonoBehaviour
     // If it is the Equipment UI
     public bool isEquipmentInventory;
     public int activeSlot = 0;
+    public Item activeItem;
 
     // the list of slots in the inventory UI
     public Dictionary<GameObject, InventorySlot> items = new Dictionary<GameObject, InventorySlot>();
@@ -240,6 +241,8 @@ public class InventoryUI : MonoBehaviour
             var image = inventoryPanel.transform.GetChild(i).GetComponent<Image>();
             // If the slot is the active slot, set the color to white, else set the color to gray-ish
             image.color = i == activeSlot ? new Color(1, 1, 1, 1) : new Color(1, 1, 1, 0.5f);
+            activeItem = inventory.items[activeSlot].item;
+            PlayerEquipment.Instance.SetObjectHeld(activeItem);
         }
     }
     

@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df49e2fecb5ba54da84f452df2f585d, type: 3}
   m_Name: Carrot
   m_EditorClassIdentifier: 
-  id: 0
+  id: 13
   icon: {fileID: 0}
   prefab: {fileID: 0}
   type: 3
   description: 
   isCraftable: 0
+  ingredients: []
+  ingredientAmounts: 
   restoreHealthValue: 0
+  restoreHungerValue: 10
+  restoreThirstValue: 0
   isCooked: 0
