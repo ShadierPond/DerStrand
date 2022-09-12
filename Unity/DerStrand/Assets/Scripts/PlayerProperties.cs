@@ -130,12 +130,12 @@ public class PlayerProperties : MonoBehaviour
     }
     public void RegenerateThirst(int regenerateValue)
     {
-        if (health <= maxProperty)                    //if health is under maxProperty
+        if (thirst <= maxProperty)                    //if health is under maxProperty
         {
-            health += regenerateValue;    //apply the healing to the health
-            if (health > maxProperty)               //if the health goes over the value of maxProperty 
+            thirst += regenerateValue;    //apply the healing to the health
+            if (thirst > maxProperty)               //if the health goes over the value of maxProperty 
             {
-                health = maxProperty;               //health is set to default value
+                thirst = maxProperty;               //health is set to default value
             }
         }
         //Debug.Log("new thirst " + thirst);
@@ -143,12 +143,12 @@ public class PlayerProperties : MonoBehaviour
     }
     public void RegenerateHunger(int regenerateValue)
     {
-        if (health <= maxProperty)                    //if health is under maxProperty
+        if (hunger <= maxProperty)                    //if health is under maxProperty
         {
-            health += regenerateValue;    //apply the healing to the health
-            if (health > maxProperty)               //if the health goes over the value of maxProperty 
+            hunger += regenerateValue;    //apply the healing to the health
+            if (hunger > maxProperty)               //if the health goes over the value of maxProperty 
             {
-                health = maxProperty;               //health is set to default value
+                hunger = maxProperty;               //health is set to default value
             }
         }
         //Debug.Log("new hunger " + hunger);
@@ -156,12 +156,12 @@ public class PlayerProperties : MonoBehaviour
     }
     public void RegenerateWearyTime(int regenerateValue)
     {
-        if (health <= maxProperty)                    //if health is under maxProperty
+        if (wearyTime <= maxProperty)                    //if health is under maxProperty
         {
-            health += regenerateValue;    //apply the healing to the health
-            if (health > maxProperty)               //if the health goes over the value of maxProperty 
+            wearyTime += regenerateValue;    //apply the healing to the health
+            if (wearyTime > maxProperty)               //if the health goes over the value of maxProperty 
             {
-                health = maxProperty;               //health is set to default value
+                wearyTime = maxProperty;               //health is set to default value
             }
         }
         Debug.Log("new wearyTime " + wearyTime);
