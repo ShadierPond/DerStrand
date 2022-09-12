@@ -9,6 +9,7 @@ public class InteractableObject : MonoBehaviour
     {
         None,
         Chest,
+        Water,
     }
     [SerializeField] private GameObject chestInterface;
     [SerializeField] private ObjectType objectType;
@@ -28,6 +29,8 @@ public class InteractableObject : MonoBehaviour
                     isOpen = !isOpen;
                     StartCoroutine(ChestAnimationTransition());
                     break;
+                case ObjectType.Water:
+                    
             }
         }
     }
@@ -54,6 +57,22 @@ public class InteractableObject : MonoBehaviour
             chestInterface.SetActive(false);
         }
     }
+
+    private void FillWaterBottle()
+    {
+        var objectOnHand = PlayerEquipment.Instance.objectHeld;
+        if (objectOnHand != null)
+        {
+            if (objectOnHand.name == "WaterBottle")
+            {
+                var bottle = objectOnHand as WaterBottle;
+                bottle.currentCapacity = bottle.capacity;
+                
+            }
+        }
+    }
+    
+    
 
     private void LockMouse(bool state)
     {

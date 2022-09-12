@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerEquipment : MonoBehaviour
 {
     [SerializeField] InventoryUI playerEquipmentUI;
-    [SerializeField] private Item objectHeld;
+    [SerializeField] public Item objectHeld;
     private PlayerProperties player;
     public static PlayerEquipment Instance { get; private set; }
     private void Awake()

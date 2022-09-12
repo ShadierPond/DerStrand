@@ -8,6 +8,7 @@ public enum ItemType
     Weapon,
     Tool,
     Consumable,
+    WaterBottle,
     Craftable,
     CraftingMaterial,
 }
