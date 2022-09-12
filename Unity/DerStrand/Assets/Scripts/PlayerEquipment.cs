@@ -35,6 +35,9 @@ public class PlayerEquipment : MonoBehaviour
             case ItemType.Tool:
                 UseTool();
                 break;
+            case ItemType.WaterBottle:
+                Drink();
+                break;
             case ItemType.None:
                 break;
         }
@@ -46,6 +49,14 @@ public class PlayerEquipment : MonoBehaviour
         playerEquipmentUI.inventory.RemoveItem(objectHeld, 1);
         Debug.Log("You ate " + consumable.name + " and gained " + consumable.restoreHungerValue + " hunger");
         // player.RegenerateHunger(consumable.restoreHungerValue);
+    }
+
+    private void Drink()
+    {
+        var bottle = objectHeld as WaterBottle;
+        bottle.capacity -= bottle.capacityDrank;
+        PlayerProperties.Instance.RegenerateThirst(bottle.thirstRestore);
+        Debug.Log("You drank from " + bottle.name + " and gained " + bottle.thirstRestore + " thirst");
     }
     
     private void Attack()

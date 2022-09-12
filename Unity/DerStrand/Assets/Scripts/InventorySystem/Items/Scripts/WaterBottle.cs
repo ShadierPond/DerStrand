@@ -9,6 +9,7 @@ public class WaterBottle : Item
     }
     
     public int thirstRestore;
+    public int capacityDrank;
     public float capacity;
     public float currentCapacity;
 }

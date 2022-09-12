@@ -30,6 +30,8 @@ public class InteractableObject : MonoBehaviour
                     StartCoroutine(ChestAnimationTransition());
                     break;
                 case ObjectType.Water:
+                    FillWaterBottle();
+                    break;
                     
             }
         }
@@ -67,7 +69,7 @@ public class InteractableObject : MonoBehaviour
             {
                 var bottle = objectOnHand as WaterBottle;
                 bottle.currentCapacity = bottle.capacity;
-                
+                Debug.Log("Water bottle filled");
             }
         }
     }
