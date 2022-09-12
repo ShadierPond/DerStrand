@@ -273,7 +273,7 @@ public class Player : MonoBehaviour
     
     public GameObject GetRaycastObject()
     {
-        return objectInFront;
+        return interactableObject;
     }
     
     private void CollectItems()
