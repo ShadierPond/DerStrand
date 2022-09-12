@@ -13,6 +13,7 @@ public class FleeKi : MonoBehaviour
     void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
+        Player = GameObject.Find("Player").gameObject;
     }
 
     void Update()

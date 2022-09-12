@@ -17,6 +17,8 @@ public class Target : MonoBehaviour
 
     void Die()
     {
+        Spawner.Instance.enemyGroup.Remove(gameObject);
         Destroy(gameObject);
+
     }
 }
