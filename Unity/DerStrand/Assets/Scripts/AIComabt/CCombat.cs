@@ -4,47 +4,42 @@ using UnityEngine;
 
 public class CCombat : MonoBehaviour
 {
-    [SerializeField] float damage = 10f;
-    [SerializeField] float range = 20f;
-    [SerializeField] float fireRate = 15F;
-    [SerializeField] float impactForce = 300f;
+    [SerializeField] float damage = 10f;            // Verursachter Schaden
+    [SerializeField] float range = 20f;             // Reichweite
+    [SerializeField] float fireRate = 15f;          // Feuerrate
+    [SerializeField] float impactForce = 300f;      // Einschlagskraft ( Rückschlag )
 
-    [SerializeField] Camera fpsCam;
+    [SerializeField] Camera fpsCam;                 // Genutzte Kamera ( im Inspector zuweisbar )
 
-    private float nextTimeToFire = 0f;
+    private float nextTimeToFire = 0f;              // Zeit bis zur nächsten Angriffsauslösbarkeit
 
-    // Update is called once per frame
     void Update()
     {
 
-        if (Player.Instance.input.actions["Fire"].triggered && Time.time >= nextTimeToFire)
+        if (Player.Instance.input.actions["Fire"].triggered && Time.time >= nextTimeToFire) // Wenn linke Maustaste gedrückt UND Angriffscooldown abgelaufen
         {
-            nextTimeToFire = Time.time + 1f / fireRate;
-            Shoot();
+            nextTimeToFire = Time.time + 1f / fireRate;  // Angriffscooldown wird gesetzt
+            SpAttack();                                     // Auslösen des Angriffs
         }
 
     }
 
-    void Shoot()
+    void SpAttack()                                                              // Speerangriff
     {
 
-        var frontObject = Player.Instance.GetRaycastObject();
+        var frontObject = Player.Instance.GetRaycastObject();                   
+               
+            Target target = frontObject.transform.GetComponent<Target>();       // Schaut ob das Ziel die Komponente (Script) Target enthält
 
-       
-        
-            
-            Target target = frontObject.transform.GetComponent<Target>();
-
-            if (target != null)
+            if (target != null)                                                 // Wenn Ziel vorhanden ...
             {
-                target.TakeDamage(damage);
+                target.TakeDamage(damage);                                      // Ziel nimmt Schaden
             }
 
-            if (frontObject.GetComponent<Rigidbody>() != null)
+            if (frontObject.GetComponent<Rigidbody>() != null)                  // Wenn das Ziel einenen Rigidbody hat ...
             {
-                frontObject.GetComponent<Rigidbody>().AddForce(-frontObject.transform.position * impactForce);
+                frontObject.GetComponent<Rigidbody>().AddForce(-frontObject.transform.position * impactForce);  // Einschlagskraft (Rückstoß) auf das Ziel wirken
             }
-
-        
+                    
     }
 }
