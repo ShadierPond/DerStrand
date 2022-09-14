@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.UI;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
@@ -12,24 +10,24 @@ public class InventoryUI : MonoBehaviour
     // the inventory we are displaying
     public Inventory inventory;
     // the panel we are displaying the inventory on
-    public GameObject inventoryPanel;
+    [SerializeField] private GameObject inventoryPanel;
     // the slot prefab
-    public GameObject inventorySlotPrefab;
+    [SerializeField] private GameObject inventorySlotPrefab;
     // the place where the held item will be created. this fixes layering issues
-    public GameObject objectHolder;
+    [SerializeField] private GameObject objectHolder;
     // Selected Slot
-    public GameObject selectedSlot;
+    [SerializeField] private GameObject selectedSlot;
     // the amount of slots in the inventory UI
-    public int slotCount;
+    [SerializeField] private int slotCount;
     // If it is the Equipment UI
-    public bool isEquipmentInventory;
-    public int activeSlot = 0;
-    public Item activeItem;
+    [SerializeField] private bool isEquipmentInventory;
+    [SerializeField] private int activeSlot;
+    [SerializeField] private Item activeItem;
 
     // the list of slots in the inventory UI
-    public Dictionary<GameObject, InventorySlot> items = new Dictionary<GameObject, InventorySlot>();
+    private Dictionary<GameObject, InventorySlot> items = new Dictionary<GameObject, InventorySlot>();
 
-    public void Start()
+    private void Start()
     {
         // Get the slot prefab from the resources folder
         inventorySlotPrefab = Resources.Load("InventorySlot") as GameObject;
@@ -43,13 +41,13 @@ public class InventoryUI : MonoBehaviour
         AddEvent(gameObject, EventTriggerType.PointerExit, delegate { OnEvent(gameObject, "OnExitInterface"); });
     }
 
-    public void Update()
+    private void Update()
     {
         UpdateInventoryUI();
         GetActiveSlot();
     }
 
-    public void CreateSlots()
+    private void CreateSlots()
     {
         // Create new Dictionary
         items = new Dictionary<GameObject, InventorySlot>();
@@ -76,7 +74,7 @@ public class InventoryUI : MonoBehaviour
     }
     
     // Update the inventory UI
-    public void UpdateInventoryUI()
+    private void UpdateInventoryUI()
     {
         // Loop through the slots
         foreach (var slot in items)
@@ -114,7 +112,7 @@ public class InventoryUI : MonoBehaviour
     }
     
     // Add an event to the Slot with Event Trigger Type and an Action (aka a function)
-    public void AddEvent(GameObject obj, EventTriggerType type, UnityAction<BaseEventData> action)
+    private void AddEvent(GameObject obj, EventTriggerType type, UnityAction<BaseEventData> action)
     {
         // Get the Event Trigger component of the slot
         EventTrigger trigger = obj.GetComponent<EventTrigger>();
@@ -129,7 +127,7 @@ public class InventoryUI : MonoBehaviour
     }
 
     // The function that is called when an event is triggered
-    public void OnEvent(GameObject obj, string eventType)
+    private void OnEvent(GameObject obj, string eventType)
     {
         switch (eventType)
         {
@@ -220,7 +218,7 @@ public class InventoryUI : MonoBehaviour
     }
 
     // Get slot Id from player Equippment Slots (the active one, that were chosen with scroll wheel)
-    public void GetActiveSlot()
+    private void GetActiveSlot()
     {
         // Return if not EquipmentInventoryPanel
         if(!isEquipmentInventory)

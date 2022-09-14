@@ -12,9 +12,25 @@ public class GameManager : MonoBehaviour
     public string currentSaveName;
     public string currentSavePath;
     
+    [SerializeField] private ItemDatabase itemDatabase;
+
     private void Awake()
     {
         Instance = this;
+        BuildDatabases();
+    }
+    
+    // Set Items Prefabs in the ItemDatabase
+    private void BuildDatabases()
+    {
+        foreach (var item in itemDatabase.items)
+        {
+            var prefab = Resources.Load<GameObject>("Items/Prefabs/" + item.name);
+            if(prefab)
+                item.prefab = prefab;
+            else
+                Debug.LogError("Prefab for " + item.name + " not found");
+        }
     }
 
     private void UnloadAllNonPersistentScenes()

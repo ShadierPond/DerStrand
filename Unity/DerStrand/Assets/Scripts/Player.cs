@@ -24,6 +24,16 @@ public class Player : MonoBehaviour
     private Vector2 _move;
     private Vector2 _smoothMove;
     private CharacterController _controller;
+    
+    [Header("Head Bobbing")]
+    [SerializeField] private bool headBobbing;
+    [SerializeField] private float walkBobbingSpeed;
+    [SerializeField] private float walkBobbingAmount;
+    [SerializeField] private float sprintBobbingSpeed;
+    [SerializeField] private float sprintBobbingAmount;
+    private float defaultY;
+    private float timer;
+    
 
     [Header("Gravity and Jump")]
     [SerializeField] private bool doubleJump;
@@ -33,7 +43,6 @@ public class Player : MonoBehaviour
     
     [Header("Interaction")]
     [SerializeField] private float interactDistance;
-    [SerializeField] private GameObject objectInFront;
 
     [SerializeField] private Vector3 objectHoldArea;
     [SerializeField] private float objectHoldForce;
@@ -93,6 +102,7 @@ public class Player : MonoBehaviour
         _interactionHoldArea.localPosition = objectHoldArea;
         //objectHoldArea = _interactionHoldArea.position;
         currentSpeed = speed;
+        
         if(!SaveSystem.Instance.newGame)
             Load();
     }
@@ -101,6 +111,7 @@ public class Player : MonoBehaviour
     {
         CameraFollow();
         MovePlayer();
+        HeadBobbing();
     }
 
     private void Update()
@@ -119,8 +130,6 @@ public class Player : MonoBehaviour
         var cameraTransform = camera.transform;
         //Debug.DrawRay(camera.transform.position, camera.transform.forward * interactDistance, Color.red);
         Physics.Raycast(cameraTransform.position, cameraTransform.forward, out _hit, interactDistance);
-        if(objectInFront)
-            objectInFront = _hit.collider.gameObject;
     }
 
     public void GetAxis(InputAction.CallbackContext context)
@@ -163,6 +172,24 @@ public class Player : MonoBehaviour
             _smoothMove = _move.magnitude > 0 ? Vector2.SmoothDamp(Vector2.zero, _move, ref _smoothSpeed, smoothTime, 1f, Time.deltaTime) : Vector2.SmoothDamp(_move, Vector2.zero, ref _smoothSpeed, smoothTime, 1f, Time.deltaTime);
         // move player in direction (choose movement type: smooth or not) (transform player direction to world space) with specified speed
         _controller.Move(transform.TransformDirection(smoothMovement ? new Vector3(_smoothMove.x, 0, _smoothMove.y) * 10f : new Vector3(_move.x, 0, _move.y) / 10f) * (currentSpeed * Time.deltaTime));
+    }
+
+    private void HeadBobbing()
+    {
+        if(!headBobbing)
+            return;
+        if(!isGrounded)
+            return;
+        if(Mathf.Abs(_move.x) > 0.1 || Mathf.Abs(_move.y) > 0.1)
+        {
+            timer += Time.deltaTime * (isSprinting ? sprintBobbingSpeed : walkBobbingSpeed);
+            camera.transform.localPosition = new Vector3(camera.transform.localPosition.x, defaultY + Mathf.Sin(timer) * (isSprinting ? sprintBobbingAmount : walkBobbingAmount), camera.transform.localPosition.z);
+        }
+        else
+        {
+            timer = 0;
+            camera.transform.localPosition = new Vector3(camera.transform.localPosition.x, defaultY, camera.transform.localPosition.z);
+        }
     }
     
     private void Gravity()
@@ -220,6 +247,7 @@ public class Player : MonoBehaviour
     {
         // Move the camera to the player position
         camera.transform.position = transform.position + cameraPositionOffset;
+        defaultY = camera.transform.localPosition.y;
     }
 
     private void HoldObject()
@@ -279,7 +307,7 @@ public class Player : MonoBehaviour
     private void CollectItems()
     {
         var item = interactableObject.GetComponent<ItemObject>();
-        if (item == null)
+        if (!item)
             return;
         inventory.AddItem(item.item, item.amount);
         Destroy(interactableObject);
