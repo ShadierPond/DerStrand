@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414738, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -206,3 +206,4 @@ MonoBehaviour:
   currentSaveName: 
   currentSavePath: 
   itemDatabase: {fileID: 11400000, guid: e976cb4ee8b60454eb16455562fe6279, type: 2}
+  sceneTransitionTime: 0.5
