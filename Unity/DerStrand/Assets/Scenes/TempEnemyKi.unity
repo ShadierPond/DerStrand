@@ -2253,8 +2253,98 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
         type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1703132812}
+    - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
+        type: 3}
+      propertyPath: hungerBar
+      value: 
+      objectReference: {fileID: 1908588671}
+    - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
+        type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
+        type: 3}
+      propertyPath: thirstBar
+      value: 
+      objectReference: {fileID: 1307829025}
+    - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
+        type: 3}
+      propertyPath: staminaBar
+      value: 
+      objectReference: {fileID: 332669166}
+    - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
+        type: 3}
+      propertyPath: decreaseTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
+        type: 3}
+      propertyPath: wearyTimeBar
+      value: 
+      objectReference: {fileID: 2032396679}
+    - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
+        type: 3}
+      propertyPath: thirstDecrese
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
+        type: 3}
+      propertyPath: healthDecrease
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
+        type: 3}
+      propertyPath: hungerDecrease
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
+        type: 3}
+      propertyPath: staminaDecrease
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
+        type: 3}
+      propertyPath: wearyTimeDecrease
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
+        type: 3}
+      propertyPath: thirstDecreseInterval
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
+        type: 3}
+      propertyPath: healthDecreaseInterval
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
+        type: 3}
+      propertyPath: hungerDecreaseInterval
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
+        type: 3}
+      propertyPath: staminaDecreaseInterval
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
+        type: 3}
+      propertyPath: staminaRegenerationTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
+        type: 3}
+      propertyPath: staminaRegenerationAmount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4259331511926685915, guid: b77e6ab7348b0aa46a84794e27bbcc00,
+        type: 3}
+      propertyPath: wearyTimeDecreaseInterval
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5125565863325364082, guid: b77e6ab7348b0aa46a84794e27bbcc00,
         type: 3}
@@ -28510,8 +28600,7 @@ Transform:
   m_LocalPosition: {x: 0.85, y: -0.35, z: 0.96}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1876456919}
+  m_Children: []
   m_Father: {fileID: 645147690}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -28743,25 +28832,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0, y: 1}
---- !u!1 &1876456913
+--- !u!1 &1876456913 stripped
 GameObject:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4d3f00dc938fc3f4ba44480dcd027bd5,
     type: 3}
   m_PrefabInstance: {fileID: 575406488}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1876456919}
-  - component: {fileID: 1876456917}
-  - component: {fileID: 1876456918}
-  m_Layer: 0
-  m_Name: 
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
 --- !u!4 &1876456916
 Transform:
   m_ObjectHideFlags: 0
@@ -28815,21 +28891,6 @@ MonoBehaviour:
   fireRate: 15
   impactForce: 300
   fpsCam: {fileID: 645147687}
---- !u!4 &1876456919
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1876456913}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1840239090}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1879561076
 GameObject:
   m_ObjectHideFlags: 0
