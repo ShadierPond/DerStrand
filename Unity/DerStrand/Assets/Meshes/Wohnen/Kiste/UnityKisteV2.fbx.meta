@@ -6,7 +6,12 @@ ModelImporter:
   - first:
       74: 4077327399946813950
     second: Deckel|CubeAction
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 38e44aa21af18c746a093a25c57147d3, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

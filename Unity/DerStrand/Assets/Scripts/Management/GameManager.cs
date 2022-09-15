@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using DG.Tweening;
@@ -23,31 +22,35 @@ public class GameManager : MonoBehaviour
         BuildDatabases();
     }
     
-    // Set Items Prefabs in the ItemDatabase
+    // Set Items Prefabs and Icons in the ItemDatabase
     private void BuildDatabases()
     {
         foreach (var item in itemDatabase.items)
         {
-            var prefab = Resources.Load<GameObject>("Items/Prefabs/" + item.name);
+            var prefab = Resources.Load("Items/Prefabs/" + item.name) as GameObject;
+            var icon = Resources.Load("Items/Icons/" + item.name) as Sprite;
             if(prefab)
                 item.prefab = prefab;
             else
-                Debug.LogError("Prefab for " + item.name + " not found. Please add prefab with the same Item name to the Resources/Items/Prefabs folder.");
+                Debug.LogWarning("Prefab for " + item.name + " not found. Please add prefab with the same Item name to the Resources/Items/Prefabs folder.");
+            if(icon)
+                item.icon = icon;
+            else
+                Debug.LogWarning("Icon for " + item.name + " not found. Please add icon with the same Item name to the Resources/Items/Icons folder.");
         }
     }
 
+    // Unload all scenes except persistent scenes
     private void UnloadAllNonPersistentScenes()
     {
-        for (int i = 0; i < SceneManager.sceneCount; i++)
+        for (var i = 0; i < SceneManager.sceneCount; i++)
         {
             var sceneName = SceneManager.GetSceneAt(i).name;
             if (!(Array.IndexOf(_persistentScenes, sceneName) > -1))
-            {
                 SceneManager.UnloadSceneAsync(sceneName);
-            }
         }
     }
-
+    // Load scene with scene name
     public void LoadScene(string sceneName)
     {
         //UnloadAllNonPersistentScenes();
@@ -55,7 +58,7 @@ public class GameManager : MonoBehaviour
         //SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
         StartCoroutine(TransitionScene(sceneName));
     }
-
+    // Load an Array of scenes
     public void LoadScene(string[] sceneNames)
     {
         UnloadAllNonPersistentScenes();
@@ -72,6 +75,7 @@ public class GameManager : MonoBehaviour
     // Load the scene with the transition (fade in/out and loading screen)
     IEnumerator TransitionScene(string sceneName)
     {
+        
         var canvasGroup = GameObject.Find("CrossFade").GetComponent<CanvasGroup>();
         if (!canvasGroup) 
             yield break;

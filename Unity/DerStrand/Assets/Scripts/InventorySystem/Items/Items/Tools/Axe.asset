@@ -9,19 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0136ec1517f16304c9787d6486cb5732, type: 3}
-  m_Name: Torch
+  m_Script: {fileID: 11500000, guid: 0c9b779ab1ef8b84f946dbc5ecca5018, type: 3}
+  m_Name: Axe
   m_EditorClassIdentifier: 
-  id: 37
+  id: 0
   icon: {fileID: 0}
   prefab: {fileID: 0}
-  type: 1
+  type: 2
   description: 
-  isCraftable: 1
+  isCraftable: 0
   ingredients:
-  - {fileID: 11400000, guid: f5247c3ef0c82f743b708e4622e1e0af, type: 2}
-  - {fileID: 11400000, guid: a97ffe12051f2f24e8cbbb54909c0c31, type: 2}
+  - {fileID: 11400000, guid: afd081f2f3f1c69429d57efe133de456, type: 2}
+  - {fileID: 11400000, guid: 79bfc8214dd7a694a88a1710f5a09357, type: 2}
   - {fileID: 11400000, guid: 161254473cc885547babe1d797bdd877, type: 2}
-  - {fileID: 11400000, guid: b505a03433c132c40bf7fb6000841461, type: 2}
-  ingredientAmounts: 01000000010000000100000001000000
-  damage: 0
+  ingredientAmounts: 020000000100000001000000

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,16 +12,39 @@ public class InteractableObject : MonoBehaviour
         Chest,
         Water,
     }
-    [SerializeField] private GameObject chestInterface;
     [SerializeField] private ObjectType objectType;
     [SerializeField] private bool isInteractable;
     [SerializeField] private bool isLocked;
-    [SerializeField] private bool isOpen;  
+    [SerializeField] private bool isOpen; 
+    [SerializeField] private bool isBuildable;
+    
+    [Header("Chest")]
+    [SerializeField] private GameObject chestUI;
     [SerializeField] private float chestTransitionTime;
     
+    [Header("Build")]
+    [SerializeField] private Material objectMaterial;
+    private Material buildMaterial;
+    [SerializeField] private Item[] requiredItems;
+    [SerializeField] private int[] requiredItemAmounts;
+    [SerializeField] private bool[] ingredientCheck;
+
+    private void Start()
+    {
+        var renderers = gameObject.GetComponentsInChildren<MeshRenderer>();
+        buildMaterial = Resources.Load("Materials/BuildMaterial", typeof(Material)) as Material;
+
+        if (isBuildable)
+            foreach (var meshRenderer in renderers)
+                meshRenderer.material = buildMaterial;
+        else
+            foreach (var meshRenderer in renderers)
+                meshRenderer.material = objectMaterial;
+    }
+
     public void Interact()
     {
-        if (isInteractable)
+        if (isInteractable && !isLocked)
         {
             switch (objectType)
             {
@@ -32,20 +56,27 @@ public class InteractableObject : MonoBehaviour
                 case ObjectType.Water:
                     FillWaterBottle();
                     break;
-                    
             }
+        }
+        if (isBuildable && !isInteractable)
+        {
+            Build();
         }
     }
     
     private IEnumerator ChestAnimationTransition()
     {
-        var chestCanvas = chestInterface.GetComponent<CanvasGroup>();
+        var chestCanvas = chestUI.GetComponent<CanvasGroup>();
+        //var inventory = chestUI.transform.GetChild(1).GetComponent<InventoryUI>();
+        //inventory.inventory = chestInventory;
+        //inventory.Start();
+        //Debug.Log(chestUI.transform.GetChild(1).GetComponent<InventoryUI>().inventory);
         if(isOpen)
         {
             LockMouse(false);
             Debug.Log("animating chest open");
             chestCanvas.alpha = 0;
-            chestInterface.SetActive(true);
+            chestUI.SetActive(true);
             chestCanvas.DOFade(1, chestTransitionTime);
             yield return new WaitForSeconds(chestTransitionTime);
         }
@@ -56,7 +87,7 @@ public class InteractableObject : MonoBehaviour
             chestCanvas.alpha = 1;
             chestCanvas.DOFade(0, chestTransitionTime);
             yield return new WaitForSeconds(chestTransitionTime);
-            chestInterface.SetActive(false);
+            chestUI.SetActive(false);
         }
     }
 
@@ -72,6 +103,44 @@ public class InteractableObject : MonoBehaviour
                 Debug.Log("Water bottle filled");
             }
         }
+    }
+    
+    private void Build()
+    {
+        var playerInventory = Player.Instance.inventory;
+        ingredientCheck = new bool[requiredItems.Length];
+        
+        for (var i = 0; i < requiredItems.Length; i++)
+            foreach (var item in playerInventory.items)
+            {
+                if (item.item != requiredItems[i])
+                    continue;
+                
+                if (item.amount >= requiredItemAmounts[i])
+                    ingredientCheck[i] = true;
+                else 
+                    ingredientCheck[i] = false;
+            }
+        bool canBeBuilt;
+        if (ingredientCheck.Length == 0)
+            canBeBuilt = false;
+        else 
+        {
+            canBeBuilt = true;
+            foreach (var check in ingredientCheck)
+                if (!check)
+                    canBeBuilt = false;
+        }
+
+        if (!canBeBuilt)
+            return;
+
+        isInteractable = true;
+        isBuildable = false;
+        Start();
+        for (var i = 0; i < requiredItems.Length; i++)
+            playerInventory.RemoveItem(requiredItems[i], requiredItemAmounts[i]);
+
     }
     
     

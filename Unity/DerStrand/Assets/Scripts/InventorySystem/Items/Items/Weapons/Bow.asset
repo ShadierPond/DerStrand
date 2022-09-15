@@ -12,10 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0136ec1517f16304c9787d6486cb5732, type: 3}
   m_Name: Bow
   m_EditorClassIdentifier: 
-  id: 35
+  id: 34
   icon: {fileID: 0}
   prefab: {fileID: 0}
   type: 1
   description: 
   isCraftable: 1
+  ingredients:
+  - {fileID: 11400000, guid: 161254473cc885547babe1d797bdd877, type: 2}
+  - {fileID: 11400000, guid: 3322fb6cf61f3104aad506fbed420f4b, type: 2}
+  ingredientAmounts: 0100000001000000
   damage: 0

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5495235951771254495}
   - component: {fileID: 5495235951771254480}
+  - component: {fileID: 1896515575}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Untagged
@@ -45,12 +46,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 475c474cbb345714a93e39d4823dca4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  chestInterface: {fileID: 0}
   objectType: 1
-  isInteractable: 1
+  isInteractable: 0
   isLocked: 0
   isOpen: 0
+  isBuildable: 1
+  chestUI: {fileID: 0}
   chestTransitionTime: 0.3
+  objectMaterial: {fileID: 2100000, guid: 38e44aa21af18c746a093a25c57147d3, type: 2}
+  requiredItems:
+  - {fileID: 11400000, guid: a97ffe12051f2f24e8cbbb54909c0c31, type: 2}
+  requiredItemAmounts: 02000000
+  ingredientCheck: 
+--- !u!65 &1896515575
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5495235951771254490}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
+  m_Center: {x: 0.17901611, y: 0, z: 0}
 --- !u!1001 &5495235952695902367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -113,11 +133,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3457683252151036229, guid: 3c1475a11dfbbaa40ae3df5c47255a71,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 38e44aa21af18c746a093a25c57147d3, type: 2}
     - target: {fileID: 919132149155446097, guid: 3c1475a11dfbbaa40ae3df5c47255a71,
         type: 3}
       propertyPath: m_Name
       value: UnityKisteV2
       objectReference: {fileID: 0}
+    - target: {fileID: 2524306363286846663, guid: 3c1475a11dfbbaa40ae3df5c47255a71,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 38e44aa21af18c746a093a25c57147d3, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c1475a11dfbbaa40ae3df5c47255a71, type: 3}
 --- !u!1 &1665482202704720385 stripped
@@ -135,7 +165,7 @@ MeshCollider:
   m_GameObject: {fileID: 1665482202704720385}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
@@ -161,7 +191,7 @@ MeshCollider:
   m_GameObject: {fileID: 5720876071287946653}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30

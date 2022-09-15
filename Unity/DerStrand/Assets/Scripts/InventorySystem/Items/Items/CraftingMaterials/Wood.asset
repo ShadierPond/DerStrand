@@ -10,16 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b9875f4983118145a25729b07d128a7, type: 3}
-  m_Name: Arrow
+  m_Name: Wood
   m_EditorClassIdentifier: 
   id: 0
   icon: {fileID: 0}
-  prefab: {fileID: 5216322058706333825, guid: f31d19dda8d76d04f83cd81111af6985, type: 3}
+  prefab: {fileID: 0}
   type: 0
   description: 
-  isCraftable: 1
-  ingredients:
-  - {fileID: 11400000, guid: f5247c3ef0c82f743b708e4622e1e0af, type: 2}
-  - {fileID: 11400000, guid: 5ee72a3c7e6047042b328cd2a2a84fb0, type: 2}
-  - {fileID: 11400000, guid: f78dfa23b262d6b40bd11c7b26ac69ed, type: 2}
-  ingredientAmounts: 010000000100000001000000
+  isCraftable: 0
+  ingredients: []
+  ingredientAmounts: 

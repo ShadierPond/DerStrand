@@ -27,7 +27,7 @@ public class InventoryUI : MonoBehaviour
     // the list of slots in the inventory UI
     private Dictionary<GameObject, InventorySlot> items = new Dictionary<GameObject, InventorySlot>();
 
-    private void Start()
+    public void Start()
     {
         // Get the slot prefab from the resources folder
         inventorySlotPrefab = Resources.Load("InventorySlot") as GameObject;
