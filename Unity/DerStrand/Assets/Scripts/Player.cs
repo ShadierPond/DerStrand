@@ -109,6 +109,8 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(GameManager.Instance.isPaused)
+            return;
         CameraFollow();
         MovePlayer();
         HeadBobbing();
@@ -116,6 +118,8 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if(GameManager.Instance.isPaused)
+            return;
         // Character Controller isgrounded is funky, using raycast makes player grounded when in trigger collider. using controller isgrounded in update is a workaround.
         isGrounded = Physics.Raycast(transform.position, -Vector3.up, _controller.bounds.extents.y + 0.1f);
         Gravity();
@@ -221,6 +225,9 @@ public class Player : MonoBehaviour
     
     public void Look (InputAction.CallbackContext context)
     {
+        if(GameManager.Instance.isPaused)
+            return;
+        
         var look = context.ReadValue<Vector2>();
         
         // Player Rotation in the Y axis (X and Z are fixed)

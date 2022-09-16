@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private ItemDatabase itemDatabase;
     [SerializeField] private float sceneTransitionTime;
+    public bool isPaused;
 
     private void Awake()
     {
@@ -102,5 +103,11 @@ public class GameManager : MonoBehaviour
         canvasGroup.alpha = 1;
         canvasGroup.DOFade(0, sceneTransitionTime);
         yield return new WaitForSeconds(sceneTransitionTime);
+    }
+    
+    public void PauseGame(bool pause)
+    {
+        //Time.timeScale = pause ? 0 : 1;
+        isPaused = pause;
     }
 }

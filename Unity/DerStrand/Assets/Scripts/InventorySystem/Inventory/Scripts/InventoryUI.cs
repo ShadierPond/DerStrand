@@ -44,6 +44,8 @@ public class InventoryUI : MonoBehaviour
     private void Update()
     {
         UpdateInventoryUI();
+        if(GameManager.Instance.isPaused)
+            return;
         GetActiveSlot();
     }
 

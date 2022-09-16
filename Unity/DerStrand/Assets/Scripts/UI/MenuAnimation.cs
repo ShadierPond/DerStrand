@@ -38,8 +38,6 @@ public class MenuAnimation : MonoBehaviour
                     currentMenu = child.gameObject;
                     _currentCanvasGroup = currentMenu.GetComponent<CanvasGroup>();
                 }
-                    
-        
         
         foreach (var menu in menus)
         {
@@ -158,11 +156,13 @@ public class MenuAnimation : MonoBehaviour
         
         if (isMenuOpen && !isMenuLocked)
         {
+            PauseGame(false);
             InGameMenu(false);
             LockMouse(true);
         }
         else if(!isMenuOpen && !isMenuLocked)
         {
+            PauseGame(true);
             InGameMenu(true);
             LockMouse(false);
         }
@@ -175,11 +175,13 @@ public class MenuAnimation : MonoBehaviour
         
         if (isInterfaceMenuOpen)
         {
+            PauseGame(false);
             InInterfaceMenu(false);
             LockMouse(true);
         }
         else
         {
+            PauseGame(true);
             InInterfaceMenu(true);
             LockMouse(false);
         }
@@ -210,5 +212,10 @@ public class MenuAnimation : MonoBehaviour
     public void NotLookAtInteractable()
     {
         lookAtInterface.SetActive(false);
+    }
+    
+    public void PauseGame(bool state)
+    {
+        GameManager.Instance.PauseGame(state);
     }
 }
