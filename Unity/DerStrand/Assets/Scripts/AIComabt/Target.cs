@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class Target : MonoBehaviour
 {
-    [SerializeField] float health;              // Lebenspunkte des Ziels (Target), im Inspector einstellbar
+    [SerializeField] float health;              // lifepoints ( for enemy, in inspector adjustable )
 
-    public void TakeDamage(float amount)        // Berechnung Schaden bzw Tod
+    public void TakeDamage(float amount)        // claculation of damage ( death )
     {
-        health -= amount;                       // Schadensberechnung
+        health -= amount;                       // damage calculation
         if (health <= 0f)
         {
-            Die();                              // Wenn LP kleiner gleich 0 -> Tod ( Löschen)
+            Die();                              // if health lower or equal 0 -> death (delete)
         }
     }
 
     void Die()
     {
-        Spawner.Instance.enemyGroup.Remove(gameObject);  // Lösche Eintrag in der Spawnliste ( wichtig für Respawn)
-        Destroy(gameObject);                             // Zerstörung des instanzierten Objekts
+        Spawner.Instance.enemyGroup.Remove(gameObject);  // clear entry in spawnlist( important for respawn )
+        Destroy(gameObject);                             // destruction of the instanciated object
 
     }
 }

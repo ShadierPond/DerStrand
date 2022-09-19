@@ -5,88 +5,88 @@ using UnityEngine.AI;
 
 public class EnemyKi : MonoBehaviour
 {
-    public NavMeshAgent agent;                      // Navmeshagent ( für Orientierung des Gegners)
-    public Transform player;                        // Spieler ( für Reaktion des Gegners auf Spieler )
-    public LayerMask whatIsGround, whatIsPlayer;    // Boden ( zum laufen ), Spieler 
+    public NavMeshAgent agent;                      // for orientation for the enemy
+    public Transform player;                        // player ( for reaction to player )
+    public LayerMask whatIsGround, whatIsPlayer;    // ground ( for walking and orientation ), player 
 
     [SerializeField] private PlayerProperties propManager;          // Playerproperty Manager
-    [SerializeField] int playerDamage = 20;        // Verursachter Schaden am Spieler
+    [SerializeField] int playerDamage = 20;        // dealt damage
 
     [Header("Patroullie")]
-    [SerializeField] Vector3 walkPoint;             // Wegpunkt für Patroullie
-    bool walkPoinSet;                               // Bool für Wegpunkt gesetzt
-    [SerializeField] float walkPointRange;          // Distanz zwischen aktueller Position und Zielposition
+    [SerializeField] Vector3 walkPoint;             // waypoint for patrol
+    bool walkPoinSet;                               // bool for waypoint set
+    [SerializeField] float walkPointRange;          // distance between actual position and calculated position
 
     [Header("Angriff")]
-    [SerializeField] float timeBetweenAttacks;      // Zeit zwischen Angriffen
-    bool alreadyAttacked;                           // Bool für Angriffscooldown
+    [SerializeField] float timeBetweenAttacks;      // time betweeen attacks
+    bool alreadyAttacked;                           // bool for already attacked
 
     [Header("Wahrnehmung")]
-    [SerializeField] float sightRange, attackRange;                 // Sichtweite, Angriffsreichweite
-    [SerializeField] bool playerInSightRange, playerInAttackRange;  // Bool für Spieler in Sicht und Spieler in Angriffsreichweite
+    [SerializeField] float sightRange, attackRange;                 // sight range ( how far can see), atatck range ( when in meleerange)
+    [SerializeField] bool playerInSightRange, playerInAttackRange;  // bool for in sightrange and in attackrange
 
     private void Awake()
     {
-        player = GameObject.Find("Player").transform;               // Position des Spielers
-        agent = GetComponent<NavMeshAgent>();                       // Beziehen des Navmeshagents
+        player = GameObject.Find("Player").transform;               // position of player
+        agent = GetComponent<NavMeshAgent>();                       
     }
 
     private void Update()
     {
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);     // Ermitteln ob Spieler in Sichtweite
-        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);   // Ermitteln ob Spieler in Angriffsreichweite
+        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);     // calculation if player in sightrange
+        playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);   // calculation if player in attackrange
 
-        if (!playerInSightRange && !playerInAttackRange) Patroling();   // Wenn Spieler NICHT in Sichtweite und NICHT in Angriffsreichweite -> Patroullie
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();  // Wenn Spieler in Sichtweite und NICHT in Angriffsreichweite -> Verfolgen
-        if (playerInSightRange && playerInAttackRange) AttackPlayer();  // Wenn Spieler in Sichtweite UND in Angriffsreichweite -> Angreifen
+        if (!playerInSightRange && !playerInAttackRange) Patroling();   // if player NOT in sightrange and NOT in attackrange -> patrol
+        if (playerInSightRange && !playerInAttackRange) ChasePlayer();  // if player in sightrange and NOT in attackrange -> chase
+        if (playerInSightRange && playerInAttackRange) AttackPlayer();  // if player in sightrange AND in attackrange -> attack
     }
 
     private void Patroling()
     {
-        if (!walkPoinSet) SearchWalkPoint();                            // Wenn kein Wegpunkt gesetzt -> suche Wegpunkt
+        if (!walkPoinSet) SearchWalkPoint();                            // if no waypoint is set -> search for waypoint
 
         if (walkPoinSet) agent.SetDestination(walkPoint);
 
-        Vector3 distanceToWalkPoint = transform.position - walkPoint;   // Gehe zum Wegpunkt
+        Vector3 distanceToWalkPoint = transform.position - walkPoint;  
 
-        if (distanceToWalkPoint.magnitude < 1f)                         // Wenn Entfernung unter 1f, setze Wegpunkt gesetzt auf falsch ( zum neusuchen )
+        if (distanceToWalkPoint.magnitude < 1f)                         // if distance is below 1f, set walkpoint set to false
             walkPoinSet = false;
     }
 
-    private void SearchWalkPoint()                                      // Suche Wegpunkt
+    private void SearchWalkPoint()                                      
     {
-        float randomZ = Random.Range(-walkPointRange, walkPointRange);  // Zufällige Distanz auf der Z-Achse
-        float randomX = Random.Range(-walkPointRange, walkPointRange);  // Zufällige Distanz auf der X-Achse
+        float randomZ = Random.Range(-walkPointRange, walkPointRange);  // random distance on z-axis
+        float randomX = Random.Range(-walkPointRange, walkPointRange);  // random distance on x-axis
 
-        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z +randomZ); // Wegpunktberechnung
+        walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z +randomZ); // waypoint calculation
 
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))    // Abfrage ob gesetzter Wegpunkt sich auf festem Boden befindet (whatIsGround)
-            walkPoinSet = true;                                         // Wegpunkt gefunden -> Boole walkPpointSet = true
+        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))    // control if set waypoint is acessable ground (whatIsGround)
+            walkPoinSet = true;                                         
     }
 
     private void ChasePlayer()
     {
-        agent.SetDestination(player.position);                          // Ändere Zielrichtung (Wegpunkt) zu Spielerposition
+        agent.SetDestination(player.position);                          // change destination to playerposition
     }
 
     private void AttackPlayer()
     {
-        agent.SetDestination(transform.position);                  // Zielrichtung ist Spieler
-        transform.LookAt(player);                                  // Rotation um Spieler anzusehen ( für Angriff )
+        agent.SetDestination(transform.position);                  
+        transform.LookAt(player);                                  // rotate to look at player ( for attack )
 
         if (!alreadyAttacked)
         {
 
             propManager.DealDamage(playerDamage);
 
-            alreadyAttacked = true;                             // Start Angriffscooldown
+            alreadyAttacked = true;                             // start attack cooldown
             Invoke(nameof(ResetAttack), timeBetweenAttacks);    
         }
     }
 
     private void ResetAttack()
     {
-        alreadyAttacked = false;         // Einstellung wieder angreifen
+        alreadyAttacked = false;         // can attack again
     }
 
 }

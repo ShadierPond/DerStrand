@@ -4,41 +4,41 @@ using UnityEngine;
 
 public class CCombat : MonoBehaviour
 {
-    [SerializeField] float damage = 10f;            // Verursachter Schaden
-    [SerializeField] float range = 20f;             // Reichweite
-    [SerializeField] float fireRate = 15f;          // Feuerrate
-    [SerializeField] float impactForce = 300f;      // Einschlagskraft ( Rückschlag )
+    [SerializeField] float damage = 10f;            // damage
+    [SerializeField] float range = 20f;             // range
+    [SerializeField] float fireRate = 15f;          // firerate
+    [SerializeField] float impactForce = 300f;      // impact ( knockback )
 
-    [SerializeField] Camera fpsCam;                 // Genutzte Kamera ( im Inspector zuweisbar )
+    [SerializeField] Camera fpsCam;                 // used camera ( in inspector adjustable )
 
-    private float nextTimeToFire = 0f;              // Zeit bis zur nächsten Angriffsauslösbarkeit
+    private float nextTimeToFire = 0f;              // time to next attack
 
     void Update()
     {
 
-        if (Player.Instance.input.actions["Fire"].triggered && Time.time >= nextTimeToFire) // Wenn linke Maustaste gedrückt UND Angriffscooldown abgelaufen
+        if (Player.Instance.input.actions["Fire"].triggered && Time.time >= nextTimeToFire) // if left mouse is clicked and attack cooldown expired
         {
-            nextTimeToFire = Time.time + 1f / fireRate;  // Angriffscooldown wird gesetzt
-            SpAttack();                                     // Auslösen des Angriffs
+            nextTimeToFire = Time.time + 1f / fireRate;  // attackcooldown is set
+            SpAttack();                                     // (spear) attack
         }
 
     }
 
-    void SpAttack()                                                              // Speerangriff
+    void SpAttack()                                                              // spear attack
     {
 
         var frontObject = Player.Instance.GetRaycastObject();                   
                
-            Target target = frontObject.transform.GetComponent<Target>();       // Schaut ob das Ziel die Komponente (Script) Target enthält
+            Target target = frontObject.transform.GetComponent<Target>();       // look if target hast a target script in it
 
-            if (target != null)                                                 // Wenn Ziel vorhanden ...
+            if (target != null)                                                 // if target possible ...
             {
-                target.TakeDamage(damage);                                      // Ziel nimmt Schaden
+                target.TakeDamage(damage);                                      // target takes damage
             }
 
-            if (frontObject.GetComponent<Rigidbody>() != null)                  // Wenn das Ziel einenen Rigidbody hat ...
+            if (frontObject.GetComponent<Rigidbody>() != null)                  // if target has a rigidbody ...
             {
-                frontObject.GetComponent<Rigidbody>().AddForce(-frontObject.transform.position * impactForce);  // Einschlagskraft (Rückstoß) auf das Ziel wirken
+                frontObject.GetComponent<Rigidbody>().AddForce(-frontObject.transform.position * impactForce);  // apply impactforce to target
             }
                     
     }

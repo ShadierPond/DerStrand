@@ -5,27 +5,27 @@ using UnityEngine.AI;
 
 public class FleeKi : MonoBehaviour
 {
-    private NavMeshAgent _agent;                    // Navmeshagent ( zum Orientieren für den Gegner )
-    public GameObject Player;                       // Spieler ( um zu wissen vor wem geflohen wird )
+    private NavMeshAgent _agent;                    // Navmeshagent ( for orientation )
+    public GameObject Player;                       // player ( to know form who to flee )
 
-    [SerializeField] float FleeDistance = 4.0f;     // Fluchtdistanz ( wie weit geflohen wird ), einstellbar im Inspector
+    [SerializeField] float FleeDistance = 4.0f;     // flee distance ( how far )
 
     void Start()
     {
-        _agent = GetComponent<NavMeshAgent>();          // Beziehen des Navmeshagents
-        Player = GameObject.Find("Player").gameObject;  // Beziehen des Gameobjects Spieler
+        _agent = GetComponent<NavMeshAgent>();          
+        Player = GameObject.Find("Player").gameObject;  
     }
 
     void Update()
     {
-        float distance = Vector3.Distance(transform.position, Player.transform.position);    // Berechnung Abstand zwischen Gegner und Spieler
+        float distance = Vector3.Distance(transform.position, Player.transform.position);    // calculating distance between enemy and player
 
-        if (distance < FleeDistance)                                                // Wenn errechneter Abstand kleiner als Fluchtdistanz ...
+        if (distance < FleeDistance)                                                // if distance is smaller then flee distance ...
         {
-            Vector3 dirToPlayer = transform.position - Player.transform.position;   // ... Erzeugen eines neuen Bewegungszielpunkts ...
-            Vector3 newPos = transform.position + dirToPlayer;                      // ... der sich vom Spieler ENTFERNT
+            Vector3 dirToPlayer = transform.position - Player.transform.position;   // ... creating new movementdirection ...
+            Vector3 newPos = transform.position + dirToPlayer;                      // ... thats farther away from player
 
-            _agent.SetDestination(newPos);                                          // Übergabe des neuen Wegzielpunkts
+            _agent.SetDestination(newPos);                                          // setting of new movementdestination
         }
     }
 
