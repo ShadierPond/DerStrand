@@ -23,5 +23,5 @@ MonoBehaviour:
   ingredientAmounts: 00000000
   restoreHealthValue: 0
   restoreHungerValue: 0
-  restoreThirstValue: 0
+  restoreThirstValue: 20
   isCooked: 0

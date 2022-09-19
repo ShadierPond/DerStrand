@@ -18,3 +18,5 @@ MonoBehaviour:
   type: 0
   description: 
   isCraftable: 1
+  ingredients: []
+  ingredientAmounts: 
