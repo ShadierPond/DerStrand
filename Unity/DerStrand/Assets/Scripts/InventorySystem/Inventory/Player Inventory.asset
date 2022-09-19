@@ -97,4 +97,4 @@ MonoBehaviour:
   - parent: {fileID: 0}
     item: {fileID: 0}
     amount: 0
-  database: {fileID: 11400000, guid: e976cb4ee8b60454eb16455562fe6279, type: 2}
+  database: {fileID: 0}
