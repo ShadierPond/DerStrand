@@ -45,8 +45,10 @@ public class PlayerEquipment : MonoBehaviour
 
     private void Eat()
     {
+
         var consumable = objectHeld as consumableItem;
         playerEquipmentUI.inventory.RemoveItem(objectHeld, 1);
+        PlayerProperties.Instance.RegenerateHunger(consumable.restoreHungerValue);
         Debug.Log("You ate " + consumable.name + " and gained " + consumable.restoreHungerValue + " hunger");
         // player.RegenerateHunger(consumable.restoreHungerValue);
     }
