@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.3069224, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -9952,35 +9952,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666291924}
   m_CullTransparentMesh: 1
---- !u!1 &680026583 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8034433564479662910, guid: a1613eea34dd1974c982c6ca258eafe0,
-    type: 3}
-  m_PrefabInstance: {fileID: 1478211813}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &680026587
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 680026583}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 475c474cbb345714a93e39d4823dca4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectType: 2
-  isInteractable: 1
-  isLocked: 0
-  isOpen: 0
-  isBuildable: 0
-  chestUI: {fileID: 0}
-  chestTransitionTime: 0
-  objectMaterial: {fileID: 0}
-  requiredItems: []
-  requiredItemAmounts: 
-  ingredientCheck: 
 --- !u!1 &681657531
 GameObject:
   m_ObjectHideFlags: 0
@@ -16193,6 +16164,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 849078731}
+        m_TargetAssemblyTypeName: MenuAnimation, Assembly-CSharp
+        m_MethodName: PauseGame
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1142588640
 MonoBehaviour:

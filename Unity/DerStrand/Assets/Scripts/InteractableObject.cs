@@ -74,6 +74,7 @@ public class InteractableObject : MonoBehaviour
         if(isOpen)
         {
             LockMouse(false);
+            GameManager.Instance.PauseGame(true);
             Debug.Log("animating chest open");
             chestCanvas.alpha = 0;
             chestUI.SetActive(true);
@@ -83,6 +84,7 @@ public class InteractableObject : MonoBehaviour
         else
         {
             LockMouse(true);
+            GameManager.Instance.PauseGame(false);
             Debug.Log("animating chest close");
             chestCanvas.alpha = 1;
             chestCanvas.DOFade(0, chestTransitionTime);
