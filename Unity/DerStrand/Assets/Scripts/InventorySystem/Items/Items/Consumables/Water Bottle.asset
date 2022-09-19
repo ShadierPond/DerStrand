@@ -9,19 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6df49e2fecb5ba54da84f452df2f585d, type: 3}
-  m_Name: Water
+  m_Script: {fileID: 11500000, guid: 78923284f36861f418ba2c71683a131e, type: 3}
+  m_Name: Water Bottle
   m_EditorClassIdentifier: 
-  id: 17
+  id: 37
   icon: {fileID: 0}
   prefab: {fileID: 0}
-  type: 3
+  type: 4
   description: 
   isCraftable: 0
-  ingredients:
-  - {fileID: 0}
-  ingredientAmounts: 00000000
-  restoreHealthValue: 0
-  restoreHungerValue: 0
-  restoreThirstValue: 0
-  isCooked: 0
+  ingredients: []
+  ingredientAmounts: 
+  thirstRestore: 10
+  capacityDrank: 0
+  capacity: 100
+  currentCapacity: 100

@@ -98,7 +98,7 @@ public class InteractableObject : MonoBehaviour
         var objectOnHand = PlayerEquipment.Instance.objectHeld;
         if (objectOnHand != null)
         {
-            if (objectOnHand.name == "WaterBottle")
+            if (objectOnHand.name == "Water Bottle")
             {
                 var bottle = objectOnHand as WaterBottle;
                 bottle.currentCapacity = bottle.capacity;
