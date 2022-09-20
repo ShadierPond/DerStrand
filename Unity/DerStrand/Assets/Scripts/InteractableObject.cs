@@ -11,6 +11,7 @@ public class InteractableObject : MonoBehaviour
         None,
         Chest,
         Water,
+        Bed,
     }
     [SerializeField] private ObjectType objectType;
     [SerializeField] private bool isInteractable;
@@ -23,23 +24,32 @@ public class InteractableObject : MonoBehaviour
     [SerializeField] private float chestTransitionTime;
     
     [Header("Build")]
+    [Rename("Is Built? (Debug)"), SerializeField] private bool isBuilt;
     [SerializeField] private Material objectMaterial;
     private Material buildMaterial;
     [SerializeField] private Item[] requiredItems;
     [SerializeField] private int[] requiredItemAmounts;
     [SerializeField] private bool[] ingredientCheck;
+    
+    [Header("Bed")]
+    [SerializeField] private GameObject bedUI;
+    [SerializeField] private float bedTransitionTime;
+    
 
     private void Start()
     {
+        if (!isBuildable) 
+            return;
+        
         var renderers = gameObject.GetComponentsInChildren<MeshRenderer>();
         buildMaterial = Resources.Load("Materials/BuildMaterial", typeof(Material)) as Material;
-
-        if (isBuildable)
-            foreach (var meshRenderer in renderers)
-                meshRenderer.material = buildMaterial;
-        else
+            
+        if (isBuilt)
             foreach (var meshRenderer in renderers)
                 meshRenderer.material = objectMaterial;
+        else
+            foreach (var meshRenderer in renderers)
+                meshRenderer.material = buildMaterial;
     }
 
     public void Interact()
@@ -51,10 +61,15 @@ public class InteractableObject : MonoBehaviour
                 case ObjectType.Chest:
                     Debug.Log("Chest opened");
                     isOpen = !isOpen;
-                    StartCoroutine(ChestAnimationTransition());
+                    StartCoroutine(ObjectAnimationTransition(chestUI, chestTransitionTime));
                     break;
                 case ObjectType.Water:
+                    Debug.Log("Water Bottle filled");
                     FillWaterBottle();
+                    break;
+                case ObjectType.Bed:
+                    Debug.Log("Bed used");
+                    StartCoroutine(ObjectAnimationTransition(bedUI, bedTransitionTime));
                     break;
             }
         }
@@ -63,33 +78,29 @@ public class InteractableObject : MonoBehaviour
             Build();
         }
     }
-    
-    private IEnumerator ChestAnimationTransition()
+
+    private IEnumerator ObjectAnimationTransition(GameObject targetObject, float transitionTime)
     {
-        var chestCanvas = chestUI.GetComponent<CanvasGroup>();
-        //var inventory = chestUI.transform.GetChild(1).GetComponent<InventoryUI>();
-        //inventory.inventory = chestInventory;
-        //inventory.Start();
-        //Debug.Log(chestUI.transform.GetChild(1).GetComponent<InventoryUI>().inventory);
+        var objectCanvas = targetObject.GetComponent<CanvasGroup>();
         if(isOpen)
         {
             LockMouse(false);
             GameManager.Instance.PauseGame(true);
             Debug.Log("animating chest open");
-            chestCanvas.alpha = 0;
-            chestUI.SetActive(true);
-            chestCanvas.DOFade(1, chestTransitionTime);
-            yield return new WaitForSeconds(chestTransitionTime);
+            objectCanvas.alpha = 0;
+            targetObject.SetActive(true);
+            objectCanvas.DOFade(1, transitionTime);
+            yield return new WaitForSeconds(transitionTime);
         }
         else
         {
             LockMouse(true);
             GameManager.Instance.PauseGame(false);
             Debug.Log("animating chest close");
-            chestCanvas.alpha = 1;
-            chestCanvas.DOFade(0, chestTransitionTime);
-            yield return new WaitForSeconds(chestTransitionTime);
-            chestUI.SetActive(false);
+            objectCanvas.alpha = 1;
+            objectCanvas.DOFade(0, transitionTime);
+            yield return new WaitForSeconds(transitionTime);
+            targetObject.SetActive(false);
         }
     }
 
@@ -138,12 +149,13 @@ public class InteractableObject : MonoBehaviour
             return;
 
         isInteractable = true;
-        isBuildable = false;
+        isBuilt = true;
         Start();
         for (var i = 0; i < requiredItems.Length; i++)
             playerInventory.RemoveItem(requiredItems[i], requiredItemAmounts[i]);
 
     }
+    
     
     
 

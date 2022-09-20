@@ -25,8 +25,8 @@ Transform:
   m_GameObject: {fileID: 2523360881430632914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 552.09686, y: 32.58654, z: 610.4704}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6377493296995878270}
   m_Father: {fileID: 0}
@@ -43,6 +43,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d8e71cd73341dae4ba9680b16cf9b51b,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: d8e71cd73341dae4ba9680b16cf9b51b,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d8e71cd73341dae4ba9680b16cf9b51b,
         type: 3}
@@ -101,6 +111,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8e71cd73341dae4ba9680b16cf9b51b, type: 3}
+--- !u!1 &6037841598462533572 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d8e71cd73341dae4ba9680b16cf9b51b,
+    type: 3}
+  m_PrefabInstance: {fileID: 6848797594829890197}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &266660197
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6037841598462533572}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8691780276856062721, guid: d8e71cd73341dae4ba9680b16cf9b51b, type: 3}
+--- !u!114 &266660196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6037841598462533572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475c474cbb345714a93e39d4823dca4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectType: 3
+  isInteractable: 1
+  isLocked: 0
+  isOpen: 0
+  isBuildable: 1
+  chestUI: {fileID: 0}
+  chestTransitionTime: 0
+  isBuilt: 0
+  objectMaterial: {fileID: -876546973899608171, guid: d8e71cd73341dae4ba9680b16cf9b51b,
+    type: 3}
+  requiredItems: []
+  requiredItemAmounts: 
+  ingredientCheck: 
+  bedUI: {fileID: 0}
+  bedTransitionTime: 0
 --- !u!4 &6377493296995878270 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d8e71cd73341dae4ba9680b16cf9b51b,
