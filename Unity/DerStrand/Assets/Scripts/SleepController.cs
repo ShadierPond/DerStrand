@@ -57,7 +57,7 @@ public class SleepController : MonoBehaviour
 
     private void SetStats()
     {
-        sleepPanel.SetActive(false);
+        
     }
 }
 
