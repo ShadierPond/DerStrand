@@ -53,11 +53,14 @@ MonoBehaviour:
   isBuildable: 1
   chestUI: {fileID: 0}
   chestTransitionTime: 0.3
+  isBuilt: 0
   objectMaterial: {fileID: 2100000, guid: 38e44aa21af18c746a093a25c57147d3, type: 2}
   requiredItems:
   - {fileID: 11400000, guid: a97ffe12051f2f24e8cbbb54909c0c31, type: 2}
   requiredItemAmounts: 02000000
   ingredientCheck: 
+  bedUI: {fileID: 0}
+  bedTransitionTime: 0
 --- !u!65 &1896515575
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -66,7 +69,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5495235951771254490}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.5, y: 1.5, z: 1.5}
