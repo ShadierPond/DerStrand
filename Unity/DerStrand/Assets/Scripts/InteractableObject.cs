@@ -36,6 +36,10 @@ public class InteractableObject : MonoBehaviour
     [SerializeField] private GameObject bedUI;
     [SerializeField] private float bedTransitionTime;
     
+    [Header("Campfire")]
+    [SerializeField] private GameObject campfireUI;
+    [SerializeField] private float campfireTransitionTime;
+    
 
     private void Start()
     {
@@ -73,12 +77,14 @@ public class InteractableObject : MonoBehaviour
                     isOpen = !isOpen;
                     StartCoroutine(ObjectAnimationTransition(bedUI, bedTransitionTime));
                     break;
+                case ObjectType.CampFire:
+                    Debug.Log("Campfire used");
+                    StartCoroutine(ObjectAnimationTransition(campfireUI, campfireTransitionTime));
+                    break;
             }
         }
         if (isBuildable && !isInteractable)
-        {
             Build();
-        }
     }
 
     private IEnumerator ObjectAnimationTransition(GameObject targetObject, float transitionTime)
@@ -156,9 +162,6 @@ public class InteractableObject : MonoBehaviour
 
     }
     
-    
-    
-
     private void LockMouse(bool state)
     {
         Cursor.lockState = state ? CursorLockMode.Locked : CursorLockMode.None;

@@ -8,6 +8,10 @@ public class CraftingSystem : MonoBehaviour
 {
     // Player Inventory
     public Inventory playerInventory;
+    // Distance between Player and Campfire
+    public float distanceToCampfire;
+    // is the player near the campfire
+    public bool nearCampfire;
     // Crafting Slot Prefab
     private GameObject craftingSlotPrefab;
     // Ingredient Slot Prefab
@@ -229,6 +233,24 @@ public class CraftingSystem : MonoBehaviour
             }
             // Add the crafted item to the Player Inventory (add the amount of the crafted item * the crafting multiplier)
             playerInventory.AddItem(recipe.item, craftingMultiplier);
+        }
+    }
+
+    private void CheckPlayerNearCampfire()
+    {
+        var campfires = GameObject.FindGameObjectsWithTag("Campfire");
+        var player = GameObject.FindGameObjectWithTag("Player");
+
+        foreach (var campfire in campfires)
+        {
+            if(Vector3.Distance(player.transform.position, campfire.transform.position) <= distanceToCampfire)
+            {
+                nearCampfire = true;
+            }
+            else
+            {
+                nearCampfire = false;
+            }
         }
     }
 }

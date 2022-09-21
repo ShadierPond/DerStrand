@@ -6,6 +6,7 @@ public class consumableItem : Item
     public int restoreHealthValue;
     public int restoreHungerValue;
     public int restoreThirstValue;
+    public bool needsCampfire;
     public bool isCooked;
     private void Awake()
     {
