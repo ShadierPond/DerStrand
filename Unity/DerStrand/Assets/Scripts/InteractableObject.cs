@@ -69,6 +69,7 @@ public class InteractableObject : MonoBehaviour
                     break;
                 case ObjectType.Bed:
                     Debug.Log("Bed used");
+                    isOpen = !isOpen;
                     StartCoroutine(ObjectAnimationTransition(bedUI, bedTransitionTime));
                     break;
             }
@@ -86,7 +87,6 @@ public class InteractableObject : MonoBehaviour
         {
             LockMouse(false);
             GameManager.Instance.PauseGame(true);
-            Debug.Log("animating chest open");
             objectCanvas.alpha = 0;
             targetObject.SetActive(true);
             objectCanvas.DOFade(1, transitionTime);
@@ -96,7 +96,6 @@ public class InteractableObject : MonoBehaviour
         {
             LockMouse(true);
             GameManager.Instance.PauseGame(false);
-            Debug.Log("animating chest close");
             objectCanvas.alpha = 1;
             objectCanvas.DOFade(0, transitionTime);
             yield return new WaitForSeconds(transitionTime);
