@@ -156,6 +156,7 @@ public class PlayerProperties : MonoBehaviour
     {
         while (true)
         {
+            while (GameManager.Instance.isPaused) yield return null;
             if (thirst <= maxProperty && thirst > 0)                               //While Stamina is < than maxProperty
             {
                 thirst -= thirstDecrese;          //thirst - thirstDecrease
@@ -175,6 +176,7 @@ public class PlayerProperties : MonoBehaviour
     {
         while (true)
         {
+            while (GameManager.Instance.isPaused) yield return null;
             if (hunger <= maxProperty && hunger > 0)                               //While Stamina is < than maxProperty
             {
                 hunger -= hungerDecrease;          
@@ -194,6 +196,7 @@ public class PlayerProperties : MonoBehaviour
     {
         while (true)
         {
+            while (GameManager.Instance.isPaused) yield return null;
             if (wearyTime <= maxProperty && wearyTime > 0)  //While Stamina is < than maxProperty
             {
                 wearyTime -= wearyTimeDecrease;         
@@ -226,7 +229,11 @@ public class PlayerProperties : MonoBehaviour
     //---Decrease-END---
     //---UI-Integration---
     private void UpdateUI()
-    {
+    { 
+        if (GameManager.Instance.isPaused)
+        {
+            return;
+        }
         healthBarImage.fillAmount = (float)Math.Clamp(health, 0, maxProperty) / maxProperty;
         staminaBarImage.fillAmount = (float)Math.Clamp(stamina, 0, maxProperty) / maxProperty;
         hungerBarImage.fillAmount = (float)Math.Clamp(hunger, 0, maxProperty) / maxProperty;
@@ -248,4 +255,5 @@ public class PlayerProperties : MonoBehaviour
     //StartCoroutine(DecreaseWearyTime());
     //StartCoroutine(DecreaseStamina());
     //StartCoroutine(DecreaseHealth());
+
 }
