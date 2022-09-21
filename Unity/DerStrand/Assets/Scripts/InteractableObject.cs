@@ -12,6 +12,7 @@ public class InteractableObject : MonoBehaviour
         Chest,
         Water,
         Bed,
+        CampFire,
     }
     [SerializeField] private ObjectType objectType;
     [SerializeField] private bool isInteractable;

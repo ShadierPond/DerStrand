@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System;
 
 public class PlayerEquipment : MonoBehaviour
 {
     [SerializeField] InventoryUI playerEquipmentUI;
     [SerializeField] public Item objectHeld;
+    [SerializeField] GameObject[] weapons;
     private PlayerProperties player;
     public static PlayerEquipment Instance { get; private set; }
     private void Awake()
@@ -15,6 +17,43 @@ public class PlayerEquipment : MonoBehaviour
     private void Start()
     {
         player = PlayerProperties.Instance;
+    }
+
+    private void Update()
+    {
+        if (!objectHeld)
+        {
+            foreach(var item in weapons)
+            {
+                item.SetActive(false);
+            }
+        }
+        
+        if(objectHeld)
+            switch (objectHeld.type)
+            {
+            
+                case ItemType.Weapon:
+                    ShowWeapon();
+                    break;
+            
+            }
+    }
+
+    private void ShowWeapon()
+    {
+        var weapon = objectHeld as WeaponItem;
+        switch (weapon.name)
+        {
+            case "Spear":
+                foreach (var item in weapons)
+                {
+                    if (item.name == weapon.name)
+                        item.SetActive(true);
+                    else item.SetActive(false);
+                }
+                break;
+        }    
     }
 
     public void PrimaryAction(InputAction.CallbackContext context)
@@ -28,9 +67,6 @@ public class PlayerEquipment : MonoBehaviour
         {
             case ItemType.Consumable:
                 Eat();
-                break;
-            case ItemType.Weapon:
-                Attack();
                 break;
             case ItemType.Tool:
                 UseTool();
@@ -59,13 +95,6 @@ public class PlayerEquipment : MonoBehaviour
         bottle.currentCapacity -= bottle.thirstRestore;
         PlayerProperties.Instance.RegenerateThirst(bottle.thirstRestore);
         Debug.Log("You drank from " + bottle.name + " and gained " + bottle.thirstRestore + " thirst" + " and now have " + bottle.currentCapacity + " left");
-    }
-    
-    private void Attack()
-    {
-        var weapon = objectHeld as WeaponItem;
-        Debug.Log("You attacked with " + weapon.name);
-        // TODO: Add attack logic
     }
 
     private void UseTool()

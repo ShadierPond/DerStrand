@@ -16,9 +16,10 @@ GameObject:
   - component: {fileID: 5125565863325364085}
   - component: {fileID: 5125565863325364084}
   - component: {fileID: 4259331511926685915}
+  - component: {fileID: 1422913694}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,7 +54,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5125565863325364095}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -180,10 +181,10 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/delta,/Pen/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5125565863325364084}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: Save
-        m_Mode: 1
+      - m_Target: {fileID: 1422913694}
+        m_TargetAssemblyTypeName: PlayerEquipment, Assembly-CSharp
+        m_MethodName: PrimaryAction
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -298,6 +299,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 557834d4-c071-43c7-a1eb-b72a904ccc04
     m_ActionName: Player/Menu[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: MenuAnimation, Assembly-CSharp
+        m_MethodName: PlayerInterface
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+    m_ActionId: 0c6d81a1-96cb-4c95-80df-b3b9b0da47ac
+    m_ActionName: Player/Interfacce[/Keyboard/tab]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -327,12 +344,18 @@ MonoBehaviour:
   holdToSprint: 1
   smoothTime: 0.5
   currentSpeed: 0
+  headBobbing: 1
+  walkBobbingSpeed: 14
+  walkBobbingAmount: 0.1
+  sprintBobbingSpeed: 18
+  sprintBobbingAmount: 0.2
   doubleJump: 0
   jumpForce: 7
   gravity: 20
   interactDistance: 100
   objectHoldArea: {x: 0, y: 0, z: 2}
   objectHoldForce: 10
+  inventory: {fileID: 11400000, guid: 76357a4ef558cd9449f3a1451443d36f, type: 2}
   cameraRotation: {x: 0, y: 0}
   isGrounded: 0
   isJumping: 0
@@ -350,12 +373,15 @@ MonoBehaviour:
     playerPosition: {x: 0, y: 0, z: 0}
     playerRotation: {x: 0, y: 0, z: 0, w: 0}
     playerCameraRotation: {x: 0, y: 0}
-    startTime: 
+    startTime: 0
+    startTimeString: 
     daysSurvived: 0
     health: 0
     thirst: 0
     hunger: 0
     wearyTime: 0
+    inventory: {fileID: 0}
+  input: {fileID: 5125565863325364085}
 --- !u!114 &4259331511926685915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,29 +395,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxProperty: 100
-  decreaseTime: 0
+  decreaseTime: 2
   health: 0
   thirst: 0
   hunger: 0
   wearyTime: 0
+  staminaRegenerationAmount: 5
+  healthRegenerationAmaunt: 1
+  thirstDecrese: 1
+  hungerDecrease: 1
+  wearyTimeDecrease: 1
+  staminaDecrease: 10
+  healthDecrease: 1
   stamina: 0
-  staminaRegenerationTime: 0
-  staminaRegenerationAmount: 0
-  thirstDecrese: 0
-  hungerDecrease: 0
-  wearyTimeDecrease: 0
-  staminaDecrease: 0
-  healthDecrease: 0
-  thirstDecreseInterval: 0
-  hungerDecreaseInterval: 0
-  wearyTimeDecreaseInterval: 0
-  staminaDecreaseInterval: 0
-  healthDecreaseInterval: 0
+  thirstDecreseInterval: 1.2
+  hungerDecreaseInterval: 1.7
+  wearyTimeDecreaseInterval: 12
+  staminaDecreaseInterval: 1
+  staminaRegenerationTime: 0.5
+  healthDecreaseInterval: 2
   healthBar: {fileID: 0}
   staminaBar: {fileID: 0}
   hungerBar: {fileID: 0}
   thirstBar: {fileID: 0}
   wearyTimeBar: {fileID: 0}
+  staminaFull: 0
   saveData:
     saveDate: 
     saveTime: 
@@ -399,9 +427,26 @@ MonoBehaviour:
     playerPosition: {x: 0, y: 0, z: 0}
     playerRotation: {x: 0, y: 0, z: 0, w: 0}
     playerCameraRotation: {x: 0, y: 0}
-    startTime: 
+    startTime: 0
+    startTimeString: 
     daysSurvived: 0
     health: 0
     thirst: 0
     hunger: 0
     wearyTime: 0
+    inventory: {fileID: 0}
+  tempTrigger: 0
+--- !u!114 &1422913694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5125565863325364095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5370ff6d85a552468d398f3314395b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerEquipmentUI: {fileID: 0}
+  objectHeld: {fileID: 0}
