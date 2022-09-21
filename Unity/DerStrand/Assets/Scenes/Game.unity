@@ -20768,6 +20768,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerEquipmentUI: {fileID: 1976938108}
   objectHeld: {fileID: 0}
+  weapons: []
 --- !u!1 &1426783692
 GameObject:
   m_ObjectHideFlags: 0
