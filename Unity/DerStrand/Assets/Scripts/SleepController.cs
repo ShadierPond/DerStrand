@@ -13,7 +13,7 @@ public class SleepController : MonoBehaviour
     [SerializeField] private GameObject sleepPanel;
     [SerializeField] private Button sleepButton;
     [SerializeField] private TMP_Text hoursText;
-    [SerializeField] private int hours;
+    [SerializeField] private int hours = 1;
     [SerializeField] private Button addHourButton;
     [SerializeField] private Button subtractHourButton;
     [SerializeField] private float sleepTime;
@@ -24,11 +24,15 @@ public class SleepController : MonoBehaviour
         addHourButton.onClick.AddListener(() =>
         {
             hours++;
+            if(hours > 24)
+                hours = 24;
             UpdateUI();
         });
         subtractHourButton.onClick.AddListener(() =>
         {
             hours--;
+            if(hours < 1)
+                hours = 1;
             UpdateUI();
         });
         sleepButton.onClick.AddListener(() => StartCoroutine(Sleep()));
@@ -57,7 +61,12 @@ public class SleepController : MonoBehaviour
 
     private void SetStats()
     {
-        
+        Debug.Log("Sleeping for " + hours + " hours and gaining " + (10 * hours) + " weary time");
+        PlayerProperties.Instance.RegenerateWearyTime(10 * hours);
+        while (GameManager.Instance.isPaused)
+        {
+            return;
+        }
     }
 }
 

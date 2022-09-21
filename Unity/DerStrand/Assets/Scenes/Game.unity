@@ -6629,6 +6629,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 266660196, guid: fa43538108c8b474aa3b0ee301b70b58, type: 3}
+      propertyPath: bedUI
+      value: 
+      objectReference: {fileID: 556256366}
+    - target: {fileID: 266660196, guid: fa43538108c8b474aa3b0ee301b70b58, type: 3}
+      propertyPath: isBuildable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 266660196, guid: fa43538108c8b474aa3b0ee301b70b58, type: 3}
+      propertyPath: bedTransitionTime
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 2523360881430632914, guid: fa43538108c8b474aa3b0ee301b70b58,
         type: 3}
       propertyPath: m_Name
@@ -7629,6 +7641,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 500, y: 50}
   m_Pivot: {x: 1, y: 0.5}
+--- !u!1 &556256366 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6753757553273065836, guid: 90bf18e8e036e7843949936f27615a7b,
+    type: 3}
+  m_PrefabInstance: {fileID: 6753757553660257576}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &560210799
 GameObject:
   m_ObjectHideFlags: 0
@@ -24396,6 +24414,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1896515575, guid: 6534d6ba38dd43c4a90bfac1eac044b4, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5495235951771254480, guid: 6534d6ba38dd43c4a90bfac1eac044b4,
         type: 3}
       propertyPath: chestUI
@@ -36745,22 +36767,27 @@ PrefabInstance:
     - target: {fileID: 6753757553053697978, guid: 90bf18e8e036e7843949936f27615a7b,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6753757553053697978, guid: 90bf18e8e036e7843949936f27615a7b,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6753757553053697978, guid: 90bf18e8e036e7843949936f27615a7b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -32.5
       objectReference: {fileID: 0}
     - target: {fileID: 6753757553273065836, guid: 90bf18e8e036e7843949936f27615a7b,
         type: 3}
       propertyPath: m_Name
       value: BedInterface
+      objectReference: {fileID: 0}
+    - target: {fileID: 6753757553273065836, guid: 90bf18e8e036e7843949936f27615a7b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6753757553273065837, guid: 90bf18e8e036e7843949936f27615a7b,
         type: 3}
@@ -36870,22 +36897,29 @@ PrefabInstance:
     - target: {fileID: 6753757553379082273, guid: 90bf18e8e036e7843949936f27615a7b,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6753757553379082273, guid: 90bf18e8e036e7843949936f27615a7b,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6753757553379082273, guid: 90bf18e8e036e7843949936f27615a7b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 375
       objectReference: {fileID: 0}
     - target: {fileID: 6753757553379082273, guid: 90bf18e8e036e7843949936f27615a7b,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -62.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6753757553750998070, guid: 90bf18e8e036e7843949936f27615a7b,
+        type: 3}
+      propertyPath: m_text
+      value: '1
+
+'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90bf18e8e036e7843949936f27615a7b, type: 3}
