@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0136ec1517f16304c9787d6486cb5732, type: 3}
-  m_Name: Speer
+  m_Name: Spear
   m_EditorClassIdentifier: 
   id: 36
   icon: {fileID: 0}
