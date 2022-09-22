@@ -47,17 +47,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 4d87eb5729669b9488ae005651e29ffa,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4d87eb5729669b9488ae005651e29ffa,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4d87eb5729669b9488ae005651e29ffa,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.2
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4d87eb5729669b9488ae005651e29ffa,
         type: 3}
@@ -133,6 +133,19 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 310462664510995956}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &7805259611229937581
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 616876565925445797}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 25.775604, y: 9.591656, z: 16.804504}
+  m_Center: {x: 0.76530457, y: -3.8001823, z: 0.29037476}
 --- !u!114 &7300182180472780340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,20 +169,7 @@ MonoBehaviour:
   objectMaterial: {fileID: 2100000, guid: 4b27e94efd864f6458a9bd776065c51a, type: 2}
   requiredItems:
   - {fileID: 11400000, guid: 55a806842bc47a3408cde1682a0ca221, type: 2}
-  requiredItemAmounts: 0200000002000000
+  requiredItemAmounts: 02000000
   ingredientCheck: 
   bedUI: {fileID: 0}
-  bedTransitionTime: 0
---- !u!65 &7805259611229937581
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 616876565925445797}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 25.775604, y: 9.591656, z: 16.804504}
-  m_Center: {x: 0.76530457, y: -3.8001823, z: 0.29037476}
+  bedTransitionTime: 0.3
