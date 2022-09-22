@@ -8,10 +8,6 @@ public class CraftingSystem : MonoBehaviour
 {
     // Player Inventory
     public Inventory playerInventory;
-    // Distance between Player and Campfire
-    public float distanceToCampfire;
-    // is the player near the campfire
-    public bool nearCampfire;
     // Crafting Slot Prefab
     private GameObject craftingSlotPrefab;
     // Ingredient Slot Prefab
@@ -32,6 +28,17 @@ public class CraftingSystem : MonoBehaviour
     public List<GameObject> craftingSlotObjects = new List<GameObject>();
     // Public access to the Crafting Class
     public static CraftingSystem Instance { get; private set; }
+    
+    [Header("Campfire Settings")]
+    // Distance between Player and Campfire
+    public float distanceToCampfire;
+    // is the player near the campfire
+    public bool nearCampfire;
+    // Player Transform
+    public Transform playerTransform;
+    // Array of Campfires
+    public GameObject[] campfires;
+    
     // Set the Instance
     private void Awake()
     {
@@ -44,6 +51,10 @@ public class CraftingSystem : MonoBehaviour
         craftingSlotPrefab = Resources.Load("CraftingSlot") as GameObject;
         // Get the Ingredient Slot Prefab from the Resources Folder
         ingredientSlotPrefab = Resources.Load("IngredientSlot") as GameObject;
+        // Get the Campfires from the Scene
+        campfires = GameObject.FindGameObjectsWithTag("Campfire");
+        // Get the Player Transform
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         CreateSlots();
         SetIngredients();
     }
@@ -51,6 +62,7 @@ public class CraftingSystem : MonoBehaviour
     private void Update()
     {
         CheckIngredients();
+        CheckPlayerNearCampfire();
     }
     // Create the Crafting Slots on Start (Instantiate the Prefab)
     public void CreateSlots()
@@ -151,6 +163,10 @@ public class CraftingSystem : MonoBehaviour
                         // Set the canCraft bool to false
                         canCraft = false;
                 }
+                
+                if(craftingSlotsList[i].item.needsCampfire && !nearCampfire)
+                    canCraft = false;
+
                 // Set the Crafting Slot to true (craftable) if the player have all the ingredients (if the list of bool (ingredientCheck) is true)
                 ActiveCraftingSlot(recipeObj, canCraft);
             }
@@ -236,21 +252,22 @@ public class CraftingSystem : MonoBehaviour
         }
     }
 
+    // Check if the player is nearby the Campfire. used for cooking in the crafting menu
     private void CheckPlayerNearCampfire()
     {
-        var campfires = GameObject.FindGameObjectsWithTag("Campfire");
-        var player = GameObject.FindGameObjectWithTag("Player");
-
-        foreach (var campfire in campfires)
+        // if there are no Campfires in the scene. set the bool to false
+        if(campfires.Length == 0)
+            nearCampfire = false;
+        else
         {
-            if(Vector3.Distance(player.transform.position, campfire.transform.position) <= distanceToCampfire)
-            {
-                nearCampfire = true;
-            }
-            else
-            {
-                nearCampfire = false;
-            }
+            // Set the bool to false. standard
+            nearCampfire = false;
+            // Loop through all the Campfires in the scene
+            foreach (var check in campfires)
+                // if the player is within the radius of the Campfire
+                if(Vector3.Distance(playerTransform.position, check.transform.position) <= distanceToCampfire)
+                    // Set the bool to true
+                    nearCampfire = true;
         }
     }
 }

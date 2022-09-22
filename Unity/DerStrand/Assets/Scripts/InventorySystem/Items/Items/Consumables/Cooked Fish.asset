@@ -10,12 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6df49e2fecb5ba54da84f452df2f585d, type: 3}
-  m_Name: Meat
+  m_Name: Cooked Fish
   m_EditorClassIdentifier: 
-  id: 0
+  id: 38
   icon: {fileID: 0}
   prefab: {fileID: 0}
   type: 3
   description: 
-  isCraftable: 0
+  isCraftable: 1
+  needsCampfire: 1
+  ingredients:
+  - {fileID: 11400000, guid: 32a908d936e2c0f4fa2bb1b50a51c6c1, type: 2}
+  ingredientAmounts: 01000000
   restoreHealthValue: 0
+  restoreHungerValue: 0
+  restoreThirstValue: 0

@@ -29,6 +29,8 @@ public abstract class Item : ScriptableObject
     public string description;
     // Is it craftable
     public bool isCraftable;
+    // needs Campfire to craft
+    public bool needsCampfire;
     // List of items required to craft this item (if craftable)
     public List<Item> ingredients;
     // How many items are needed to craft
