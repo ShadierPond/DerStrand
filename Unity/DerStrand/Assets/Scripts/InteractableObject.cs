@@ -179,8 +179,8 @@ public class InteractableObject : MonoBehaviour
 
         if (!canBeBuilt)
             return;
-
-        isInteractable = true;
+        if(objectType != ObjectType.None)
+            isInteractable = true;
         isBuilt = true;
         Start();
         for (var i = 0; i < requiredItems.Length; i++)
