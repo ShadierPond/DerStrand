@@ -15,17 +15,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a23c98d52483fc04a9b251f5d30f3bb5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 179.01402
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a23c98d52483fc04a9b251f5d30f3bb5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.816975
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a23c98d52483fc04a9b251f5d30f3bb5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 130.39154
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a23c98d52483fc04a9b251f5d30f3bb5,
         type: 3}
@@ -75,6 +75,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 460850984227828120}
   m_PrefabAsset: {fileID: 0}
+--- !u!136 &1362936960962525863
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 766786587345603785}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2
+  m_Height: 20
+  m_Direction: 1
+  m_Center: {x: -22.73, y: 6, z: 0}
 --- !u!205 &8124370467204274367
 LODGroup:
   m_ObjectHideFlags: 0
@@ -102,20 +116,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 1271369859068554524}
   m_Enabled: 1
---- !u!64 &6789313188182912143
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 766786587345603785}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2846920552774966134, guid: a23c98d52483fc04a9b251f5d30f3bb5, type: 3}
 --- !u!23 &1271369859068554524 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: a23c98d52483fc04a9b251f5d30f3bb5,

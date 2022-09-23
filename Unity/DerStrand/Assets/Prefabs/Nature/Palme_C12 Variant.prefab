@@ -15,17 +15,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 959bfbac27a4cce4e82d3cede55da1db,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 221.02286
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 959bfbac27a4cce4e82d3cede55da1db,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.918149
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 959bfbac27a4cce4e82d3cede55da1db,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 135.55383
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 959bfbac27a4cce4e82d3cede55da1db,
         type: 3}
@@ -75,6 +75,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 7644892563255440960}
   m_PrefabAsset: {fileID: 0}
+--- !u!136 &7429938964630287956
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7411082865763453713}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 2.27
+  m_Height: 20
+  m_Direction: 1
+  m_Center: {x: -2.63, y: 6, z: 0}
 --- !u!205 &-5922111112454578180
 LODGroup:
   m_ObjectHideFlags: 0
@@ -102,20 +116,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 9068429863165045444}
   m_Enabled: 1
---- !u!64 &4898613711138306646
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7411082865763453713}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2846920552774966134, guid: 959bfbac27a4cce4e82d3cede55da1db, type: 3}
 --- !u!23 &9068429863165045444 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 959bfbac27a4cce4e82d3cede55da1db,
