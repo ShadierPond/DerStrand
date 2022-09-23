@@ -93,6 +93,7 @@ public class PlayerProperties : MonoBehaviour
         {
             //TODO:Death Event 
             Debug.Log("You are Dead");
+            GameManager.Instance.GameOver();
             health = 0;
         }
     }
@@ -225,6 +226,11 @@ public class PlayerProperties : MonoBehaviour
     private void DecreaseHealth()
     {
         health -= healthDecrease;
+        if(health <= 0)
+        {
+            health = 0;
+            GameManager.Instance.GameOver();
+        }
     }
     //---Decrease-END---
     //---UI-Integration---

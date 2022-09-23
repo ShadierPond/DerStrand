@@ -110,4 +110,9 @@ public class GameManager : MonoBehaviour
         //Time.timeScale = pause ? 0 : 1;
         isPaused = pause;
     }
+    
+    public void GameOver()
+    {
+        LoadScene("GameOver");
+    }
 }
