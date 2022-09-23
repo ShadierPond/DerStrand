@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using DG.Tweening;
+using Random = UnityEngine.Random;
 
 public class InteractableObject : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class InteractableObject : MonoBehaviour
         Water,
         Bed,
         CampFire,
+        Trap,
     }
     [SerializeField] private ObjectType objectType;
     [SerializeField] private bool isInteractable;
@@ -40,9 +43,28 @@ public class InteractableObject : MonoBehaviour
     [SerializeField] private GameObject campfireUI;
     [SerializeField] private float campfireTransitionTime;
     
+    [Header("Trap")]
+    [SerializeField] private bool trapWorksWhenPlayerLooksAtIt;
+    [SerializeField] private bool isTrapSet;
+    [SerializeField] private bool isTrapTriggered;
+    [SerializeField] private float trapRandomTimeLimit;
+    [SerializeField] private float trapSetAngle; 
+    [SerializeField] private Item[] resetTrapIngredients;
+    [SerializeField] private int[] resetTrapIngredientAmounts;
+    [SerializeField] private bool[] resetTrapIngredientCheck;
+    private float timer;
+    private float randomTime;
+    private bool PlayerLookingAtTrap(Camera cam, GameObject target)
+    {
+        return GeometryUtility.CalculateFrustumPlanes(cam).All(plane => !(plane.GetDistanceToPoint(target.transform.position) < 0));
+    }
 
+    
     private void Start()
     {
+        if(objectType == ObjectType.Trap)
+            randomTime = Random.Range(0, trapRandomTimeLimit);
+        
         if (!isBuildable) 
             return;
         
@@ -80,6 +102,10 @@ public class InteractableObject : MonoBehaviour
                 case ObjectType.CampFire:
                     Debug.Log("Campfire used");
                     StartCoroutine(ObjectAnimationTransition(campfireUI, campfireTransitionTime));
+                    break;
+                case ObjectType.Trap:
+                    Debug.Log("Trap used");
+                    CheckTrap();
                     break;
             }
         }
@@ -161,7 +187,82 @@ public class InteractableObject : MonoBehaviour
             playerInventory.RemoveItem(requiredItems[i], requiredItemAmounts[i]);
 
     }
-    
+
+    private void CheckTrap()
+    {
+        if (isTrapSet && isTrapTriggered)
+        {
+            isBuildable = true;
+            Start();
+            isTrapSet = false;
+            isTrapTriggered = false;
+            randomTime = Random.Range(0, trapRandomTimeLimit);
+            Debug.Log("Trap reset");
+            foreach (var item in Player.Instance.inventory.database.items)
+            {
+                if (item.name != "Raw Meat")
+                    continue;
+                Player.Instance.inventory.AddItem(item, 1);
+                break;
+            }
+        }
+        else if(!isTrapSet && !isTrapTriggered)
+        {
+            var playerInventory = Player.Instance.inventory;
+            resetTrapIngredientCheck = new bool[resetTrapIngredients.Length];
+            
+            for (var i = 0; i < resetTrapIngredients.Length; i++)
+                foreach (var item in playerInventory.items)
+                {
+                    if (item.item != resetTrapIngredients[i])
+                        continue;
+                
+                    if (item.amount >= resetTrapIngredientAmounts[i])
+                        resetTrapIngredientCheck[i] = true;
+                    else 
+                        resetTrapIngredientCheck[i] = false;
+                }
+            bool canBeReset;
+            if (resetTrapIngredientCheck.Length == 0)
+                canBeReset = false;
+            else 
+            {
+                canBeReset = true;
+                foreach (var check in resetTrapIngredientCheck)
+                    if (!check)
+                        canBeReset = false;
+            }
+
+            if (!canBeReset)
+                return;
+            isTrapSet = true;
+            gameObject.transform.Rotate(0, 0, trapSetAngle);
+            for (var i = 0; i < resetTrapIngredients.Length; i++)
+                playerInventory.RemoveItem(resetTrapIngredients[i], resetTrapIngredientAmounts[i]);
+            var renderers = gameObject.GetComponentsInChildren<MeshRenderer>();
+            foreach (var meshRenderer in renderers)
+                meshRenderer.material = objectMaterial;
+        }
+    }
+
+    private void Update()
+    {
+        if (objectType != ObjectType.Trap)
+            return;
+        if(!isTrapSet)
+            return;
+        if (PlayerLookingAtTrap(Camera.main, gameObject) && !trapWorksWhenPlayerLooksAtIt)
+            return;
+        timer += Time.deltaTime;
+        if (isTrapSet && !isTrapTriggered && timer >= randomTime)
+        {
+            Debug.Log("Trap triggered");
+            isTrapTriggered = true;
+            gameObject.transform.Rotate(0, 0, -trapSetAngle);
+            timer = 0;
+        }
+    }
+
     private void LockMouse(bool state)
     {
         Cursor.lockState = state ? CursorLockMode.Locked : CursorLockMode.None;
