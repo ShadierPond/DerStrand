@@ -26,7 +26,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5002524391662292147}
   m_Father: {fileID: 0}
@@ -43,6 +43,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2f66921a45c099a429627de9f6f085d1,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2f66921a45c099a429627de9f6f085d1,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2f66921a45c099a429627de9f6f085d1,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2f66921a45c099a429627de9f6f085d1,
         type: 3}
@@ -94,6 +109,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 2f66921a45c099a429627de9f6f085d1,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2f66921a45c099a429627de9f6f085d1,
         type: 3}
       propertyPath: m_Name
@@ -107,3 +127,48 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4820593311456652120}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5631568551424972297 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2f66921a45c099a429627de9f6f085d1,
+    type: 3}
+  m_PrefabInstance: {fileID: 4820593311456652120}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7382207078723170344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5631568551424972297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475c474cbb345714a93e39d4823dca4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectType: 5
+  isInteractable: 0
+  isLocked: 0
+  isOpen: 0
+  isBuildable: 1
+  chestUI: {fileID: 0}
+  chestTransitionTime: 0
+  isBuilt: 0
+  objectMaterial: {fileID: 2100000, guid: 8ded478128f9eeb4bb3746468f561494, type: 2}
+  requiredItems:
+  - {fileID: 11400000, guid: 7d097f5fc7afc6d4f8a9c41f9ea44241, type: 2}
+  - {fileID: 11400000, guid: f5247c3ef0c82f743b708e4622e1e0af, type: 2}
+  requiredItemAmounts: 0200000005000000
+  ingredientCheck: 
+  bedUI: {fileID: 0}
+  bedTransitionTime: 0
+  campfireUI: {fileID: 0}
+  campfireTransitionTime: 0
+  trapWorksWhenPlayerLooksAtIt: 1
+  isTrapSet: 1
+  isTrapTriggered: 0
+  trapRandomTimeLimit: 10
+  trapSetAngle: 45
+  resetTrapIngredients:
+  - {fileID: 11400000, guid: f5247c3ef0c82f743b708e4622e1e0af, type: 2}
+  resetTrapIngredientAmounts: 01000000
+  resetTrapIngredientCheck: 
