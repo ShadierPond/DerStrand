@@ -3,7 +3,12 @@ guid: 31eabd80ea5dba84cb814c8ed65d63cb
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WasserFalle
+    second: {fileID: 2100000, guid: 4569fcc12b39dc14a8ac9bf744e6c470, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
