@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Weaponcontroller : MonoBehaviour
 {
-    [SerializeField] GameObject Spear;      // insertable objekt ( in this case spear )
+    [SerializeField] GameObject Weapon;      // insertable objekt ( axe, spear, etc )
     bool CanAttack = true;                  // Bool, can attack
     [SerializeField] float AttackCooldown = 1f;       // time between attack, 
 
@@ -22,7 +22,7 @@ public class Weaponcontroller : MonoBehaviour
     public void CCAttack()                              // melee attack ( Closecombatattack)
     {
         CanAttack = false;
-        Animator anim = Spear.GetComponent<Animator>(); // animation for spearattack
+        Animator anim = Weapon.GetComponent<Animator>(); // animation for spearattack
         anim.SetTrigger("Attack");
         StartCoroutine(RestAttackCooldown());           // starting attackcooldown
     }
