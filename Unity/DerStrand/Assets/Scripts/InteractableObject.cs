@@ -282,7 +282,7 @@ public class InteractableObject : MonoBehaviour
     {
         if(GameManager.Instance.isPaused)
             return;
-        if (objectType == ObjectType.Trap)
+        if (objectType == ObjectType.Trap && isBuilt)
         {
             if(!isTrapSet)
                 return;

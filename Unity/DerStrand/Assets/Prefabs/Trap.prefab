@@ -60,17 +60,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectType: 5
-  isInteractable: 1
+  isInteractable: 0
   isLocked: 0
   isOpen: 0
-  isBuildable: 0
+  isBuildable: 1
   chestUI: {fileID: 0}
   chestTransitionTime: 0
   isBuilt: 0
   objectMaterial: {fileID: -3731745882169131363, guid: 0a48545c791639141aa0dc13dbd855c3,
     type: 3}
-  requiredItems: []
-  requiredItemAmounts: 
+  requiredItems:
+  - {fileID: 11400000, guid: f5247c3ef0c82f743b708e4622e1e0af, type: 2}
+  requiredItemAmounts: 01000000
   ingredientCheck: 
   bedUI: {fileID: 0}
   bedTransitionTime: 0
@@ -85,6 +86,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f5247c3ef0c82f743b708e4622e1e0af, type: 2}
   resetTrapIngredientAmounts: 01000000
   resetTrapIngredientCheck: 
+  bushWorksWhenPlayerLooksAtIt: 0
+  isBushPickable: 0
+  isBushPicked: 0
+  bushRandomTimeLimit: 0
 --- !u!1 &1350874820949507596
 GameObject:
   m_ObjectHideFlags: 0
