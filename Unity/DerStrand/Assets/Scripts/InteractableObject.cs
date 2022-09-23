@@ -16,6 +16,7 @@ public class InteractableObject : MonoBehaviour
         Bed,
         CampFire,
         Trap,
+        BushBerry,
     }
     [SerializeField] private ObjectType objectType;
     [SerializeField] private bool isInteractable;
@@ -52,8 +53,17 @@ public class InteractableObject : MonoBehaviour
     [SerializeField] private Item[] resetTrapIngredients;
     [SerializeField] private int[] resetTrapIngredientAmounts;
     [SerializeField] private bool[] resetTrapIngredientCheck;
-    private float timer;
-    private float randomTime;
+    private float trapTimer;
+    private float randomTrapTime;
+    
+    [Header("Bush")]
+    [SerializeField] private bool bushWorksWhenPlayerLooksAtIt;
+    [SerializeField] private bool isBushPickable;
+    [SerializeField] private bool isBushPicked;
+    [SerializeField] private float bushRandomTimeLimit;
+    private float bushTimer;
+    private float randomBushTime;
+    
     private bool PlayerLookingAtTrap(Camera cam, GameObject target)
     {
         return GeometryUtility.CalculateFrustumPlanes(cam).All(plane => !(plane.GetDistanceToPoint(target.transform.position) < 0));
@@ -63,7 +73,9 @@ public class InteractableObject : MonoBehaviour
     private void Start()
     {
         if(objectType == ObjectType.Trap)
-            randomTime = Random.Range(0, trapRandomTimeLimit);
+            randomTrapTime = Random.Range(0, trapRandomTimeLimit);
+        if(objectType == ObjectType.BushBerry)
+            randomBushTime = Random.Range(0, bushRandomTimeLimit);
         
         if (!isBuildable) 
             return;
@@ -106,6 +118,10 @@ public class InteractableObject : MonoBehaviour
                 case ObjectType.Trap:
                     Debug.Log("Trap used");
                     CheckTrap();
+                    break;
+                case ObjectType.BushBerry:
+                    Debug.Log("Bush used");
+                    CheckBerry();
                     break;
             }
         }
@@ -196,7 +212,7 @@ public class InteractableObject : MonoBehaviour
             Start();
             isTrapSet = false;
             isTrapTriggered = false;
-            randomTime = Random.Range(0, trapRandomTimeLimit);
+            randomTrapTime = Random.Range(0, trapRandomTimeLimit);
             Debug.Log("Trap reset");
             foreach (var item in Player.Instance.inventory.database.items)
             {
@@ -244,22 +260,57 @@ public class InteractableObject : MonoBehaviour
                 meshRenderer.material = objectMaterial;
         }
     }
+    
+    private void CheckBerry()
+    {
+        if(!isBushPicked && isBushPickable)
+        {
+            var playerInventory = Player.Instance.inventory;
+            randomBushTime = Random.Range(0, bushRandomTimeLimit);
+            foreach (var item in playerInventory.database.items)
+            {
+                if(item.name != "Berries")
+                    continue;
+                playerInventory.AddItem(item, 1);
+                isBushPicked = true;
+                Debug.Log("Berries picked");
+            }
+        }
+    }
 
     private void Update()
     {
-        if (objectType != ObjectType.Trap)
+        if(GameManager.Instance.isPaused)
             return;
-        if(!isTrapSet)
-            return;
-        if (PlayerLookingAtTrap(Camera.main, gameObject) && !trapWorksWhenPlayerLooksAtIt)
-            return;
-        timer += Time.deltaTime;
-        if (isTrapSet && !isTrapTriggered && timer >= randomTime)
+        if (objectType == ObjectType.Trap)
         {
-            Debug.Log("Trap triggered");
-            isTrapTriggered = true;
-            gameObject.transform.Rotate(0, 0, -trapSetAngle);
-            timer = 0;
+            if(!isTrapSet)
+                return;
+            if (PlayerLookingAtTrap(Camera.main, gameObject) && !trapWorksWhenPlayerLooksAtIt)
+                return;
+            trapTimer += Time.deltaTime;
+            if (isTrapSet && !isTrapTriggered && trapTimer >= randomTrapTime)
+            {
+                Debug.Log("Trap triggered");
+                isTrapTriggered = true;
+                gameObject.transform.Rotate(0, 0, -trapSetAngle);
+                trapTimer = 0;
+            }
+        }
+
+        if (objectType == ObjectType.BushBerry)
+        {
+            if(!isBushPicked)
+                return;
+            if (PlayerLookingAtTrap(Camera.main, gameObject) && !bushWorksWhenPlayerLooksAtIt)
+                return;
+            bushTimer += Time.deltaTime;
+            if (bushTimer >= randomBushTime)
+            {
+                Debug.Log("Bush berry respawned");
+                isBushPicked = false;
+                bushTimer = 0;
+            }
         }
     }
 
