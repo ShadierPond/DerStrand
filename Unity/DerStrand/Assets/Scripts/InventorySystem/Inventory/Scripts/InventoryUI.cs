@@ -23,6 +23,9 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private bool isEquipmentInventory;
     [SerializeField] private int activeSlot;
     [SerializeField] private Item activeItem;
+    
+    [Header("ToolTip settings")]
+    [SerializeField] private GameObject itemTooltip;
 
     // the list of slots in the inventory UI
     private Dictionary<GameObject, InventorySlot> items = new Dictionary<GameObject, InventorySlot>();
@@ -140,12 +143,20 @@ public class InventoryUI : MonoBehaviour
                 // if the slot is not empty, get the item
                 if (items.ContainsKey(obj))
                     MouseData.hoverSlot = items[obj];
+                if (MouseData.hoverSlot.item != null)
+                {
+                    itemTooltip.SetActive(true);
+                    itemTooltip.transform.GetChild(0).GetComponent<TMP_Text>().text = items[obj].item.name;
+                    itemTooltip.transform.GetChild(2).GetComponent<TMP_Text>().text = items[obj].item.description;
+                }
+
                 break;
             // When the mouse exits the slot
             case "OnExit":
                 // Set Mouse Data Variables to null
                 MouseData.slotHoveredOver = null;
                 MouseData.hoverSlot = null;
+                itemTooltip.SetActive(false);
                 break;
             // When the mouse enters the inventory panel
             case "OnEnterInterface":

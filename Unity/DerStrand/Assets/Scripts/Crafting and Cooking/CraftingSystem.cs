@@ -33,11 +33,11 @@ public class CraftingSystem : MonoBehaviour
     // Distance between Player and Campfire
     public float distanceToCampfire;
     // is the player near the campfire
-    public bool nearCampfire;
+    private bool nearCampfire;
     // Player Transform
-    public Transform playerTransform;
+    private Transform playerTransform;
     // Array of Campfires
-    public GameObject[] campfires;
+    private GameObject[] campfires;
     
     // Set the Instance
     private void Awake()
@@ -65,7 +65,7 @@ public class CraftingSystem : MonoBehaviour
         CheckPlayerNearCampfire();
     }
     // Create the Crafting Slots on Start (Instantiate the Prefab)
-    public void CreateSlots()
+    private void CreateSlots()
     {
         // Loop through all the items in the Database
         foreach (var item in playerInventory.database.items)
@@ -88,10 +88,14 @@ public class CraftingSystem : MonoBehaviour
             recipeObj.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = playerInventory.database.getItem[recipe.item.id].name;
             // Set the Crafting Slot to false (not craftable). Default
             ActiveCraftingSlot(recipeObj, false);
+            if(recipe.item.needsCampfire)
+                recipeObj.transform.GetChild(3).gameObject.SetActive(true);
+            else
+                recipeObj.transform.GetChild(3).gameObject.SetActive(false);
         }
     }
     // Set the Ingredients for each Crafting Slot
-    public void SetIngredients()
+    private void SetIngredients()
     {
         // Loop through all the items in the Crafting Slots List
         for (int i = 0; i < craftingSlotsList.Count; i++)
@@ -113,7 +117,7 @@ public class CraftingSystem : MonoBehaviour
     }
     
     // Check if the player have the required ingredients to craft the item
-    public void CheckIngredients()
+    private void CheckIngredients()
     {
         // Loop through all the items in the Crafting Slots List
         for (int i = 0; i < craftingSlotsList.Count; i++)
@@ -173,7 +177,7 @@ public class CraftingSystem : MonoBehaviour
         }
     }
     // Set the Crafting Slot to craftable or not craftable
-    public void ActiveCraftingSlot(GameObject recipe, bool state)
+    private void ActiveCraftingSlot(GameObject recipe, bool state)
     {
         // Get the List of Images of the Ingredients in the Crafting Slot
         var objIngredientsImage = recipe.transform.GetChild(2).GetComponentsInChildren<Image>();

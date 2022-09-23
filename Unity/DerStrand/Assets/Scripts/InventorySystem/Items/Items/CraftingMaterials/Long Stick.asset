@@ -16,7 +16,8 @@ MonoBehaviour:
   icon: {fileID: 0}
   prefab: {fileID: 0}
   type: 0
-  description: 
+  description: Test 2
   isCraftable: 0
+  needsCampfire: 0
   ingredients: []
   ingredientAmounts: 

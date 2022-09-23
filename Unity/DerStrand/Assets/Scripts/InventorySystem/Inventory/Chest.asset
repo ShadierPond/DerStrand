@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - parent: {fileID: 0}
-    item: {fileID: 0}
+    item: {fileID: 11400000, guid: a97ffe12051f2f24e8cbbb54909c0c31, type: 2}
     amount: 0
   - parent: {fileID: 0}
     item: {fileID: 0}
