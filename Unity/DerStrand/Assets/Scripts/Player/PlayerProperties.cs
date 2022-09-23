@@ -91,7 +91,6 @@ public class PlayerProperties : MonoBehaviour
         }
         else if(health <= 0)
         {
-            //TODO:Death Event 
             Debug.Log("You are Dead");
             GameManager.Instance.GameOver();
             health = 0;
