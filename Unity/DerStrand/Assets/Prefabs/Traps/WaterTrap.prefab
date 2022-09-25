@@ -166,6 +166,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f5247c3ef0c82f743b708e4622e1e0af, type: 2}
   resetTrapIngredientAmounts: 01000000
   resetTrapIngredientCheck: 
+  bushWorksWhenPlayerLooksAtIt: 0
+  isBushPickable: 0
+  isBushPicked: 0
+  bushRandomTimeLimit: 0
 --- !u!4 &8056487261927477120 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 31eabd80ea5dba84cb814c8ed65d63cb,
