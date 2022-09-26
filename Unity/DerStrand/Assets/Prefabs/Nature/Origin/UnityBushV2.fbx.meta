@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: b72a2a81d7c7ec4448fc4c386c4a23cc
+guid: cb748dc41f48f9b42adec32871074b5d
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Buschmann
+    second: {fileID: 2100000, guid: 67566b21f44d7804bb906bd5fff081be, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
