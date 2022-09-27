@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731673, g: 0.13414593, b: 0.121078804, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731695, g: 0.13414617, b: 0.12107901, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2247,7 +2247,7 @@ MonoBehaviour:
   timeOfDay: 6
   timeOfDayString: 06:00
   day: 14
-  dayLength: 2
+  dayLength: 1
   timeText: {fileID: 0}
   dayText: {fileID: 0}
   saveData:
