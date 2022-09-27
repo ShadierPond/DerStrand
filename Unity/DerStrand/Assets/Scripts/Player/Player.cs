@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float walkBobbingAmount;
     [SerializeField] private float sprintBobbingSpeed;
     [SerializeField] private float sprintBobbingAmount;
+    [SerializeField] private AudioClip footsteps;
     private float defaultY;
     private float timer;
     
@@ -194,6 +195,10 @@ public class Player : MonoBehaviour
         {
             timer = 0;
             camera.transform.localPosition = new Vector3(camera.transform.localPosition.x, defaultY, camera.transform.localPosition.z);
+        }
+        if(Mathf.Sin(timer)==-1)
+        {
+            gameObject.GetComponent<AudioSource>().Play();
         }
     }
     
