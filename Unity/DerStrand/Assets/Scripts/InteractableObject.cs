@@ -25,46 +25,50 @@ public class InteractableObject : MonoBehaviour
     [SerializeField] private bool isBuildable;
     
     [Header("Chest")]
-    [SerializeField] private GameObject chestUI;
-    [SerializeField] private float chestTransitionTime;
+        [SerializeField] private GameObject chestUI;
+        [SerializeField] private float chestTransitionTime;
     
     [Header("Build")]
-    [Rename("Is Built? (Debug)"), SerializeField] private bool isBuilt;
-    [SerializeField] private Material objectMaterial;
-    private Material buildMaterial;
-    [SerializeField] private Item[] requiredItems;
-    [SerializeField] private int[] requiredItemAmounts;
-    [SerializeField] private bool[] ingredientCheck;
+        [Rename("Is Built? (Debug)"), SerializeField] private bool isBuilt;
+        [SerializeField] private Material objectMaterial;
+        private Material buildMaterial;
+        [SerializeField] private Item[] requiredItems;
+        [SerializeField] private int[] requiredItemAmounts;
+        [SerializeField] private bool[] ingredientCheck;
     
     [Header("Bed")]
-    [SerializeField] private GameObject bedUI;
-    [SerializeField] private float bedTransitionTime;
+        [SerializeField] private GameObject bedUI;
+        [SerializeField] private float bedTransitionTime;
     
     [Header("Campfire")]
-    [SerializeField] private GameObject campfireUI;
-    [SerializeField] private float campfireTransitionTime;
+        [SerializeField] private GameObject campfireUI;
+        [SerializeField] private float campfireTransitionTime;
     
+    [Header("Give Item")]
+        [SerializeField] private Item[] itemGiven;
+        [SerializeField] private int[] itemGivenAmount;
+        
     [Header("Trap")]
-    [SerializeField] private Item[] itemGiven;
-    [SerializeField] private int[] itemGivenAmount;
-    [SerializeField] private bool trapWorksWhenPlayerLooksAtIt;
-    [SerializeField] private bool isTrapSet;
-    [SerializeField] private bool isTrapTriggered;
-    [SerializeField] private float trapRandomTimeLimit;
-    [SerializeField] private float trapSetAngle; 
-    [SerializeField] private Item[] resetTrapIngredients;
-    [SerializeField] private int[] resetTrapIngredientAmounts;
-    [SerializeField] private bool[] resetTrapIngredientCheck;
-    private float trapTimer;
-    private float randomTrapTime;
+        [SerializeField] private bool trapWorksWhenPlayerLooksAtIt;
+        [SerializeField] private bool isTrapSet;
+        [SerializeField] private bool isTrapTriggered;
+        [SerializeField] private float trapRandomTimeLimit;
+        [SerializeField] private float trapSetAngle; 
+        [SerializeField] private Item[] resetTrapIngredients;
+        [SerializeField] private int[] resetTrapIngredientAmounts;
+        [SerializeField] private bool[] resetTrapIngredientCheck;
+        private float trapTimer;
+        private float randomTrapTime;
     
     [Header("Bush")]
-    [SerializeField] private bool bushWorksWhenPlayerLooksAtIt;
-    [SerializeField] private bool isBushPickable;
-    [SerializeField] private bool isBushPicked;
-    [SerializeField] private float bushRandomTimeLimit;
-    private float bushTimer;
-    private float randomBushTime;
+        [SerializeField] private bool bushWorksWhenPlayerLooksAtIt;
+        [SerializeField] private bool isBushPickable;
+        [SerializeField] private bool isBushPicked;
+        [SerializeField] private float bushRandomTimeLimit;
+        [SerializeField] private Material fullBushMaterial;
+        [SerializeField] private Material pickedBushMaterial;
+        private float bushTimer;
+        private float randomBushTime;
     
     private bool PlayerLookingAtTrap(Camera cam, GameObject target)
     {
@@ -216,15 +220,9 @@ public class InteractableObject : MonoBehaviour
             isTrapTriggered = false;
             randomTrapTime = Random.Range(0, trapRandomTimeLimit);
             Debug.Log("Trap reset");
-            foreach (var item in Player.Instance.inventory.database.items)
+            for (int i = 0; i < itemGiven.Length; i++)
             {
-                if (item.name != "Raw Meat")
-                    continue;
-                for (int i = 0; i < itemGiven.Length; i++)
-                {
-                    Player.Instance.inventory.AddItem(itemGiven[i], itemGivenAmount[i]);
-                }
-                break;
+                Player.Instance.inventory.AddItem(itemGiven[i], itemGivenAmount[i]);
             }
         }
         else if(!isTrapSet && !isTrapTriggered)
@@ -272,14 +270,11 @@ public class InteractableObject : MonoBehaviour
         {
             var playerInventory = Player.Instance.inventory;
             randomBushTime = Random.Range(0, bushRandomTimeLimit);
-            foreach (var item in playerInventory.database.items)
+            for (int i = 0; i < itemGiven.Length; i++)
             {
-                if(item.name != "Berries")
-                    continue;
-                playerInventory.AddItem(item, 1);
-                isBushPicked = true;
-                Debug.Log("Berries picked");
+                playerInventory.AddItem(itemGiven[i], itemGivenAmount[i]);
             }
+            gameObject.GetComponentInChildren<MeshRenderer>().material = pickedBushMaterial;
         }
     }
 
@@ -313,6 +308,7 @@ public class InteractableObject : MonoBehaviour
             if (bushTimer >= randomBushTime)
             {
                 Debug.Log("Bush berry respawned");
+                gameObject.GetComponentInChildren<MeshRenderer>().material = fullBushMaterial;
                 isBushPicked = false;
                 bushTimer = 0;
             }

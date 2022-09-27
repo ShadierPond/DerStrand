@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8686118732330771921}
   m_Layer: 0
-  m_Name: BerryBush
+  m_Name: BuildableBerryBush
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -127,6 +127,20 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6661824404709146376}
   m_PrefabAsset: {fileID: 0}
+--- !u!64 &4409764222701941242
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5814964957660987993}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -417555421722360780, guid: cb748dc41f48f9b42adec32871074b5d, type: 3}
 --- !u!114 &815411355577686797
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,16 +154,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectType: 6
-  isInteractable: 1
+  isInteractable: 0
   isLocked: 0
   isOpen: 0
-  isBuildable: 0
+  isBuildable: 1
   chestUI: {fileID: 0}
   chestTransitionTime: 0
   isBuilt: 0
   objectMaterial: {fileID: 0}
-  requiredItems: []
-  requiredItemAmounts: 
+  requiredItems:
+  - {fileID: 11400000, guid: 7885591a755b8ef4cbf4f1b407be570e, type: 2}
+  requiredItemAmounts: 05000000
   ingredientCheck: 
   bedUI: {fileID: 0}
   bedTransitionTime: 0
@@ -165,26 +180,12 @@ MonoBehaviour:
   resetTrapIngredients: []
   resetTrapIngredientAmounts: 
   resetTrapIngredientCheck: 
-  bushWorksWhenPlayerLooksAtIt: 1
+  bushWorksWhenPlayerLooksAtIt: 0
   isBushPickable: 1
   isBushPicked: 0
-  bushRandomTimeLimit: 10
+  bushRandomTimeLimit: 3600
   fullBushMaterial: {fileID: 2100000, guid: 67566b21f44d7804bb906bd5fff081be, type: 2}
   pickedBushMaterial: {fileID: 2100000, guid: d2ce3695fd31d644d8578472412839fa, type: 2}
---- !u!64 &4409764222701941242
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5814964957660987993}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -417555421722360780, guid: cb748dc41f48f9b42adec32871074b5d, type: 3}
 --- !u!4 &6627389338542545123 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cb748dc41f48f9b42adec32871074b5d,
