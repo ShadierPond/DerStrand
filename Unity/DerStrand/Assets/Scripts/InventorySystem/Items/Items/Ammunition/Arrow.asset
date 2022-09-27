@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Arrow
   m_EditorClassIdentifier: 
   id: 0
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 5e54122e3defd524f94fbb8986fa8a0c, type: 3}
   prefab: {fileID: 5216322058706333825, guid: f31d19dda8d76d04f83cd81111af6985, type: 3}
   type: 0
   description: 
   isCraftable: 1
+  needsCampfire: 0
   ingredients:
   - {fileID: 11400000, guid: f5247c3ef0c82f743b708e4622e1e0af, type: 2}
   - {fileID: 11400000, guid: 5ee72a3c7e6047042b328cd2a2a84fb0, type: 2}

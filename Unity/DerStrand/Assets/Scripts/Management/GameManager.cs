@@ -28,8 +28,8 @@ public class GameManager : MonoBehaviour
     {
         foreach (var item in itemDatabase.items)
         {
-            var prefab = Resources.Load("Items/Prefabs/" + item.name) as GameObject;
-            var icon = Resources.Load("Items/Icons/" + item.name) as Sprite;
+            var prefab = Resources.Load<GameObject>("Items/Prefabs/" + item.name);
+            var icon = Resources.Load<Sprite>("Items/Icons/" + item.name);
             if(prefab)
                 item.prefab = prefab;
             else
