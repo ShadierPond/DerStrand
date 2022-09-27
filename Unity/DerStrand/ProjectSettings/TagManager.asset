@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Campfire
+  - tree
   layers:
   - Default
   - TransparentFX
