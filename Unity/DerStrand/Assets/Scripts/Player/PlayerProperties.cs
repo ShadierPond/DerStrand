@@ -65,7 +65,7 @@ public class PlayerProperties : MonoBehaviour
         staminaBarImage = staminaBar.GetComponent<Image>();         
         hungerBarImage = hungerBar.GetComponent<Image>();           
         thirstBarImage = thirstBar.GetComponent<Image>();           
-        wearyTimeBarImage = wearyTimeBar.GetComponent<Image>();     
+        wearyTimeBarImage = wearyTimeBar.GetComponent<Image>();
         //Start Properties
         StartCoroutine(DecreaseThirst());                     //start the decrease from thirst
         StartCoroutine(DecreaseHunger());                     //start the decrease from hunger
