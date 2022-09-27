@@ -45,6 +45,8 @@ public class InteractableObject : MonoBehaviour
     [SerializeField] private float campfireTransitionTime;
     
     [Header("Trap")]
+    [SerializeField] private Item[] itemGiven;
+    [SerializeField] private int[] itemGivenAmount;
     [SerializeField] private bool trapWorksWhenPlayerLooksAtIt;
     [SerializeField] private bool isTrapSet;
     [SerializeField] private bool isTrapTriggered;
@@ -218,7 +220,10 @@ public class InteractableObject : MonoBehaviour
             {
                 if (item.name != "Raw Meat")
                     continue;
-                Player.Instance.inventory.AddItem(item, 1);
+                for (int i = 0; i < itemGiven.Length; i++)
+                {
+                    Player.Instance.inventory.AddItem(itemGiven[i], itemGivenAmount[i]);
+                }
                 break;
             }
         }

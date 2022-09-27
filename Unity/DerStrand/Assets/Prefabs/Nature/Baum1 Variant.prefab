@@ -62,10 +62,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4960804549614527947, guid: 75222007c9ab7274eb54e29559d59d4b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -1565813630540763, guid: 75222007c9ab7274eb54e29559d59d4b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 75222007c9ab7274eb54e29559d59d4b,
         type: 3}
       propertyPath: m_Name
       value: Baum1 Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2049756631809401287, guid: 75222007c9ab7274eb54e29559d59d4b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607073513563696008, guid: 75222007c9ab7274eb54e29559d59d4b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7726193017156653719, guid: 75222007c9ab7274eb54e29559d59d4b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771763329048475681, guid: 75222007c9ab7274eb54e29559d59d4b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8428014272380628231, guid: 75222007c9ab7274eb54e29559d59d4b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75222007c9ab7274eb54e29559d59d4b, type: 3}
@@ -141,7 +176,7 @@ LODGroup:
     - renderer: {fileID: 5801864661465557464}
     - renderer: {fileID: 2994415182448356791}
     - renderer: {fileID: 1858435827611602879}
-  - screenRelativeHeight: 0.009133575
+  - screenRelativeHeight: 0.046307653
     fadeTransitionWidth: 0
     renderers:
     - renderer: {fileID: 4201502440596707632}
