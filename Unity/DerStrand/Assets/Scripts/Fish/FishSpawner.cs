@@ -7,7 +7,6 @@ public class FishSpawner : MonoBehaviour
     [SerializeField] private GameObject fishPrefab;
     [SerializeField] private float spawnTime;
     [SerializeField] private int spawnLimit;
-    [SerializeField] private List<GameObject> fishes;
     private float timer;
     private void Update()
     {
