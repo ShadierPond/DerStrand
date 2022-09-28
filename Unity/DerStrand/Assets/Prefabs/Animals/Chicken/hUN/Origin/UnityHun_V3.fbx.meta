@@ -6,7 +6,27 @@ ModelImporter:
   - first:
       74: 4781951162920444690
     second: Armature|ArmatureAction
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "F\xFC\xDFe"
+    second: {fileID: 2100000, guid: 4282a1bb24d26994187fd90ca332769a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Kamm
+    second: {fileID: 2100000, guid: 2b62fb85fb34ae04fa5fe53bb4bf23ff, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "K\xF6rper"
+    second: {fileID: 2100000, guid: 308d2afce3533204187835341067504b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Schnabel
+    second: {fileID: 2100000, guid: f66d44d69d142e44fb879c5240331afe, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

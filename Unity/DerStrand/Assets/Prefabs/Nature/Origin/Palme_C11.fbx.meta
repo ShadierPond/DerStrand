@@ -3,7 +3,22 @@ guid: a23c98d52483fc04a9b251f5d30f3bb5
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: baum stamm
+    second: {fileID: 2100000, guid: 5e1713d2e3a47034eabf8a8080dff9c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: "bl\xE4tter"
+    second: {fileID: 2100000, guid: 60f78b4a05d27404c8b32d26c52a037e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: kokosnuss
+    second: {fileID: 2100000, guid: 4be83cdcccb8bfb4388284a4a5d7724c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
