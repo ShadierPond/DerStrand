@@ -94,11 +94,14 @@ public class TimeController : MonoBehaviour
         if (currentTime.TimeOfDay > sunriseTime && currentTime.TimeOfDay < sunsetTime)
         {
             TimeSpan sunriseToSunsetDuration = CalculateTimeDifference(sunriseTime, sunsetTime);
+            //calculationg how long from sunrise to sunset
             TimeSpan timeSinceSunrise = CalculateTimeDifference(sunriseTime, currentTime.TimeOfDay);
 
             double percentage = timeSinceSunrise.TotalMinutes / sunriseToSunsetDuration.TotalMinutes;
+            //Use percentage to work out the rotation of the sun
 
             sunLightRotation = Mathf.Lerp(0, 180, (float)percentage);
+            //this set the rotation value to 0 at sunrise and 180 at sunset
         }
         else
         {
@@ -108,20 +111,28 @@ public class TimeController : MonoBehaviour
             double percentage = timeSinceSunset.TotalMinutes / sunsetToSunriseDuration.TotalMinutes;
 
             sunLightRotation = Mathf.Lerp(180, 360, (float)percentage);
+
+            //like the calculation before, this is for the night time.
+            //it just starts at 180 and goes to 360, where the sun will start at 0 again
         }
 
         sunLight.transform.rotation = Quaternion.AngleAxis(sunLightRotation, Vector3.right);
+        // passing vector3.right, to have it rotate around X axis
     }
 
     private void UpdateLightSettings()
     {
         float dotProduct = Vector3.Dot(sunLight.transform.forward, Vector3.down);
+        //give a value between -1 and 1, depending on how similar the two vector directions are
+        // if sun is pointing directly down, then we'll get 1, horizontally = 0, up = -1
         sunLight.intensity = Mathf.Lerp(0, maxSunLightIntensity, lightChangeCurve.Evaluate(dotProduct));
         moonLight.intensity = Mathf.Lerp(maxMoonLightIntensity, 0, lightChangeCurve.Evaluate(dotProduct));
+        // same for the moon, just in the opposite way
         RenderSettings.ambientLight = Color.Lerp(nightAmbientLight, dayAmbientLight, lightChangeCurve.Evaluate(dotProduct));
+        //Use color lerp to transition from nighttime ambient light to daytime
     }
 
-    private TimeSpan CalculateTimeDifference(TimeSpan fromTime, TimeSpan toTime)
+    private TimeSpan CalculateTimeDifference(TimeSpan fromTime, TimeSpan toTime) // From -> To Time Calculation
     {
         TimeSpan difference = toTime - fromTime;
 
@@ -131,5 +142,7 @@ public class TimeController : MonoBehaviour
         }
 
         return difference;
+        //Calculating the difference between times. 
+        //For determing how long a day is.
     }
 }
