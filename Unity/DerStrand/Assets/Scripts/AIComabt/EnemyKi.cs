@@ -37,12 +37,12 @@ public class EnemyKi : MonoBehaviour
     {
 
         if (GameManager.Instance.isPaused)                  // if game is paused, leave update
-
         {
             agent.isStopped = true;         // enemey target paused
             return;
         }
-        else agent.isStopped = false;    // continue targeting
+        else 
+            agent.isStopped = false;    // continue targeting
 
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);     // calculation if player in sightrange
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);   // calculation if player in attackrange
