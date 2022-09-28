@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &6809093824589693983
 Transform:
@@ -61,6 +61,22 @@ MonoBehaviour:
   ingredientCheck: 
   bedUI: {fileID: 0}
   bedTransitionTime: 0
+  itemGiven: []
+  itemGivenAmount: 
+  trapWorksWhenPlayerLooksAtIt: 0
+  isTrapSet: 0
+  isTrapTriggered: 0
+  trapRandomTimeLimit: 0
+  trapSetAngle: 0
+  resetTrapIngredients: []
+  resetTrapIngredientAmounts: 
+  resetTrapIngredientCheck: 
+  bushWorksWhenPlayerLooksAtIt: 0
+  isBushPickable: 0
+  isBushPicked: 0
+  bushRandomTimeLimit: 0
+  fullBushMaterial: {fileID: 0}
+  pickedBushMaterial: {fileID: 0}
 --- !u!65 &1313992511671565623
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -81,6 +97,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6809093824589693983}
     m_Modifications:
+    - target: {fileID: -8996400392358888190, guid: 3c1475a11dfbbaa40ae3df5c47255a71,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3c1475a11dfbbaa40ae3df5c47255a71,
         type: 3}
       propertyPath: m_RootOrder
@@ -146,11 +167,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: UnityKisteV2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3c1475a11dfbbaa40ae3df5c47255a71,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2524306363286846663, guid: 3c1475a11dfbbaa40ae3df5c47255a71,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 38e44aa21af18c746a093a25c57147d3, type: 2}
+    - target: {fileID: 6583704957379555998, guid: 3c1475a11dfbbaa40ae3df5c47255a71,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c1475a11dfbbaa40ae3df5c47255a71, type: 3}
 --- !u!1 &369512904712341697 stripped

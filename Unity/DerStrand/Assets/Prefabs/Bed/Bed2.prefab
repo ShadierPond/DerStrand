@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8589714766488683102
 Transform:
@@ -114,10 +114,140 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7275210123819251534, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -5679702829309426228, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -4676278204995638712, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -4619662449614376606, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -4588673204164086010, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -3619826770681177959, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -2798395448830436492, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -2740286814469998535, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -673690985597449055, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -646221746124421657, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -561839859338776697, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 724907788750526867, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4d87eb5729669b9488ae005651e29ffa,
         type: 3}
       propertyPath: m_Name
       value: BakingBettV5Fin
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1245092705405149407, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1552337501185221692, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 1768739049070637648, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 3448339313205740281, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 4166357337694136323, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5151493281836072432, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5249938421137501730, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5427952469000623406, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5731254749827852583, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5838062834731438140, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6251003171284441297, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 6910692594800066573, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 8889633204829118951, guid: 4d87eb5729669b9488ae005651e29ffa,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4d87eb5729669b9488ae005651e29ffa, type: 3}
@@ -173,3 +303,19 @@ MonoBehaviour:
   ingredientCheck: 
   bedUI: {fileID: 0}
   bedTransitionTime: 0.3
+  itemGiven: []
+  itemGivenAmount: 
+  trapWorksWhenPlayerLooksAtIt: 0
+  isTrapSet: 0
+  isTrapTriggered: 0
+  trapRandomTimeLimit: 0
+  trapSetAngle: 0
+  resetTrapIngredients: []
+  resetTrapIngredientAmounts: 
+  resetTrapIngredientCheck: 
+  bushWorksWhenPlayerLooksAtIt: 0
+  isBushPickable: 0
+  isBushPicked: 0
+  bushRandomTimeLimit: 0
+  fullBushMaterial: {fileID: 0}
+  pickedBushMaterial: {fileID: 0}

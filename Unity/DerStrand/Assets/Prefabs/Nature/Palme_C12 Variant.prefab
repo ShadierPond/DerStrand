@@ -67,6 +67,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Palme_C12 Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 959bfbac27a4cce4e82d3cede55da1db,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 959bfbac27a4cce4e82d3cede55da1db, type: 3}
 --- !u!1 &7411082865763453713 stripped

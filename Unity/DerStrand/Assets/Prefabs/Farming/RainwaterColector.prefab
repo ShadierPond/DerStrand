@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2279812198644907263
 Transform:
@@ -114,10 +114,25 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -8391222552659086748, guid: 65b1618b34592d348ae6b8aaf0b1c72c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: -516098083770646512, guid: 65b1618b34592d348ae6b8aaf0b1c72c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 65b1618b34592d348ae6b8aaf0b1c72c,
         type: 3}
       propertyPath: m_Name
       value: WasserSammler
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 65b1618b34592d348ae6b8aaf0b1c72c,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 65b1618b34592d348ae6b8aaf0b1c72c, type: 3}
