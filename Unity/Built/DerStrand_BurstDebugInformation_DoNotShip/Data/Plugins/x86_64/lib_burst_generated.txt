@@ -115,6 +115,7 @@ Library: lib_burst_generated
 --compilation-defines=ENABLE_TIMELINE
 --compilation-defines=ENABLE_INPUT_SYSTEM
 --compilation-defines=ENABLE_LEGACY_INPUT_MANAGER
+--compilation-defines=UNITY_POST_PROCESSING_STACK_V2
 --compilation-defines=PACKAGE_PHYSICS
 --compilation-defines=PACKAGE_PHYSICS2D
 --compilation-defines=PACKAGE_TILEMAP
@@ -137,10 +138,18 @@ Library: lib_burst_generated
 --compilation-defines=UNITY_INPUT_SYSTEM_ENABLE_PHYSICS
 --compilation-defines=UNITY_INPUT_SYSTEM_ENABLE_PHYSICS2D
 --compilation-defines=UNITY_INPUT_SYSTEM_ENABLE_UI
+--compilation-defines=VISUAL_EFFECT_GRAPH_0_0_1_OR_NEWER
 --compilation-defines=ENABLE_BURST_1_0_0_OR_NEWER
 --compilation-defines=USING_ANIMATION_MODULE
 --compilation-defines=USING_PHYSICS2D_MODULE
 --compilation-defines=TIMELINE_FRAMEACCURATE
+--compilation-defines=UNIVERSAL_1_0_0_OR_NEWER
+--compilation-defines=VFX_HAS_TIMELINE
+--compilation-defines=VFX_HAS_TERRAINMODULE
+--compilation-defines=VFX_HAS_UI
+--compilation-defines=VFX_HAS_PHYSICS
+--compilation-defines=VFX_HAS_AUDIO
+--compilation-defines=VFX_HAS_INPUT_SYSTEM_PACKAGE
 --linker-options=PdbAltPath="DerStrand_Data/Plugins/x86_64"
 --generate-link-xml=Temp\burst.link.xml
 --output=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Plugins\x86_64\lib_burst_generated
@@ -157,9 +166,9 @@ Library: lib_burst_generated
 --root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.Burst.dll
 --root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.TextMeshPro.dll
 --root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.Timeline.dll
+--root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.Services.Core.dll
 --root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.RenderPipeline.Universal.ShaderLibrary.dll
---root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.Services.Core.Environments.dll
 --root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.Services.Core.Internal.dll
 --root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.Services.Core.Analytics.dll
@@ -173,6 +182,10 @@ Library: lib_burst_generated
 --root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.Services.Core.Configuration.dll
 --root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.Universal.Shaders.dll
 --root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+--root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.Postprocessing.Runtime.dll
+--root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.VisualEffectGraph.Runtime.dll
+--root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.Recorder.dll
+--root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.Recorder.Base.dll
 --assembly-folder=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\
 --pdb-search-paths=Temp/ManagedSymbols/
 --method=Unity.Burst.Intrinsics.X86, Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::DoGetCSRTrampoline()--89425a97f3f500fa810ad03f0c382542
@@ -304,6 +317,7 @@ Library: lib_burst_generated
 --compilation-defines=ENABLE_TIMELINE
 --compilation-defines=ENABLE_INPUT_SYSTEM
 --compilation-defines=ENABLE_LEGACY_INPUT_MANAGER
+--compilation-defines=UNITY_POST_PROCESSING_STACK_V2
 --compilation-defines=PACKAGE_PHYSICS
 --compilation-defines=PACKAGE_PHYSICS2D
 --compilation-defines=PACKAGE_TILEMAP
@@ -326,10 +340,18 @@ Library: lib_burst_generated
 --compilation-defines=UNITY_INPUT_SYSTEM_ENABLE_PHYSICS
 --compilation-defines=UNITY_INPUT_SYSTEM_ENABLE_PHYSICS2D
 --compilation-defines=UNITY_INPUT_SYSTEM_ENABLE_UI
+--compilation-defines=VISUAL_EFFECT_GRAPH_0_0_1_OR_NEWER
 --compilation-defines=ENABLE_BURST_1_0_0_OR_NEWER
 --compilation-defines=USING_ANIMATION_MODULE
 --compilation-defines=USING_PHYSICS2D_MODULE
 --compilation-defines=TIMELINE_FRAMEACCURATE
+--compilation-defines=UNIVERSAL_1_0_0_OR_NEWER
+--compilation-defines=VFX_HAS_TIMELINE
+--compilation-defines=VFX_HAS_TERRAINMODULE
+--compilation-defines=VFX_HAS_UI
+--compilation-defines=VFX_HAS_PHYSICS
+--compilation-defines=VFX_HAS_AUDIO
+--compilation-defines=VFX_HAS_INPUT_SYSTEM_PACKAGE
 --linker-options=PdbAltPath="DerStrand_Data/Plugins/x86_64"
 --generate-link-xml=Temp\burst.link.xml
 --output=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Plugins\x86_64\lib_burst_generated
@@ -346,9 +368,9 @@ Library: lib_burst_generated
 --root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.Burst.dll
 --root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.TextMeshPro.dll
 --root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.Timeline.dll
+--root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.Services.Core.dll
 --root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.RenderPipeline.Universal.ShaderLibrary.dll
---root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Assembly-CSharp.dll
 --root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.Services.Core.Environments.dll
 --root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.Services.Core.Internal.dll
 --root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.Services.Core.Analytics.dll
@@ -362,12 +384,16 @@ Library: lib_burst_generated
 --root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.Services.Core.Configuration.dll
 --root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.Universal.Shaders.dll
 --root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll
+--root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.Postprocessing.Runtime.dll
+--root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.VisualEffectGraph.Runtime.dll
+--root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.Recorder.dll
+--root-assembly=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\Unity.Recorder.Base.dll
 --assembly-folder=C:\Users\basmj\Desktop\DerStrand\Unity\DerStrand\Temp\StagingArea\Data\Managed\
 --pdb-search-paths=Temp/ManagedSymbols/
---method=Unity.Burst.Intrinsics.X86, Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::DoGetCSRTrampoline()--89425a97f3f500fa810ad03f0c382542
 --method=Unity.Jobs.IJobForExtensions+ForJobStruct`1[[UnityEngine.Rendering.Universal.ReorderJob`1[[UnityEngine.Rendering.Universal.LightMinMaxZ, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(UnityEngine.Rendering.Universal.ReorderJob`1[[UnityEngine.Rendering.Universal.LightMinMaxZ, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]&, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--e943843acfb78f5f2f3716a6553740d9
 --method=Unity.Burst.BurstCompiler+BurstCompilerHelper, Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::IsBurstEnabled()--8c2be93e18276203cbd918daa2748a10
 --method=Unity.Burst.Intrinsics.X86, Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::DoSetCSRTrampoline(System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--da352d92cabf024fc9986011d52a4537
+--method=Unity.Burst.Intrinsics.X86, Unity.Burst, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::DoGetCSRTrampoline()--89425a97f3f500fa810ad03f0c382542
 --method=Unity.Jobs.IJobForExtensions+ForJobStruct`1[[UnityEngine.Rendering.Universal.SliceCullingJob, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(UnityEngine.Rendering.Universal.SliceCullingJob&, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--1998da082e6413092f0e7bcd5a0e9331
 --method=Unity.Jobs.IJobForExtensions+ForJobStruct`1[[UnityEngine.Rendering.Universal.ZBinningJob, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(UnityEngine.Rendering.Universal.ZBinningJob&, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--77fc393cb521ac129b1392d4eb94d29a
 --method=Unity.Jobs.IJobForExtensions+ForJobStruct`1[[UnityEngine.Rendering.Universal.ReorderJob`1[[UnityEngine.Rendering.VisibleLight, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]], UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null::Execute(UnityEngine.Rendering.Universal.ReorderJob`1[[UnityEngine.Rendering.VisibleLight, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]&, Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|System.IntPtr, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089|Unity.Jobs.LowLevel.Unsafe.JobRanges&, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null|System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089)--b04c75a68edf1d166f6547f2ea0e8928
