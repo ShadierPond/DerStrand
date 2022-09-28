@@ -6,40 +6,58 @@ using UnityEngine;
 public class LightingManager : MonoBehaviour
 {
     [Header("Lighting Settings")]
+    // Sun Light Object in Game Scene
     [SerializeField] private Light directionalLight;
+    // Lighting Preset
     [SerializeField] private LightingPreset preset;
+    // Time in 24 Hour Format (minutes in Commas)
     [SerializeField, Range(0, 24)] private float timeOfDay;
+    // Time in String Format
     [SerializeField] private string timeOfDayString;
+    // In-Game Days
     [SerializeField, Rename("In-Game Days")] private int day;
+    // Days length in Minutes
     [SerializeField, Rename("Day Length in Minutes")] private float dayLength;
     
     [Header("UI Settings")]
+    // UI Text Object for Time
     [SerializeField] private TMPro.TextMeshProUGUI timeText;
+    // UI Text Object for Day
     [SerializeField] private TMPro.TextMeshProUGUI dayText;
     
     [Header("Save Settings")]
+    // Save Data
     [SerializeField] private SaveData saveData;
+    // Public access to Class
     public static LightingManager Instance { get; private set; }
-
+    
+    // Set the Instance
     private void Awake()
     {
         Instance = this;
     }
-
+    
+    // Save Data
     public void Save()
     {
+        // Save Time
         saveData.startTime = timeOfDay;
+        // Save Day
         saveData.daysSurvived = day;
     }
     
+    // Load Data
     private void Load()
     {
+        // Load Time
         timeOfDay = saveData.startTime;
+        // Load Day
         day = saveData.daysSurvived;
     }
 
     private void Start()
     {
+        // If the Application is not running, 
         if (!Application.isPlaying) 
             return;
         saveData = SaveSystem.Instance.saveData;
