@@ -1,5 +1,8 @@
+ using System;
  using System.Linq;
  using UnityEngine;
+ using Random = UnityEngine.Random;
+
  public class TreeController : MonoBehaviour {
  
      // Player, Range
@@ -17,11 +20,23 @@
      // Tree, GameManager
      [Header("Tree Settings")]
      // Prefab to spawn at terrain tree loc for TIIIIIIMBER!
-     public GameObject felledTree;
-     public GameObject felledTreeMarker;
+     [SerializeField] public GameObject felledTreeMarker;
+     [SerializeField] private Vector3 fellTreePositionOffset;    // Derived from hit.point
      private TreeManager rMgr;    // Resource manager script
      public float respawnTimer;            // Duration of terrain tree respawn timer
- 
+     
+     [Header("Give Item")]
+     [SerializeField] private Item[] items;
+        [SerializeField] private int[] itemAmounts;
+        [SerializeField] private int[] itemChances;
+        
+     public static TreeController Instance { get; private set; }
+
+     private void Awake()
+     {
+         Instance = this;
+     }
+
      private void Start () {
  
          if (harvestTreeDistance <= 0) {
@@ -41,10 +56,8 @@
      }
  
  
-     private void Update ()
+     public void ChopDownTree()
      {
-         if (!Input.GetMouseButtonUp(0)) 
-             return;
          hit = Player.Instance._hit;
          // Did we click a Terrain?
          if(hit.collider.gameObject.GetComponent<Terrain>() == null)
@@ -114,26 +127,24 @@
 
          if (CheckRecentUsage(terrain.name, treeIndex)) 
              return;
-         
-         felledTreeMarker.transform.position = treePos;
- 
-         // Example of spawning a placed tree at this location, just for demo purposes
-         // it will slide through terrain and disappear in 4 seconds
-         var fellTree = Instantiate(felledTree,treePos,Quaternion.identity) as GameObject;
-         fellTree.gameObject.AddComponent<Rigidbody>();
- 
-         Destroy(fellTree,4);
- 
+         var marker = Instantiate(felledTreeMarker, treePos, Quaternion.identity);
+         marker.transform.position = treePos + fellTreePositionOffset;
+
          // Add this terrain tree and cube to our Resource Manager for demo purposes
-         rMgr.AddTerrainTree(terrain.name, treeIndex, Time.time+respawnTimer, felledTreeMarker.transform);
+         rMgr.AddTerrainTree(terrain.name, treeIndex, Time.time+respawnTimer, marker.transform);
  
          if (rotatePlayer) {
              var lookRot = new Vector3 (hit.point.x, myTransform.position.y, hit.point.z);
              myTransform.LookAt (lookRot);
          }
-
-         foreach (var item in Player.Instance.inventory.database.items)
-             if(item.name == "Wood")
-                 Player.Instance.inventory.AddItem(item, 1);
+         
+            // Give Item
+            for (int i = 0; i < items.Length; i++)
+            {
+                if (Random.Range(0, 100) <= itemChances[i])
+                {
+                    Player.Instance.inventory.AddItem(items[i], itemAmounts[i]);
+                }
+            }
      }
  }

@@ -101,7 +101,11 @@ public class PlayerEquipment : MonoBehaviour
     {
         var tool = objectHeld as ToolItem;
         Debug.Log("You used " + tool.name);
-        // TODO: Add tool logic
+        if(tool.name == "Axe")
+        {
+            Debug.Log("You chopped down a tree");
+            TreeController.Instance.ChopDownTree();
+        }
     }
 
     public void SetObjectHeld(Item item)

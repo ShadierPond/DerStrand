@@ -238,12 +238,22 @@ public class InventoryUI : MonoBehaviour
             return;
         // Get Scroll Wheel Input
         var scroll = Input.mouseScrollDelta;
-        // If the scroll wheel is scrolled up, add 1 to the active slot, else subtract 1.
-        activeSlot = scroll.y switch
+        activeSlot = Input.inputString switch
         {
-            > 0 => activeSlot == 0 ? slotCount - 1 : activeSlot - 1,
-            < 0 => activeSlot == slotCount - 1 ? 0 : activeSlot + 1,
-            _ => activeSlot
+            "1" => 0,
+            "2" => 1,
+            "3" => 2,
+            "4" => 3,
+            "5" => 4,
+            "6" => 5,
+            "7" => 6,
+            // If the scroll wheel is scrolled up, add 1 to the active slot, else subtract 1.
+            _ => scroll.y switch
+            {
+                > 0 => activeSlot == 0 ? slotCount - 1 : activeSlot - 1,
+                < 0 => activeSlot == slotCount - 1 ? 0 : activeSlot + 1,
+                _ => activeSlot
+            }
         };
         // Set the active slot in the UI to the active slot in the inventory
         for (var i = 0; i < inventoryPanel.transform.childCount; i++)
