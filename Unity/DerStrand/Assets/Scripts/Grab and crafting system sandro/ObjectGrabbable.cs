@@ -13,23 +13,21 @@ public class ObjectGrabbable : MonoBehaviour
     }
     public void Grab(Transform objectGrabPointTransform)
     {
-        this.objectGrabPointTransform = objectGrabPointTransform;
-        objectRigidbody.useGravity = false;
+        this.objectGrabPointTransform = objectGrabPointTransform;   //the grab point is set
+        objectRigidbody.useGravity = false;                         //the object cant fall anymore
     }
-
     public void Drop()
     {
-        this.objectGrabPointTransform = null;
-        objectRigidbody.useGravity = true;
+        this.objectGrabPointTransform = null;                       //objectGrabPointTransform is set to null
+        objectRigidbody.useGravity = true;                          //the gravity is activated agan
     }
-
     private void FixedUpdate()
     {
-        if (objectGrabPointTransform != null)
+        if (objectGrabPointTransform != null) //if the item is graped
         {
             float lerpSpeed = 10f;
-            Vector3 newPosition = Vector3.Lerp(transform.position, objectGrabPointTransform.position, Time.deltaTime * lerpSpeed);
-            objectRigidbody.MovePosition(newPosition);
+            Vector3 newPosition = Vector3.Lerp(transform.position, objectGrabPointTransform.position, Time.deltaTime * lerpSpeed); // moves the object to a new position
+            objectRigidbody.MovePosition(newPosition);  //gets the nest new position
         }
     }
 }

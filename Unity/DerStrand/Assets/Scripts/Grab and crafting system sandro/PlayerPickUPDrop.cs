@@ -10,29 +10,29 @@ public class PlayerPickUPDrop : MonoBehaviour
 
     [SerializeField] private MenuAnimation menuAnim;
 
-    private ObjectGrabbable objectGrabbable;
+    private ObjectGrabbable objectGrabbable;    //grapabal object is called
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))   // is e is pressed 
         {
-            if (objectGrabbable == null)
+            if (objectGrabbable == null)    // and you do not have grabbed another item
             {   //Try to Grab
-                float pickupDistance = 2f;
-                if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickupDistance, pickUpLayerMask))
+                float pickupDistance = 2f;  //set the pickup distance
+                if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out RaycastHit raycastHit, pickupDistance, pickUpLayerMask))     //sends a raycast to detect the objectgrapabal
                 {
-                    if (raycastHit.transform.TryGetComponent(out objectGrabbable))
+                    if (raycastHit.transform.TryGetComponent(out objectGrabbable))  //if the raycast hitted the grapabal object 
                     {
-                        objectGrabbable.Grab(objectGrabPointTransform);
-                        menuAnim.NotLookAtInteractable();
-                        Debug.Log(objectGrabbable);
+                        objectGrabbable.Grab(objectGrabPointTransform);             //the Obvject get grapped
+                        menuAnim.NotLookAtInteractable();                           //hide the E Button
+                        //Debug.Log(objectGrabbable);                                 
                     }
                 }
             }
             else
             {   //Currently holding something
-                objectGrabbable.Drop();
-                objectGrabbable = null;
-                menuAnim.LookAtInteractable();
+                objectGrabbable.Drop();                                               //Item is dropped
+                objectGrabbable = null;                                               //the Item container is set to null
+                menuAnim.LookAtInteractable();                                        //the E Button gets enabled
             }
         }
     }

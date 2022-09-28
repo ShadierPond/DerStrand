@@ -209,6 +209,7 @@ MonoBehaviour:
   currentSavePath: 
   itemDatabase: {fileID: 11400000, guid: e976cb4ee8b60454eb16455562fe6279, type: 2}
   sceneTransitionTime: 0.5
+  sceneWaitingTimeBeforeShowing: 4
   isPaused: 0
 --- !u!114 &721219084
 MonoBehaviour:
