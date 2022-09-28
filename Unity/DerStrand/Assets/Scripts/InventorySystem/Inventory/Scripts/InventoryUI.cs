@@ -238,6 +238,7 @@ public class InventoryUI : MonoBehaviour
             return;
         // Get Scroll Wheel Input
         var scroll = Input.mouseScrollDelta;
+        // If any of the numbers are pressed, set the active slot to the number pressed
         activeSlot = Input.inputString switch
         {
             "1" => 0,
@@ -293,6 +294,7 @@ public class InventoryUI : MonoBehaviour
             item.GetComponent<ItemObject>().item = items[selectedSlot].item;
             // Remove the item from the inventory
             inventory.RemoveItem(items[selectedSlot].item, items[selectedSlot].amount);
+            selectedSlot = null;
         }
     }
 }

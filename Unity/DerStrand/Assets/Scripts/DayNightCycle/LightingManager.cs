@@ -57,14 +57,17 @@ public class LightingManager : MonoBehaviour
 
     private void Start()
     {
-        // If the Application is not running, 
+        // If the Application is not running, return
         if (!Application.isPlaying) 
             return;
+        // Get the Save Data
         saveData = SaveSystem.Instance.saveData;
+        // if the Game is not New, Load the Data
         if (!SaveSystem.Instance.newGame)
             Load();
         else
         {
+            // Standard Values for new Game
             day = 1;
             timeOfDay = 12;
         }
@@ -72,14 +75,20 @@ public class LightingManager : MonoBehaviour
 
     private void Update()
     {
+        // if there is no Lighting Preset, return
         if (!preset)
             return;
+        // if the Application is running
         if (Application.isPlaying)
         {
+            // Add Time to the Time of Day
             timeOfDay += Time.deltaTime / dayLength;
+            // if the Time of Day is greater than 24
             if (timeOfDay >= 24)
             {
+                // Add a Day
                 day++;
+                // Reset the Time of Day to 0
                 timeOfDay %= 24;
             }
         }
@@ -87,20 +96,29 @@ public class LightingManager : MonoBehaviour
         UpdateUI();
     }
     
+    // Update the Lighting
     private void UpdateLighting(float timePercent)
     {
+        // Set the ambient color
         RenderSettings.ambientLight = preset.ambientColor.Evaluate(timePercent);
+        // Set the fog Color
         RenderSettings.fogColor = preset.fogColor.Evaluate(timePercent);
+        // Set the Directional Light Color
         directionalLight.color = preset.directionalColor.Evaluate(timePercent);
+        // Rotate the Directional Light
         directionalLight.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, 170f, 0));
     }
 
     private void UpdateUI()
     {
+        // Set the Text for the Time
         timeOfDayString = $"{(int)timeOfDay:00}:{(int)(timeOfDay * 60) % 60:00}";
+        // if the Text Object is null, return
         if (!dayText || !timeText) 
             return;
+        // Set the Day text
         dayText.text = "Day: " + day;
+        // Set the Time text
         timeText.text = "Time: " + timeOfDayString;
     }
 }

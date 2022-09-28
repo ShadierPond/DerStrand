@@ -30,6 +30,7 @@ public class SaveManager : MonoBehaviour
         LightingManager.Instance.Save();
         TimeController.Instance.Save();
         Player.Instance.Save();
+        PlayerProperties.Instance.Save();
         SaveSystem.Instance.SaveGame();
         Debug.Log("Game Saved");
     }
