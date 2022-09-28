@@ -49,9 +49,9 @@ public class PlayerProperties : MonoBehaviour
     }
     private void New()
     {
-        health = maxProperty;       
-        thirst = maxProperty;
-        hunger = maxProperty;
+        health = maxProperty;       //health is set to maxProperty
+        thirst = maxProperty;       //thirst is set to maxProperty
+        hunger = maxProperty;       //thirst is set to maxProperty
         wearyTime = maxProperty;    //time to sleep
         stamina = maxProperty;      //says how long you can sprint (endurance/stamina)
     }
@@ -85,13 +85,13 @@ public class PlayerProperties : MonoBehaviour
     {
         if (health > 0)                     //if the health is more than 0 
         {
-            Debug.Log("Damage");   
+            //Debug.Log("Damage");   
             health -= damage;               //apply the incoming damage to health
-            Debug.Log(health);
+            //Debug.Log(health);
         }
         else if(health <= 0)
         {
-            Debug.Log("You are Dead");
+            //Debug.Log("You are Dead");
             GameManager.Instance.GameOver();
             health = 0;
         }
@@ -138,7 +138,7 @@ public class PlayerProperties : MonoBehaviour
     }
     public IEnumerator RegenerateStamina()
     {
-        Debug.Log(stamina);
+        //Debug.Log(stamina);
         yield return new WaitForSeconds(staminaRegenerationTime);       //wait for staminaRegenerationTime seconds
         while (stamina <= maxProperty && !Player.Instance.isSprinting)  //While Stamina is < than maxProperty
         {
@@ -239,7 +239,7 @@ public class PlayerProperties : MonoBehaviour
         {
             return;
         }
-        healthBarImage.fillAmount = (float)Math.Clamp(health, 0, maxProperty) / maxProperty;
+        healthBarImage.fillAmount = (float)Math.Clamp(health, 0, maxProperty) / maxProperty;            //the fill amaunt on the interface of the Propertys is updated
         staminaBarImage.fillAmount = (float)Math.Clamp(stamina, 0, maxProperty) / maxProperty;
         hungerBarImage.fillAmount = (float)Math.Clamp(hunger, 0, maxProperty) / maxProperty;
         thirstBarImage.fillAmount = (float)Math.Clamp(thirst, 0, maxProperty) / maxProperty;
