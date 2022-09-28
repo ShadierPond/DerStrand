@@ -48,7 +48,7 @@ public class Spawner : MonoBehaviour
     void SpawnEnemy()                                               
     {
         int spawnerID = Random.Range(0, spawners.Length);           // random position in the possible spawnpossitions
-        var obj = Instantiate(enemy, spawners[spawnerID].transform.position, spawners[spawnerID].transform.rotation, spawners[spawnerID].transform); // spawn enemy
+        var obj = Instantiate(enemy, spawners[spawnerID].transform.position, spawners[spawnerID].transform.rotation); // spawn enemy
         enemyGroup.Add(obj);                                        // list enemygroup gets filled with an entry ( important for spawnlimit )
     }
 
