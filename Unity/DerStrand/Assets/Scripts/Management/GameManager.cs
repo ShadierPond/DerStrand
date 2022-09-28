@@ -83,7 +83,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        //LoadScene("Main Menu");
+        string[] menu = { "Main Menu" };
+        LoadScene(menu);
     }
     
     // Load the scene with the transition (fade in/out and loading screen)
