@@ -28,7 +28,8 @@ public class EnemyKi : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("Player").transform;               // position of player
-        agent = GetComponent<NavMeshAgent>();                       
+        agent = GetComponent<NavMeshAgent>();
+        propManager = PlayerProperties.Instance;
     }
 
 
