@@ -40,6 +40,8 @@ public class LightingManager : MonoBehaviour
 
     private void Start()
     {
+        if (!Application.isPlaying) 
+            return;
         saveData = SaveSystem.Instance.saveData;
         if (!SaveSystem.Instance.newGame)
             Load();

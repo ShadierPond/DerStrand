@@ -38,7 +38,7 @@ public class TreeManager : MonoBehaviour
             return;
  
         // Removing the demo cube and allowing tree to be used again
-        for (int cnt=0; cnt < managedTrees.Count; cnt++) {
+        for (var cnt=0; cnt < managedTrees.Count; cnt++) {
             if(managedTrees[cnt].respawnTime < Time.time) {
                 Destroy(managedTrees[cnt].marker.gameObject);
                 managedTrees.RemoveAt(cnt);

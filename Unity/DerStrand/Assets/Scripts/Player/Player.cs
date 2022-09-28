@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private Vector3 objectHoldArea;
     [SerializeField] private float objectHoldForce;
-    private RaycastHit _hit;
+    public RaycastHit _hit;
     private Rigidbody _objectRigidbody;
     private Transform _interactionHoldArea;
     
