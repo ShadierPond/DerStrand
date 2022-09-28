@@ -121,6 +121,137 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ccd7977bdfbb8c418748f8e829a4fc6, type: 3}
+--- !u!1 &4572797236404659306 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5731254749827852583, guid: 8ccd7977bdfbb8c418748f8e829a4fc6,
+    type: 3}
+  m_PrefabInstance: {fileID: 8141477950480174413}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6934670707810313589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4572797236404659306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475c474cbb345714a93e39d4823dca4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectType: 0
+  isInteractable: 0
+  isLocked: 0
+  isOpen: 0
+  isBuildable: 1
+  chestUI: {fileID: 0}
+  chestTransitionTime: 0
+  isBuilt: 0
+  objectMaterial: {fileID: 5863650252929523565, guid: 8ccd7977bdfbb8c418748f8e829a4fc6,
+    type: 3}
+  requiredItems:
+  - {fileID: 11400000, guid: f5247c3ef0c82f743b708e4622e1e0af, type: 2}
+  requiredItemAmounts: 0a000000
+  ingredientCheck: 
+  bedUI: {fileID: 0}
+  bedTransitionTime: 0
+  campfireUI: {fileID: 0}
+  campfireTransitionTime: 0
+  itemGiven: []
+  itemGivenAmount: 
+  trapWorksWhenPlayerLooksAtIt: 0
+  isTrapSet: 0
+  isTrapTriggered: 0
+  trapRandomTimeLimit: 0
+  trapSetAngle: 0
+  resetTrapIngredients: []
+  resetTrapIngredientAmounts: 
+  resetTrapIngredientCheck: 
+  bushWorksWhenPlayerLooksAtIt: 0
+  isBushPickable: 0
+  isBushPicked: 0
+  bushRandomTimeLimit: 0
+  fullBushMaterial: {fileID: 0}
+  pickedBushMaterial: {fileID: 0}
+--- !u!64 &2223437501283210363
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4572797236404659306}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 8184231042211381215, guid: 8ccd7977bdfbb8c418748f8e829a4fc6, type: 3}
+--- !u!1 &7311406751920843121 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1552337501185221692, guid: 8ccd7977bdfbb8c418748f8e829a4fc6,
+    type: 3}
+  m_PrefabInstance: {fileID: 8141477950480174413}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &387791018239160782
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7311406751920843121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 475c474cbb345714a93e39d4823dca4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectType: 0
+  isInteractable: 0
+  isLocked: 0
+  isOpen: 0
+  isBuildable: 1
+  chestUI: {fileID: 0}
+  chestTransitionTime: 0
+  isBuilt: 0
+  objectMaterial: {fileID: 2100000, guid: 0252632af7cbab34dbbff2a27f0b7605, type: 2}
+  requiredItems:
+  - {fileID: 11400000, guid: 79bfc8214dd7a694a88a1710f5a09357, type: 2}
+  requiredItemAmounts: 0a000000
+  ingredientCheck: 
+  bedUI: {fileID: 0}
+  bedTransitionTime: 0
+  campfireUI: {fileID: 0}
+  campfireTransitionTime: 0
+  itemGiven: []
+  itemGivenAmount: 
+  trapWorksWhenPlayerLooksAtIt: 0
+  isTrapSet: 0
+  isTrapTriggered: 0
+  trapRandomTimeLimit: 0
+  trapSetAngle: 0
+  resetTrapIngredients: []
+  resetTrapIngredientAmounts: 
+  resetTrapIngredientCheck: 
+  bushWorksWhenPlayerLooksAtIt: 0
+  isBushPickable: 0
+  isBushPicked: 0
+  bushRandomTimeLimit: 0
+  fullBushMaterial: {fileID: 0}
+  pickedBushMaterial: {fileID: 0}
+--- !u!64 &4403701745297173099
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7311406751920843121}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3418791870939062979, guid: 8ccd7977bdfbb8c418748f8e829a4fc6, type: 3}
 --- !u!4 &8608329915449125542 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8ccd7977bdfbb8c418748f8e829a4fc6,
