@@ -28,7 +28,7 @@ public class MenuAnimation : MonoBehaviour
     [SerializeField] private bool isInterfaceMenuOpen;
     [SerializeField] private GameObject lookAtInterface;
 
-    
+    // Transition from one menu to another
     public void Transition(EnumMenuState state)
     {
         if(state.isInterface)
@@ -59,7 +59,7 @@ public class MenuAnimation : MonoBehaviour
         }
         StartCoroutine(TransitionWithTime(transitionTime, waitTimeBetweenTransitions));
     }
-
+    // Transition from one menu to another with time
     private IEnumerator TransitionWithTime(float duration, float wait)
     {
         if (currentMenu == nextMenu)
@@ -80,7 +80,7 @@ public class MenuAnimation : MonoBehaviour
         _nextCanvasGroup.DOFade(1, duration / 2);
         yield return new WaitForSeconds(duration / 2);
     }
-
+    // Open and close the in game menu
     public void InGameMenu(bool state)
     {
         isMenuOpen = state;
@@ -97,7 +97,7 @@ public class MenuAnimation : MonoBehaviour
             StartCoroutine(InGameMenuTransition(false, transitionTime));
         }
     }
-
+    // Open and close the interface menu
     public void InInterfaceMenu(bool state)
     {
         isInterfaceMenuOpen = state;
@@ -114,7 +114,7 @@ public class MenuAnimation : MonoBehaviour
             StartCoroutine(InterfaceTransition(false, transitionTime));
         }
     }
-
+    // Transition the in game menu menus
     private IEnumerator InGameMenuTransition(bool state, float duration)
     {
         if (!state)
@@ -130,7 +130,7 @@ public class MenuAnimation : MonoBehaviour
             yield return new WaitForSeconds(duration);
         }
     }
-    
+    // Transition the interface menu menus
     private IEnumerator InterfaceTransition(bool state, float duration)
     {
         if (!state)
@@ -146,9 +146,7 @@ public class MenuAnimation : MonoBehaviour
             yield return new WaitForSeconds(duration);
         }
     }
-    
-    
-    
+    // Open and close the ingame menu (input)
     public void PlayerMenu(InputAction.CallbackContext context)
     {
         if(!context.performed || isInterfaceMenuOpen)
@@ -167,7 +165,7 @@ public class MenuAnimation : MonoBehaviour
             LockMouse(false);
         }
     }
-    
+    // Open and close the interface menu (input)
     public void PlayerInterface(InputAction.CallbackContext context)
     {
         if(!context.performed || isMenuOpen)
@@ -186,25 +184,23 @@ public class MenuAnimation : MonoBehaviour
             LockMouse(false);
         }
     }
-
+    // Lock and unlock the mouse
     public void LockMouse(bool state)
     {
         Cursor.lockState = state ? CursorLockMode.Locked : CursorLockMode.None;
         Cursor.visible = !state;
     }
-
+    // Quit the game
     public void QuitGame()
     {
         Application.Quit();
     }
-    
+    // Return to the main menu
     public void ReturnToMainMenu()
     {
-        // TODO: Add a confirmation dialog and a fade out animation for the current scene before loading the main menu scene
         GameManager.Instance.LoadScene("Main Menu");
     }
-
-    //TODO New method for showing the E key if you look at things
+    
     public void LookAtInteractable()
     {
         lookAtInterface.SetActive(true);

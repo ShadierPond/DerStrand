@@ -10,16 +10,21 @@ public class SaveSystem : MonoBehaviour
 {
     // Access the save system from anywhere in the Project
     public static SaveSystem Instance { get; private set; }
-    
+    // Persistent Data Path
     [SerializeField] private bool usePersistentDataPath;
+    // Save Location on device
     [SerializeField] public string saveLocation;
+    // Save Slot Parent (where the save slots are created)
     [HideInInspector] public GameObject saveSlotsContent;
+    // New Game State. default is true (if there is no save file chosen)
     public bool newGame = true;
-    [SerializeField] private string latestSaveName;
+    // Player Inventory
     [SerializeField] private Inventory playerInventory;
+    // List of all saves
     [SerializeField] private List<string> saveList;
-    
+    // SaveData Class. This is the class that will be saved (all the data is stored here)
     public SaveData saveData;
+    // Selected Save Slot name
     public string selectedSaveName;
 
     // Reference the Instance to this script and set Save Location
@@ -122,7 +127,7 @@ public class SaveSystem : MonoBehaviour
     public void SaveGame()
     {
         Save(saveData);
-        Debug.Log("Game Saved");
+        //Debug.Log("Game Saved");
     }
     
     // Load the Game Data
@@ -139,6 +144,6 @@ public class SaveSystem : MonoBehaviour
         GameManager.Instance.currentSaveName = selectedSaveName;
         GameManager.Instance.currentSavePath = saveLocation;
         newGame = false;
-        Debug.Log("Loaded save data");
+        //Debug.Log("Loaded save data");
     }
 }

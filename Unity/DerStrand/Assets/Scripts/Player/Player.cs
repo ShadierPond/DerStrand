@@ -77,7 +77,7 @@ public class Player : MonoBehaviour
         Instance = this;
         input = GetComponent<PlayerInput>();
     }
-
+    // Load the Player Data
     private void Load()
     {
         inventory.Load(GameManager.Instance.currentSaveName, GameManager.Instance.currentSavePath);
@@ -87,39 +87,41 @@ public class Player : MonoBehaviour
         cameraRotation = saveData.playerCameraRotation;
         _controller.enabled = true;
     }
-
+    // Set the Player Data
     public void Save()
     {
         saveData.playerPosition = transform.position;
         saveData.playerRotation = transform.rotation;
         saveData.playerCameraRotation = cameraRotation;
     }
-
+    
     private void Start()
     {
+        // Set the Variables
         saveData = SaveSystem.Instance.saveData;
         _properties = PlayerProperties.Instance;
         _controller = GetComponent<CharacterController>();
         _interactionHoldArea = camera.transform.Find("HoldArea");
         _interactionHoldArea.localPosition = objectHoldArea;
-        //objectHoldArea = _interactionHoldArea.position;
         currentSpeed = speed;
-        
+        // If the Game State is not new, load the Player Data
         if(!SaveSystem.Instance.newGame)
             Load();
     }
 
     private void FixedUpdate()
     {
+        // if the game is paused, stop the player
         if(GameManager.Instance.isPaused)
             return;
         CameraFollow();
         MovePlayer();
         HeadBobbing();
     }
-
+    
     private void Update()
     {
+        // if the game is paused, stop the player
         if(GameManager.Instance.isPaused)
             return;
         // Character Controller isgrounded is funky, using raycast makes player grounded when in trigger collider. using controller isgrounded in update is a workaround.
@@ -138,21 +140,22 @@ public class Player : MonoBehaviour
         Physics.Raycast(cameraTransform.position, cameraTransform.forward, out _hit, interactDistance);
     }
 
+    // Get the Keyboard WASD Input
     public void GetAxis(InputAction.CallbackContext context)
     {
         _move =  context.ReadValue<Vector2>();
     }
-    
+    // Get the Jump Input
     public void Jump(InputAction.CallbackContext context)
     {
         isJumping = context.ReadValue<float>() > 0;
     }
-    
+    // Get the Sprint Input
     public void Sprint(InputAction.CallbackContext context)
     {
         isSprinting = holdToSprint ? context.performed : !isSprinting;
     }
-    
+    // Get the Interact Input
     public void Interact(InputAction.CallbackContext context)
     {
         switch (context.performed)
@@ -168,7 +171,7 @@ public class Player : MonoBehaviour
                 break;
         }
     }
-
+    // Move the Player
     private void MovePlayer()
     {
         // Sprinting
@@ -179,12 +182,12 @@ public class Player : MonoBehaviour
         // move player in direction (choose movement type: smooth or not) (transform player direction to world space) with specified speed
         _controller.Move(transform.TransformDirection(smoothMovement ? new Vector3(_smoothMove.x, 0, _smoothMove.y) * 10f : new Vector3(_move.x, 0, _move.y) / 10f) * (currentSpeed * Time.deltaTime));
     }
-
+    // Camera Head Bobbing. (bobbing when moving. using Sin curve)
     private void HeadBobbing()
     {
         if(!headBobbing)
             return;
-        if(!isGrounded)
+        if(!isGrounded || PlayerProperties.Instance.stamina <= 0)
             return;
         if(Mathf.Abs(_move.x) > 0.1 || Mathf.Abs(_move.y) > 0.1)
         {
@@ -201,7 +204,7 @@ public class Player : MonoBehaviour
             gameObject.GetComponent<AudioSource>().Play();
         }
     }
-    
+    // Player Gravity. (using raycast to check if player is grounded)
     private void Gravity()
     {
         // set jumping velocity to zero if player is on ground, else apply gravity on jumping velocity
@@ -228,7 +231,7 @@ public class Player : MonoBehaviour
         // Move player with jump velocity (used only for jumping)
         _controller.Move(_jumpVelocity * Time.deltaTime);
     }
-    
+    // Mouse Look Input
     public void Look (InputAction.CallbackContext context)
     {
         if(GameManager.Instance.isPaused)
@@ -255,14 +258,14 @@ public class Player : MonoBehaviour
         // Apply the rotation to the camera
         camera.transform.eulerAngles = cameraRotation;
     }
-    
+    // Camera follow Player
     private void CameraFollow()
     {
         // Move the camera to the player position
         camera.transform.position = transform.position + cameraPositionOffset;
         defaultY = camera.transform.localPosition.y;
     }
-
+    // Check if player is looking at an object to hold
     private void HoldObject()
     {
         if (objectHeld) 
@@ -281,7 +284,7 @@ public class Player : MonoBehaviour
             isHoldable = false;
         }
     }
-
+    // Hold the object in front of the player using Rigidbody
     private void HoldInteraction()
     {
         if (!objectHeld)
@@ -301,7 +304,7 @@ public class Player : MonoBehaviour
         }
         objectHeld = !objectHeld;
     }
-
+    // Center the held Object in front of the player
     private void CenterHeldObject()
     {
         if(!objectHeld)
@@ -311,12 +314,12 @@ public class Player : MonoBehaviour
         if(Vector3.Distance(interactableObject.transform.position, _interactionHoldArea.position) > 10f)
             interactableObject.transform.position = _interactionHoldArea.position;
     }
-    
+    // public access to the Object the Player is looking at
     public GameObject GetRaycastObject()
     {
         return interactableObject;
     }
-    
+    // Collect the item the player is looking at. Only if the item has ItemObject component. Destroy the item in the world and add it to the inventory
     private void CollectItems()
     {
         var item = interactableObject.GetComponent<ItemObject>();
@@ -325,7 +328,7 @@ public class Player : MonoBehaviour
         inventory.AddItem(item.item, item.amount);
         Destroy(interactableObject);
     }
-    
+    // Interact with the object the player is looking at. Only if the object has Interactable component. Call the Interact method of the object
     private void InteractWithObject()
     {
         if (interactableObject == null)

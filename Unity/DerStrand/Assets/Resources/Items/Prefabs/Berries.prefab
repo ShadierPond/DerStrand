@@ -176,4 +176,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 11400000, guid: 7885591a755b8ef4cbf4f1b407be570e, type: 2}
-  amount: 9
+  amount: 1

@@ -7,8 +7,7 @@ public class SaveData
     [Header("Save Information")]
     public string saveDate;
     public string saveTime;
-    public string inGameTime;
-    
+
     // Player Information
     [Header("Player Information")]
     public Vector3 playerPosition;

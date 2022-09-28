@@ -9,8 +9,7 @@
      [Header("Player Settings")]
      public int harvestTreeDistance;        // Set [Inspector] min. distance from Player to Tree for your scale?
      public bool rotatePlayer = true;    // Should we rotate the player to face the Tree? 
-     private Transform myTransform;        // Player transform for cache
- 
+
      // Terrains, Hit
      [Header("Terrain Settings")]
      private Terrain terrain;            // Derived from hit...GetComponent<Terrain>
@@ -19,7 +18,7 @@
  
      // Tree, GameManager
      [Header("Tree Settings")]
-     // Prefab to spawn at terrain tree loc for TIIIIIIMBER!
+     // harvested Tree marker
      [SerializeField] public GameObject felledTreeMarker;
      [SerializeField] private Vector3 fellTreePositionOffset;    // Derived from hit.point
      private TreeManager rMgr;    // Resource manager script
@@ -30,6 +29,7 @@
         [SerializeField] private int[] itemAmounts;
         [SerializeField] private int[] itemChances;
         
+     // Public access to the Class
      public static TreeController Instance { get; private set; }
 
      private void Awake()
@@ -38,19 +38,19 @@
      }
 
      private void Start () {
- 
+         // If the harvest distance is not set, set it to 6
          if (harvestTreeDistance <= 0) {
-             Debug.Log ("harvestTreeDistance unset in Inspector, using value: 6");
+             //Debug.Log ("harvestTreeDistance unset in Inspector, using value: 6");
              harvestTreeDistance = 6;
          }
- 
+         // If the respawn timer is not set, set it to 15
          if (respawnTimer <= 0) {
-             Debug.Log ("respawnTimer unset in Inspector, using quick test value: 15");
+             //Debug.Log ("respawnTimer unset in Inspector, using quick test value: 15");
              respawnTimer = 15;
          }
- 
-         myTransform = transform;
+         // Set the last terrain to null
          lastTerrain = null;
+         // Get the TreeManager script
          rMgr = GameManager.Instance.gameObject.GetComponent<TreeManager>();
  
      }
@@ -58,6 +58,7 @@
  
      public void ChopDownTree()
      {
+         // Get Raycast hit from Player Camera
          hit = Player.Instance._hit;
          // Did we click a Terrain?
          if(hit.collider.gameObject.GetComponent<Terrain>() == null)
@@ -78,53 +79,57 @@
          if(CheckProximity()) 
              HarvestWood();
      }
- 
- 
+     
+     // Check if the Player is close enough to the Tree
      private bool CheckProximity() {
-         var inRange = true;
-
-         if (Vector3.Distance(myTransform.position, hit.point) > harvestTreeDistance) {
-             Debug.Log ("Out of Range");
-             inRange = false;
-         }
+         // If the Player is not close enough to the Tree, return false
+         var inRange = !(Vector3.Distance(Player.Instance.gameObject.transform.position, hit.point) > harvestTreeDistance);
          return inRange;
      }
      
+     // Check if Tree has been harvested recently
      private bool CheckRecentUsage(string terrainName, int treeIndex) {
          var beenUsed = false;
  
          foreach (var tree in rMgr.managedTrees.Where(tree => tree.terrainName == terrainName && tree.treeINDEX == treeIndex))
          {
-             Debug.Log ("Tree has been used recently");
+             //Debug.Log ("Tree has been used recently");
              beenUsed = true;
          }
  
          return beenUsed;
      }
      
+     // Harvest the Tree
      private void HarvestWood() {
          var treeIndex = -1;
          var treeCount = terrain.terrainData.treeInstances.Length;
          float treeDist = harvestTreeDistance;
          var treePos = new Vector3 (0, 0, 0);
-
+        
+         // For each tree in the terrain
          for (var cnt=0; cnt < treeCount; cnt++) {
+             // Get the tree position
              var thisTreePos = Vector3.Scale(terrain.terrainData.GetTreeInstance(cnt).position, terrain.terrainData.size) + terrain.transform.position;
+             // Get the distance from the tree to the hit point
              var thisTreeDist = Vector3.Distance (thisTreePos, hit.point);
-
+            // If this tree is closer than the last tree
              if (!(thisTreeDist < treeDist)) 
                  continue;
+             // Set the Tree Index
              treeIndex = cnt;
+             // Set the Tree Distance
              treeDist = thisTreeDist;
+             // Set the Tree Position
              treePos = thisTreePos;
          }
- 
- 
+         
+         // if the tree index is still -1 (no tree) , return
          if (treeIndex == -1) {
              Debug.Log ("Out of Range");
              return;
          }
-
+         
          if (CheckRecentUsage(terrain.name, treeIndex)) 
              return;
          var marker = Instantiate(felledTreeMarker, treePos, Quaternion.identity);
@@ -134,11 +139,11 @@
          rMgr.AddTerrainTree(terrain.name, treeIndex, Time.time+respawnTimer, marker.transform);
  
          if (rotatePlayer) {
-             var lookRot = new Vector3 (hit.point.x, myTransform.position.y, hit.point.z);
-             myTransform.LookAt (lookRot);
+             var lookRot = new Vector3 (hit.point.x, Player.Instance.gameObject.transform.position.y, hit.point.z);
+             Player.Instance.gameObject.transform.LookAt (lookRot);
          }
          
-            // Give Item
+            // Give Item to Player
             for (int i = 0; i < items.Length; i++)
             {
                 if (Random.Range(0, 100) <= itemChances[i])

@@ -212,9 +212,9 @@ public class InventoryUI : MonoBehaviour
                     // Instantiate the item in the world
                     var item = Instantiate( inventory.database.getItem[items[obj].item.id].prefab, Player.Instance.transform.position + Vector3.forward, Quaternion.identity);
                     // Set the amount of the item
-                    item.GetComponent<ItemObject>().amount = items[obj].amount;
+                    item.transform.GetChild(0).GetComponent<ItemObject>().amount = items[obj].amount;
                     // Set the item in the Database to the item in the world
-                    item.GetComponent<ItemObject>().item = items[obj].item;
+                    item.transform.GetChild(0).GetComponent<ItemObject>().item = items[obj].item;
                     // Remove the item from the inventory
                     inventory.RemoveItem(items[obj].item, items[obj].amount);
                 }
@@ -289,9 +289,9 @@ public class InventoryUI : MonoBehaviour
             // Instantiate the item in the world
             var item = Instantiate( inventory.database.getItem[items[selectedSlot].item.id].prefab, Player.Instance.transform.position + Vector3.forward, Quaternion.identity);
             // Set the amount of the item
-            item.GetComponent<ItemObject>().amount = items[selectedSlot].amount;
+            item.transform.GetChild(0).GetComponent<ItemObject>().amount = items[selectedSlot].amount;
             // Set the item in the Database to the item in the world
-            item.GetComponent<ItemObject>().item = items[selectedSlot].item;
+            item.transform.GetChild(0).GetComponent<ItemObject>().item = items[selectedSlot].item;
             // Remove the item from the inventory
             inventory.RemoveItem(items[selectedSlot].item, items[selectedSlot].amount);
             selectedSlot = null;

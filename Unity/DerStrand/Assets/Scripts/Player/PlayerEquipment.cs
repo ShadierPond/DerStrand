@@ -21,6 +21,7 @@ public class PlayerEquipment : MonoBehaviour
 
     private void Update()
     {
+        //if the player is holding an object in the equipment slot, it will be displayed on the screen
         if (!objectHeld)
         {
             foreach(var item in weapons)
@@ -39,7 +40,7 @@ public class PlayerEquipment : MonoBehaviour
             
             }
     }
-
+    // shows the weapon on the screen
     private void ShowWeapon()
     {
         var weapon = objectHeld as WeaponItem;
@@ -55,7 +56,7 @@ public class PlayerEquipment : MonoBehaviour
                 break;
         }    
     }
-
+    //when the player presses the Primary button (left click), different actions will be performed depending on the type of item
     public void PrimaryAction(InputAction.CallbackContext context)
     {
         if (objectHeld == null)
@@ -78,7 +79,7 @@ public class PlayerEquipment : MonoBehaviour
                 break;
         }
     }
-
+    //Eat the held item
     private void Eat()
     {
 
@@ -88,7 +89,7 @@ public class PlayerEquipment : MonoBehaviour
         Debug.Log("You ate " + consumable.name + " and gained " + consumable.restoreHungerValue + " hunger");
         // player.RegenerateHunger(consumable.restoreHungerValue);
     }
-
+    //Drink the held item
     private void Drink()
     {
         var bottle = objectHeld as WaterBottle;
@@ -96,7 +97,7 @@ public class PlayerEquipment : MonoBehaviour
         PlayerProperties.Instance.RegenerateThirst(bottle.thirstRestore);
         Debug.Log("You drank from " + bottle.name + " and gained " + bottle.thirstRestore + " thirst" + " and now have " + bottle.currentCapacity + " left");
     }
-
+    //Use the held item
     private void UseTool()
     {
         var tool = objectHeld as ToolItem;
@@ -107,7 +108,7 @@ public class PlayerEquipment : MonoBehaviour
             TreeController.Instance.ChopDownTree();
         }
     }
-
+    // set the object held
     public void SetObjectHeld(Item item)
     {
         objectHeld = item;

@@ -26,9 +26,8 @@ public class TreeManager : MonoBehaviour
     public List<QM_Tree> managedTrees = new List<QM_Tree>();
  
     void Start() {
-        // Scan for tree to "respawn" (remove cube, make available again) every 15 seconds
-        // Adjust to your needs using a fast spawn here for demo
-        InvokeRepeating ("RespawnTree", 15, 15);
+        // Scan for tree to "respawn" (remove sign, make available again) every 15 seconds
+        InvokeRepeating (nameof(RespawnTree), 15, 15);
     }
  
  
@@ -37,7 +36,7 @@ public class TreeManager : MonoBehaviour
         if (managedTrees.Count == 0)
             return;
  
-        // Removing the demo cube and allowing tree to be used again
+        // Removing the sign and allowing tree to be used again
         for (var cnt=0; cnt < managedTrees.Count; cnt++) {
             if(managedTrees[cnt].respawnTime < Time.time) {
                 Destroy(managedTrees[cnt].marker.gameObject);
