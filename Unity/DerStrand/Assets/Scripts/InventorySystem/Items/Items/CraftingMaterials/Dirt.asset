@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9875f4983118145a25729b07d128a7, type: 3}
   m_Name: Dirt
   m_EditorClassIdentifier: 
-  id: 0
-  icon: {fileID: 0}
-  prefab: {fileID: 0}
+  id: 14
+  icon: {fileID: 21300000, guid: b04658b30df239c439925696c7cc5f55, type: 3}
+  prefab: {fileID: 816139778871288249, guid: d36049284c2b3f745bad4dc25a1b7908, type: 3}
   type: 0
   description: 
   isCraftable: 0
+  needsCampfire: 0
+  ingredients: []
+  ingredientAmounts: 
+  amountGained: 1

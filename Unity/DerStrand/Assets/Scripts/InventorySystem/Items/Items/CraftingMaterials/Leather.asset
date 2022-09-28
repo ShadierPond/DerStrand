@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9875f4983118145a25729b07d128a7, type: 3}
   m_Name: Leather
   m_EditorClassIdentifier: 
-  id: 0
-  icon: {fileID: 0}
-  prefab: {fileID: 0}
+  id: 19
+  icon: {fileID: 21300000, guid: 747c9f85760c4bb498d77d71cc636bc6, type: 3}
+  prefab: {fileID: 6916561166243565317, guid: e2f923314a967a444b25ea4246713ae7, type: 3}
   type: 0
   description: 
   isCraftable: 0
+  needsCampfire: 0
+  ingredients: []
+  ingredientAmounts: 
+  amountGained: 1

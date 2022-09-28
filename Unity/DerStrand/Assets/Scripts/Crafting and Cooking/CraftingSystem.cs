@@ -83,9 +83,11 @@ public class CraftingSystem : MonoBehaviour
             // Set the Button Component of the instantiated object. If the button is pressed, save the object as the Selected Slot
             recipeObj.GetComponent<Button>().onClick.AddListener(() => selectedSlot = recipeObj);
             // Set the Icon of the instantiated object to the item's icon
-            recipeObj.transform.GetChild(0).GetComponent<Image>().sprite = playerInventory.database.getItem[recipe.item.id].icon;
+            recipeObj.transform.GetChild(0).GetComponent<Image>().sprite = recipe.item.icon;
             // Set the Name of the instantiated object to the item's name
-            recipeObj.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = playerInventory.database.getItem[recipe.item.id].name;
+            recipeObj.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = recipe.item.name;
+            // Set the Amount gained from Crafting the Item
+            recipeObj.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = (recipe.item.amountGained * craftingMultiplier).ToString();
             // Set the Crafting Slot to false (not craftable). Default
             ActiveCraftingSlot(recipeObj, false);
             if(recipe.item.needsCampfire)
@@ -109,7 +111,7 @@ public class CraftingSystem : MonoBehaviour
                 // Instantiate the Ingredient Slot Prefab
                 var ingredientObj = Instantiate(ingredientSlotPrefab, recipeObj.transform.GetChild(2));
                 // Set the Icon of the instantiated object to the ingredient's icon
-                ingredientObj.GetComponentInChildren<Image>().sprite = playerInventory.database.getItem[craftingSlotsList[i].item.ingredients[j].id].icon;
+                ingredientObj.GetComponentInChildren<Image>().sprite = craftingSlotsList[i].item.ingredients[j].icon;
                 // Set the Amount of the instantiated object to the ingredient's amount * the crafting multiplier
                 ingredientObj.GetComponentInChildren<TextMeshProUGUI>().text = (craftingSlotsList[i].item.ingredientAmounts[j] * craftingMultiplier).ToString();
             }
@@ -126,6 +128,8 @@ public class CraftingSystem : MonoBehaviour
             bool[] ingredientCheck = new bool[craftingSlotsList[i].item.ingredients.Count];
             // Get the Crafting Slot Object
             var recipeObj = craftingSlotObjects[i];
+            // Set the Given Amount by Crafting
+            recipeObj.transform.GetChild(4).GetComponent<TextMeshProUGUI>().text = (craftingSlotsList[i].item.amountGained * craftingMultiplier).ToString();
             // Loop through all the ingredients in the Crafting Slot
             for (int j = 0; j < craftingSlotsList[i].item.ingredients.Count; j++)
             {
@@ -252,7 +256,7 @@ public class CraftingSystem : MonoBehaviour
                 playerInventory.RemoveItem(recipe.item.ingredients[i], recipe.item.ingredientAmounts[i] * craftingMultiplier);
             }
             // Add the crafted item to the Player Inventory (add the amount of the crafted item * the crafting multiplier)
-            playerInventory.AddItem(recipe.item, craftingMultiplier);
+            playerInventory.AddItem(recipe.item, craftingMultiplier * recipe.item.amountGained);
         }
     }
 

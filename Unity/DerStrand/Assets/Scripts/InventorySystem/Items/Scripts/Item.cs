@@ -35,5 +35,6 @@ public abstract class Item : ScriptableObject
     public List<Item> ingredients;
     // How many items are needed to craft
     public int[] ingredientAmounts;
+    public int amountGained = 1;
 
 }

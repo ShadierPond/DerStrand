@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9875f4983118145a25729b07d128a7, type: 3}
   m_Name: Flint
   m_EditorClassIdentifier: 
-  id: 0
-  icon: {fileID: 0}
-  prefab: {fileID: 0}
+  id: 16
+  icon: {fileID: 21300000, guid: 82a4e1d3a81517c49bcaae8901d1a3f0, type: 3}
+  prefab: {fileID: 3166310022966871774, guid: de50c0f91f4fbd243b041814d3881c45, type: 3}
   type: 0
   description: 
   isCraftable: 0
+  needsCampfire: 0
+  ingredients: []
+  ingredientAmounts: 
+  amountGained: 1

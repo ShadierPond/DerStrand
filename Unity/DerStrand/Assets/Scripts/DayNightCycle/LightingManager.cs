@@ -43,6 +43,11 @@ public class LightingManager : MonoBehaviour
         saveData = SaveSystem.Instance.saveData;
         if (!SaveSystem.Instance.newGame)
             Load();
+        else
+        {
+            day = 1;
+            timeOfDay = 12;
+        }
     }
 
     private void Update()

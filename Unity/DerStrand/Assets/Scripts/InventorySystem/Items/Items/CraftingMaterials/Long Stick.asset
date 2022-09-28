@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9875f4983118145a25729b07d128a7, type: 3}
   m_Name: Long Stick
   m_EditorClassIdentifier: 
-  id: 0
+  id: 23
   icon: {fileID: 0}
   prefab: {fileID: 0}
   type: 0
@@ -21,3 +21,4 @@ MonoBehaviour:
   needsCampfire: 0
   ingredients: []
   ingredientAmounts: 
+  amountGained: 1

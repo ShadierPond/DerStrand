@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df49e2fecb5ba54da84f452df2f585d, type: 3}
   m_Name: Cooked Meat
   m_EditorClassIdentifier: 
-  id: 39
-  icon: {fileID: 0}
+  id: 6
+  icon: {fileID: 21300000, guid: c748b4dfc2d77cd41ba9ed97e41865a5, type: 3}
   prefab: {fileID: 0}
   type: 3
   description: 
@@ -22,6 +22,7 @@ MonoBehaviour:
   ingredients:
   - {fileID: 11400000, guid: 63ff2da31f327af4cb5da0ade5bf6f38, type: 2}
   ingredientAmounts: 01000000
+  amountGained: 1
   restoreHealthValue: 0
-  restoreHungerValue: 0
+  restoreHungerValue: 40
   restoreThirstValue: 0

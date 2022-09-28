@@ -9,14 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b9875f4983118145a25729b07d128a7, type: 3}
-  m_Name: Small Stick
+  m_Script: {fileID: 11500000, guid: 6df49e2fecb5ba54da84f452df2f585d, type: 3}
+  m_Name: Cooked Potato
   m_EditorClassIdentifier: 
-  id: 0
+  id: 7
   icon: {fileID: 0}
   prefab: {fileID: 0}
-  type: 0
+  type: 3
   description: 
   isCraftable: 0
-  ingredients: []
-  ingredientAmounts: 
+  needsCampfire: 0
+  ingredients:
+  - {fileID: 11400000, guid: b4b6f6b1097ae024daa754af2f70ddaf, type: 2}
+  ingredientAmounts: 01000000
+  amountGained: 1
+  restoreHealthValue: 0
+  restoreHungerValue: 25
+  restoreThirstValue: 0

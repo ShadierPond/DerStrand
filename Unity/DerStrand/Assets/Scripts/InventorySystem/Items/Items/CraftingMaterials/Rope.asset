@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9875f4983118145a25729b07d128a7, type: 3}
   m_Name: Rope
   m_EditorClassIdentifier: 
-  id: 0
+  id: 26
   icon: {fileID: 0}
   prefab: {fileID: 0}
   type: 0
   description: 
-  isCraftable: 0
-  ingredients: []
-  ingredientAmounts: 
+  isCraftable: 1
+  needsCampfire: 0
+  ingredients:
+  - {fileID: 11400000, guid: 3c77d83687559724889a333c68f4f247, type: 2}
+  ingredientAmounts: 02000000
+  amountGained: 1

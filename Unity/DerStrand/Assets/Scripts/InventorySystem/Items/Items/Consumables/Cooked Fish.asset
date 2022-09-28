@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df49e2fecb5ba54da84f452df2f585d, type: 3}
   m_Name: Cooked Fish
   m_EditorClassIdentifier: 
-  id: 38
-  icon: {fileID: 0}
+  id: 5
+  icon: {fileID: 21300000, guid: 43ba5e1d29ab75a40bf45615308fd487, type: 3}
   prefab: {fileID: 0}
   type: 3
   description: 
@@ -22,6 +22,7 @@ MonoBehaviour:
   ingredients:
   - {fileID: 11400000, guid: 32a908d936e2c0f4fa2bb1b50a51c6c1, type: 2}
   ingredientAmounts: 01000000
+  amountGained: 1
   restoreHealthValue: 0
-  restoreHungerValue: 0
+  restoreHungerValue: 30
   restoreThirstValue: 0

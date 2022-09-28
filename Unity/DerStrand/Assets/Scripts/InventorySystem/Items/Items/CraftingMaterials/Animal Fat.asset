@@ -12,12 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9875f4983118145a25729b07d128a7, type: 3}
   m_Name: Animal Fat
   m_EditorClassIdentifier: 
-  id: 17
-  icon: {fileID: 0}
-  prefab: {fileID: 7271856579642493889, guid: 047288485b5a4c5409eba972579ebdbf, type: 3}
+  id: 12
+  icon: {fileID: 21300000, guid: e85c6aea57c7ca846909d2bba209103f, type: 3}
+  prefab: {fileID: 4964796027604767366, guid: c15d66fb2b4e2b64a9baa0ee93a76e2e, type: 3}
   type: 0
   description: Test ^^^11
   isCraftable: 0
   needsCampfire: 0
   ingredients: []
   ingredientAmounts: 
+  amountGained: 1

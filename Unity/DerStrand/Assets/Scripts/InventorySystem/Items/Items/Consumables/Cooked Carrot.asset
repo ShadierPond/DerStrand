@@ -9,14 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b9875f4983118145a25729b07d128a7, type: 3}
-  m_Name: Water Container
+  m_Script: {fileID: 11500000, guid: 6df49e2fecb5ba54da84f452df2f585d, type: 3}
+  m_Name: Cooked Carrot
   m_EditorClassIdentifier: 
-  id: 11
+  id: 4
   icon: {fileID: 0}
   prefab: {fileID: 0}
-  type: 0
+  type: 3
   description: 
   isCraftable: 1
-  ingredients: []
-  ingredientAmounts: 
+  needsCampfire: 1
+  ingredients:
+  - {fileID: 11400000, guid: ca409d056dc43294f92a008b8e08e262, type: 2}
+  ingredientAmounts: 01000000
+  amountGained: 1
+  restoreHealthValue: 0
+  restoreHungerValue: 20
+  restoreThirstValue: 0

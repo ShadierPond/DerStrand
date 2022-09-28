@@ -12,11 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9875f4983118145a25729b07d128a7, type: 3}
   m_Name: Stick
   m_EditorClassIdentifier: 
-  id: 32
-  icon: {fileID: 0}
-  prefab: {fileID: 3913163350755669330, guid: a700bd28992456043a72fc406a12486a, type: 3}
+  id: 27
+  icon: {fileID: 21300000, guid: 231253e35bb94a740b117fa4dcc86181, type: 3}
+  prefab: {fileID: 4872580057859039858, guid: debe58ebed823c248a1991f3634ec2db, type: 3}
   type: 0
   description: 
   isCraftable: 0
+  needsCampfire: 0
   ingredients: []
   ingredientAmounts: 
+  amountGained: 1

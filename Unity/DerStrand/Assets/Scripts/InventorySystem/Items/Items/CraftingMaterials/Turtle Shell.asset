@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9875f4983118145a25729b07d128a7, type: 3}
   m_Name: Turtle Shell
   m_EditorClassIdentifier: 
-  id: 0
-  icon: {fileID: 0}
-  prefab: {fileID: 0}
+  id: 29
+  icon: {fileID: 21300000, guid: b4dfb356c08d6cf42a664822e520b721, type: 3}
+  prefab: {fileID: 2735905345829273952, guid: 61bbb5980f6c9c5489600bfb96f4b4c9, type: 3}
   type: 0
   description: 
   isCraftable: 0
+  needsCampfire: 0
+  ingredients: []
+  ingredientAmounts: 
+  amountGained: 1
