@@ -61,7 +61,7 @@ public class SleepController : MonoBehaviour
 
     private void SetStats()
     {
-        Debug.Log("Sleeping for " + hours + " hours and gaining " + (10 * hours) + " weary time");
+        //Debug.Log("Sleeping for " + hours + " hours and gaining " + (10 * hours) + " weary time");
         PlayerProperties.Instance.RegenerateWearyTime(10 * hours);
         while (GameManager.Instance.isPaused)
         {
