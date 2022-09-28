@@ -14,7 +14,6 @@ public class InteractableObject : MonoBehaviour
         Chest,
         Water,
         Bed,
-        CampFire,
         Trap,
         BushBerry,
     }
@@ -39,11 +38,7 @@ public class InteractableObject : MonoBehaviour
     [Header("Bed")]
         [SerializeField] private GameObject bedUI;
         [SerializeField] private float bedTransitionTime;
-    
-    [Header("Campfire")]
-        [SerializeField] private GameObject campfireUI;
-        [SerializeField] private float campfireTransitionTime;
-    
+
     [Header("Give Item")]
         [SerializeField] private Item[] itemGiven;
         [SerializeField] private int[] itemGivenAmount;
@@ -116,10 +111,6 @@ public class InteractableObject : MonoBehaviour
                     Debug.Log("Bed used");
                     isOpen = !isOpen;
                     StartCoroutine(ObjectAnimationTransition(bedUI, bedTransitionTime));
-                    break;
-                case ObjectType.CampFire:
-                    Debug.Log("Campfire used");
-                    StartCoroutine(ObjectAnimationTransition(campfireUI, campfireTransitionTime));
                     break;
                 case ObjectType.Trap:
                     Debug.Log("Trap used");

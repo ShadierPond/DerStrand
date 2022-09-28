@@ -30,8 +30,8 @@ public class AxeRaycast : MonoBehaviour
         {
             if(hit.collider.tag == "tree" && Input.GetMouseButtonDown(0) && isEquipped == true)
             {
-                Tree treeScript = hit.collider.gameObject.GetComponent<Tree>();
-                treeScript.treeHealth--;
+                //Tree treeScript = hit.collider.gameObject.GetComponent<Tree>();
+                //treeScript.treeHealth--;
             }
         }
     }
