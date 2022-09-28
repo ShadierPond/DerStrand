@@ -214,6 +214,8 @@ public class InteractableObject : MonoBehaviour
             for (int i = 0; i < itemGiven.Length; i++)
             {
                 Player.Instance.inventory.AddItem(itemGiven[i], itemGivenAmount[i]);
+                if(gameObject.CompareTag("Water Trap"))
+                    gameObject.transform.GetChild(3).gameObject.SetActive(false);
             }
         }
         else if(!isTrapSet && !isTrapTriggered)
@@ -286,6 +288,8 @@ public class InteractableObject : MonoBehaviour
                 isTrapTriggered = true;
                 gameObject.transform.Rotate(0, 0, -trapSetAngle);
                 trapTimer = 0;
+                if(gameObject.CompareTag("Water Trap"))
+                    gameObject.transform.GetChild(3).gameObject.SetActive(true);
             }
         }
 
