@@ -143,5 +143,13 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         LoadScene("GameOver");
+        LockMouse(false);
+        isPaused = false;
+    }
+    
+    public void LockMouse(bool lockMouse)
+    {
+        Cursor.lockState = lockMouse ? CursorLockMode.Locked : CursorLockMode.None;
+        Cursor.visible = !lockMouse;
     }
 }
