@@ -17,7 +17,7 @@ MonoBehaviour:
   prefab: {fileID: 5216322058706333825, guid: f31d19dda8d76d04f83cd81111af6985, type: 3}
   type: 0
   description: 'you need a smith to complete it '
-  isCraftable: 1
+  isCraftable: 0
   needsCampfire: 0
   ingredients:
   - {fileID: 11400000, guid: f5247c3ef0c82f743b708e4622e1e0af, type: 2}

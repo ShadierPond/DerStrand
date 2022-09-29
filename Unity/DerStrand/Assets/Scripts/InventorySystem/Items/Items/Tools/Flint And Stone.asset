@@ -17,8 +17,10 @@ MonoBehaviour:
   prefab: {fileID: 0}
   type: 2
   description: 
-  isCraftable: 1
+  isCraftable: 0
+  needsCampfire: 0
   ingredients:
   - {fileID: 11400000, guid: 5ee72a3c7e6047042b328cd2a2a84fb0, type: 2}
   - {fileID: 11400000, guid: 79bfc8214dd7a694a88a1710f5a09357, type: 2}
   ingredientAmounts: 0100000001000000
+  amountGained: 1
