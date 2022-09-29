@@ -93,9 +93,14 @@ public class PlayerEquipment : MonoBehaviour
     private void Drink()
     {
         var bottle = objectHeld as WaterBottle;
-        bottle.currentCapacity -= bottle.thirstRestore;
-        PlayerProperties.Instance.RegenerateThirst(bottle.thirstRestore);
-        Debug.Log("You drank from " + bottle.name + " and gained " + bottle.thirstRestore + " thirst" + " and now have " + bottle.currentCapacity + " left");
+        if (bottle.currentCapacity > 0)
+        {
+            bottle.currentCapacity -= bottle.thirstRestore;
+            PlayerProperties.Instance.RegenerateThirst(bottle.thirstRestore);
+            Debug.Log("You drank from " + bottle.name + " and gained " + bottle.thirstRestore + " thirst" + " and now have " + bottle.currentCapacity + " left");
+        }
+        else
+            bottle.currentCapacity = 0;
     }
     //Use the held item
     private void UseTool()

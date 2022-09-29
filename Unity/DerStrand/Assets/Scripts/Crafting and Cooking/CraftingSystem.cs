@@ -254,6 +254,7 @@ public class CraftingSystem : MonoBehaviour
             {
                 // Remove the ingredients from the Player Inventory (subtract the amount of the ingredient * the crafting multiplier)
                 playerInventory.RemoveItem(recipe.item.ingredients[i], recipe.item.ingredientAmounts[i] * craftingMultiplier);
+                selectedSlot = null;
             }
             // Add the crafted item to the Player Inventory (add the amount of the crafted item * the crafting multiplier)
             playerInventory.AddItem(recipe.item, craftingMultiplier * recipe.item.amountGained);

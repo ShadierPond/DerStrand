@@ -172,8 +172,9 @@ MonoBehaviour:
   ingredientCheck: 
   bedUI: {fileID: 0}
   bedTransitionTime: 0
-  itemGiven: []
-  itemGivenAmount: 
+  itemGiven:
+  - {fileID: 11400000, guid: 7885591a755b8ef4cbf4f1b407be570e, type: 2}
+  itemGivenAmount: 05000000
   trapWorksWhenPlayerLooksAtIt: 0
   isTrapSet: 0
   isTrapTriggered: 0
@@ -182,10 +183,10 @@ MonoBehaviour:
   resetTrapIngredients: []
   resetTrapIngredientAmounts: 
   resetTrapIngredientCheck: 
-  bushWorksWhenPlayerLooksAtIt: 1
+  bushWorksWhenPlayerLooksAtIt: 0
   isBushPickable: 1
   isBushPicked: 0
-  bushRandomTimeLimit: 10
+  bushRandomTimeLimit: 1800
   fullBushMaterial: {fileID: 2100000, guid: 67566b21f44d7804bb906bd5fff081be, type: 2}
   pickedBushMaterial: {fileID: 2100000, guid: d2ce3695fd31d644d8578472412839fa, type: 2}
 --- !u!4 &6627389338542545123 stripped

@@ -43,13 +43,13 @@ public class GameManager : MonoBehaviour
             // if there is a prefab, set it in the database item
             if(prefab)
                 item.prefab = prefab;
-            else
-                Debug.LogWarning("Prefab for " + item.name + " not found. Please add prefab with the same Item name to the Resources/Items/Prefabs folder.");
+            //else
+                //Debug.LogWarning("Prefab for " + item.name + " not found. Please add prefab with the same Item name to the Resources/Items/Prefabs folder.");
             // If there is an icon, set it in the database item
             if(icon)
                 item.icon = icon;
-            else
-                Debug.LogWarning("Icon for " + item.name + " not found. Please add icon with the same Item name to the Resources/Items/Icons folder.");
+            //else
+                //Debug.LogWarning("Icon for " + item.name + " not found. Please add icon with the same Item name to the Resources/Items/Icons folder.");
         }
     }
 

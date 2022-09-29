@@ -7,7 +7,7 @@ public class CCombat : MonoBehaviour
     [SerializeField] float damage = 10f;            // damage
     [SerializeField] float range = 20f;             // range
     [SerializeField] float fireRate = 15f;          // firerate
-    [SerializeField] float impactForce = 300f;      // impact ( knockback )
+    [SerializeField] float impactForce = 10f;      // impact ( knockback )
 
     [SerializeField] Camera fpsCam;                 // used camera ( in inspector adjustable )
 
