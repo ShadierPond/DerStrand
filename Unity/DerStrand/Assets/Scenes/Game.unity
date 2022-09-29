@@ -10282,7 +10282,6 @@ MonoBehaviour:
   saveData:
     saveDate: 
     saveTime: 
-    inGameTime: 
     playerPosition: {x: 11.480055, y: 1.08, z: 13.098536}
     playerRotation: {x: 0, y: -0.70606285, z: 0, w: 0.70814914}
     playerCameraRotation: {x: 17.73291, y: 270.1674}
@@ -37266,17 +37265,17 @@ PrefabInstance:
     - target: {fileID: 5125565863325364082, guid: b77e6ab7348b0aa46a84794e27bbcc00,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 478.35
+      value: 774.06
       objectReference: {fileID: 0}
     - target: {fileID: 5125565863325364082, guid: b77e6ab7348b0aa46a84794e27bbcc00,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 15.79
+      value: 10.43
       objectReference: {fileID: 0}
     - target: {fileID: 5125565863325364082, guid: b77e6ab7348b0aa46a84794e27bbcc00,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 254.79
+      value: 268.72
       objectReference: {fileID: 0}
     - target: {fileID: 5125565863325364082, guid: b77e6ab7348b0aa46a84794e27bbcc00,
         type: 3}
