@@ -83,7 +83,7 @@
      // Check if the Player is close enough to the Tree
      private bool CheckProximity() {
          // If the Player is not close enough to the Tree, return false
-         var inRange = !(Vector3.Distance(Player.Instance.gameObject.transform.position, hit.point) > harvestTreeDistance);
+         var inRange = !(Vector3.Distance(gameObject.transform.position, hit.point) > harvestTreeDistance);
          return inRange;
      }
      
@@ -139,8 +139,8 @@
          rMgr.AddTerrainTree(terrain.name, treeIndex, Time.time+respawnTimer, marker.transform);
  
          if (rotatePlayer) {
-             var lookRot = new Vector3 (hit.point.x, Player.Instance.gameObject.transform.position.y, hit.point.z);
-             Player.Instance.gameObject.transform.LookAt (lookRot);
+             var lookRot = new Vector3 (hit.point.x, gameObject.transform.position.y, hit.point.z);
+             gameObject.transform.LookAt (lookRot);
          }
          
             // Give Item to Player

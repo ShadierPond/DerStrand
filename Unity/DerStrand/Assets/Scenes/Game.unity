@@ -10236,7 +10236,6 @@ GameObject:
   m_Component:
   - component: {fileID: 688498690}
   - component: {fileID: 688498691}
-  - component: {fileID: 688498692}
   m_Layer: 0
   m_Name: Management
   m_TagString: Untagged
@@ -10293,32 +10292,6 @@ MonoBehaviour:
     hunger: 0
     wearyTime: 0
     inventory: {fileID: 11400000, guid: 76357a4ef558cd9449f3a1451443d36f, type: 2}
---- !u!114 &688498692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 688498688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a6f05fded8ffd6418775576973c4fbf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  harvestTreeDistance: 1
-  rotatePlayer: 1
-  felledTreeMarker: {fileID: 5798551574510317270, guid: 38fd8ec86e7eeae4e99d8d76ea7a3da3,
-    type: 3}
-  fellTreePositionOffset: {x: 1, y: 0, z: 0}
-  respawnTimer: 300
-  items:
-  - {fileID: 11400000, guid: f5247c3ef0c82f743b708e4622e1e0af, type: 2}
-  - {fileID: 11400000, guid: 3322fb6cf61f3104aad506fbed420f4b, type: 2}
-  - {fileID: 11400000, guid: afd081f2f3f1c69429d57efe133de456, type: 2}
-  - {fileID: 11400000, guid: 8d2bb36b46944b4418cd6edbabc6f486, type: 2}
-  - {fileID: 11400000, guid: 3c77d83687559724889a333c68f4f247, type: 2}
-  itemAmounts: 0200000001000000010000000100000001000000
-  itemChances: 6400000050000000640000001e00000046000000
 --- !u!1 &689312446
 GameObject:
   m_ObjectHideFlags: 0
@@ -21027,6 +21000,31 @@ MonoBehaviour:
   playerEquipmentUI: {fileID: 1976938108}
   objectHeld: {fileID: 0}
   weapons: []
+--- !u!114 &1422913702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422913686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a6f05fded8ffd6418775576973c4fbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  harvestTreeDistance: 10
+  rotatePlayer: 1
+  felledTreeMarker: {fileID: 5798551574510317270, guid: 38fd8ec86e7eeae4e99d8d76ea7a3da3,
+    type: 3}
+  fellTreePositionOffset: {x: 1, y: 0, z: 0}
+  respawnTimer: 300
+  items:
+  - {fileID: 11400000, guid: afd081f2f3f1c69429d57efe133de456, type: 2}
+  - {fileID: 11400000, guid: f5247c3ef0c82f743b708e4622e1e0af, type: 2}
+  - {fileID: 11400000, guid: 3322fb6cf61f3104aad506fbed420f4b, type: 2}
+  - {fileID: 11400000, guid: 8d2bb36b46944b4418cd6edbabc6f486, type: 2}
+  itemAmounts: 01000000010000000100000001000000
+  itemChances: 6400000064000000320000001e000000
 --- !u!1 &1426783692
 GameObject:
   m_ObjectHideFlags: 0
