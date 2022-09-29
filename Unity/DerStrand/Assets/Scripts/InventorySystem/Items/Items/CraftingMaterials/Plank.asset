@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9875f4983118145a25729b07d128a7, type: 3}
   m_Name: Plank
   m_EditorClassIdentifier: 
-  id: 24
+  id: 22
   icon: {fileID: 21300000, guid: 59ffd9f51505674418f15d8ca8ae1c17, type: 3}
   prefab: {fileID: 2540606283282318744, guid: 56e29414d1e5d30469c76eab6b9c9d48, type: 3}
   type: 0
-  description: 
+  description: 'Its a hard conversation partner '
   isCraftable: 1
   needsCampfire: 0
   ingredients:

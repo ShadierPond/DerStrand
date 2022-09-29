@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df49e2fecb5ba54da84f452df2f585d, type: 3}
   m_Name: Coconut
   m_EditorClassIdentifier: 
-  id: 3
+  id: 2
   icon: {fileID: 21300000, guid: 208fb437b859a3c4387692cb21c97221, type: 3}
-  prefab: {fileID: 0}
+  prefab: {fileID: 5986358712212220975, guid: c85c82a0b08ca8e4bb35abcf1fba4e62, type: 3}
   type: 3
-  description: 
+  description: its the only nut that wont impregnates you
   isCraftable: 0
   needsCampfire: 0
   ingredients: []

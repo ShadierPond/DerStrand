@@ -450,6 +450,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 20
+  itemsDrops:
+  - {fileID: 11400000, guid: 63ff2da31f327af4cb5da0ade5bf6f38, type: 2}
+  - {fileID: 11400000, guid: 55a806842bc47a3408cde1682a0ca221, type: 2}
+  - {fileID: 11400000, guid: a97ffe12051f2f24e8cbbb54909c0c31, type: 2}
+  itemsDropsAmounts: 010000000100000001000000
+  dropChance:
+  - 100
+  - 100
+  - 50
 --- !u!195 &8116919670279408487
 NavMeshAgent:
   m_ObjectHideFlags: 0

@@ -851,6 +851,7 @@ GameObject:
   - component: {fileID: 8353945515636223186}
   - component: {fileID: 619342162727022170}
   - component: {fileID: 6014668504239224775}
+  - component: {fileID: -1348495380436908757}
   m_Layer: 0
   m_Name: UnityHun_V3
   m_TagString: Untagged
@@ -994,6 +995,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
   FleeDistance: 4
+--- !u!114 &-1348495380436908757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5580139997997015862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b65693d0588a5a84bb086cf599ce23d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 10
+  itemsDrops:
+  - {fileID: 11400000, guid: 63ff2da31f327af4cb5da0ade5bf6f38, type: 2}
+  - {fileID: 11400000, guid: f78dfa23b262d6b40bd11c7b26ac69ed, type: 2}
+  itemsDropsAmounts: 0100000003000000
+  dropChance:
+  - 100
+  - 100
 --- !u!1 &5580139998018347010
 GameObject:
   m_ObjectHideFlags: 0

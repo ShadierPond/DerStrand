@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df49e2fecb5ba54da84f452df2f585d, type: 3}
   m_Name: Raw Fish
   m_EditorClassIdentifier: 
-  id: 9
+  id: 7
   icon: {fileID: 21300000, guid: abcb57ba080f8bd49af81707c6b00adb, type: 3}
-  prefab: {fileID: 0}
+  prefab: {fileID: 7788262278383519814, guid: f6391f8bbd99d9945b14e543f21d12b3, type: 3}
   type: 3
-  description: 
+  description: The Chicken of the See
   isCraftable: 0
   needsCampfire: 0
   ingredients: []

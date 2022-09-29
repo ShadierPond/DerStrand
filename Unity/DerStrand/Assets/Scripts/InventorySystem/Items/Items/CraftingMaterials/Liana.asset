@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9875f4983118145a25729b07d128a7, type: 3}
   m_Name: Liana
   m_EditorClassIdentifier: 
-  id: 21
+  id: 19
   icon: {fileID: 21300000, guid: a9f45a91ef561c944838172f43054a37, type: 3}
   prefab: {fileID: 732179402790447757, guid: 700827541eef0884d97989a690871c1a, type: 3}
   type: 0
-  description: 
+  description: "used to hang \u201CStuff\u201D around"
   isCraftable: 0
   needsCampfire: 0
   ingredients: []

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78923284f36861f418ba2c71683a131e, type: 3}
   m_Name: Water Bottle
   m_EditorClassIdentifier: 
-  id: 11
+  id: 9
   icon: {fileID: 21300000, guid: fb15e82f1ff7cd3409ab98ba8b06fac7, type: 3}
   prefab: {fileID: 3346333411513527228, guid: 5a4af2cb6b04f254f89cc4567eecdfb8, type: 3}
   type: 4
-  description: 
+  description: 'The Chicken of the lake '
   isCraftable: 1
   needsCampfire: 0
   ingredients:

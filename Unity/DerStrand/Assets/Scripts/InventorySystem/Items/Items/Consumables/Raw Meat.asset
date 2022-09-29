@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df49e2fecb5ba54da84f452df2f585d, type: 3}
   m_Name: Raw Meat
   m_EditorClassIdentifier: 
-  id: 10
+  id: 8
   icon: {fileID: 21300000, guid: 6fd1a817d0a8b3948b366350cbdeb482, type: 3}
-  prefab: {fileID: 0}
+  prefab: {fileID: 3529199211247285411, guid: 31dd30abcd046254b9f8ef6a7c79f9b8, type: 3}
   type: 3
-  description: 
+  description: The Chicken of the Land
   isCraftable: 0
   needsCampfire: 0
   ingredients: []

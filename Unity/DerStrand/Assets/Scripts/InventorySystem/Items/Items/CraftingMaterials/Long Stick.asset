@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9875f4983118145a25729b07d128a7, type: 3}
   m_Name: Long Stick
   m_EditorClassIdentifier: 
-  id: 23
-  icon: {fileID: 0}
-  prefab: {fileID: 0}
+  id: 21
+  icon: {fileID: 21300000, guid: 5b732c0f8e47908458b732071185d828, type: 3}
+  prefab: {fileID: 8094478911706565779, guid: ee36a4989c25cbc44a0cedcef6a78f1d, type: 3}
   type: 0
-  description: Test 2
+  description: 'its like Corn, but its not like Corn but this one is longer '
   isCraftable: 0
   needsCampfire: 0
   ingredients: []

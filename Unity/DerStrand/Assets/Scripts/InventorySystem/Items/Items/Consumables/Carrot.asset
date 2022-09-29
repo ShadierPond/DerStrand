@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df49e2fecb5ba54da84f452df2f585d, type: 3}
   m_Name: Carrot
   m_EditorClassIdentifier: 
-  id: 2
+  id: 1
   icon: {fileID: 21300000, guid: 78e7dd7b67e5b384982c379099040ba4, type: 3}
   prefab: {fileID: 648654193463820175, guid: 61cb2037973e97e4e907f8b46351940f, type: 3}
   type: 3
-  description: 
+  description: The Chicken of the Dirt but its orange
   isCraftable: 0
   needsCampfire: 0
   ingredients: []

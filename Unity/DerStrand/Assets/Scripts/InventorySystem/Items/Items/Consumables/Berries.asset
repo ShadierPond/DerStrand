@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df49e2fecb5ba54da84f452df2f585d, type: 3}
   m_Name: Berries
   m_EditorClassIdentifier: 
-  id: 1
+  id: 0
   icon: {fileID: 21300000, guid: 6039719e44dd922489e57355edf331bf, type: 3}
-  prefab: {fileID: 0}
+  prefab: {fileID: 6020418357646079386, guid: 597348efa32559f4daea0016a676ddd4, type: 3}
   type: 3
-  description: 
+  description: 'The Chicken of the Bushes '
   isCraftable: 0
   needsCampfire: 0
   ingredients: []

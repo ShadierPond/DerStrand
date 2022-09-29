@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df49e2fecb5ba54da84f452df2f585d, type: 3}
   m_Name: Potato
   m_EditorClassIdentifier: 
-  id: 8
+  id: 6
   icon: {fileID: 21300000, guid: a76400975b013794ba2d6e817d88d9bb, type: 3}
   prefab: {fileID: 2973528895951627193, guid: 3940d67a974b9894fa559881cb4c2ca1, type: 3}
   type: 3
-  description: 
+  description: The Chicken of the Dirt
   isCraftable: 0
   needsCampfire: 0
   ingredients: []
