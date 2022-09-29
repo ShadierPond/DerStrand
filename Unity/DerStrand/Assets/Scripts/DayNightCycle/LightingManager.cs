@@ -11,7 +11,7 @@ public class LightingManager : MonoBehaviour
     // Lighting Preset
     [SerializeField] private LightingPreset preset;
     // Time in 24 Hour Format (minutes in Commas)
-    [SerializeField, Range(0, 24)] private float timeOfDay;
+    [SerializeField, Range(0, 24)] public float timeOfDay;
     // Time in String Format
     [SerializeField] private string timeOfDayString;
     // In-Game Days
