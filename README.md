@@ -43,7 +43,7 @@ You take on the role of a shipwrecked man. Since he doesn't know the island, he 
 | Fish      | Arrows               | Grass      | Meat     |
 | Shark     | Bow                  | Potatoes   | Fish     |
 | Turtle    | Torch                | Carrots    | Water    |
-| Fish      | Flint                |            |          |
+| ....      | Flint                |            |.Coconuts.|
 |           | rock                 |            |          |
 |           | Pot                  |            |          |
 |           | Level 1 Bed          |            |          |
@@ -52,13 +52,7 @@ You take on the role of a shipwrecked man. Since he doesn't know the island, he 
 |           | Campfire             |            |          |
 |           | Crates               |            |          |
 |           | Planting Container   |            |          |
-|           | Raw Meat             |            |          |
-|           | Raw Fish             |            |          |
-|           | Berries              |            |          |
 |           | Bones                |            |          |
-|           | Potatoes             |            |          |
-|           | Carrots              |            |          |
-|           | Coconuts             |            |          |
 |           | Leather Water Bottle |            |          |
 |           | Animal Trap          |            |          |
 |           | Fish Trap            |            |          |
