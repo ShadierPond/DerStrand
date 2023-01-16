@@ -1,3 +1,4 @@
+A Demo version for WebGL has been only created for visual purposes, any Bugs or errors there are because Target platform is supposed to be windows. An EXE Version is located in Anwendung folder!
 # DerStrand
 ![alt text](blob/Bild1.png)
 
