@@ -1,2 +1,0 @@
-Zur optimierung des Spiels, habe ich noch Occult Culling verwendet, damit nicht die ganze Welt angezeigt werden (ressourcensparend).
-Ich habe mit Sandro Licht gebaked, damit es auch leistung spart und die Schatten korrigiert.
