@@ -102,10 +102,10 @@ In the game, there are fixed places for animal and fish traps that you can build
 ![alt text](blob/Bild8.png)
 
 ## Credits
-- **Lead Programming / UX / UI Design:** [Tariq Alsalem](https://github.com/ShadierPond)
+- **Lead Programmer / Programming / UX / UI Design:** [Tariq Alsalem](https://github.com/ShadierPond)
 - **Programming / Level Design / 2D Art:** [Sandro Herberich](https://github.com/Cur1o)
 - **Programming:** [Anastasia Naumann](https://github.com/ElPatronWhizzKey)
 - **Programming / AI:** [Stefan Laufer](https://github.com/DerRitterRost)
-- **Lead Designer / Texturing / Animation:** Tom Boening
+- **Lead Designer / 3D Modelling / Texturing / Animation:** Tom Boening
 - **3D Modelling / Texturing / Animation:** Roman Heinze
 
